@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Schedule;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class ScheduleController extends Controller
 {
@@ -20,12 +21,27 @@ class ScheduleController extends Controller
     }
 
     public function create_schedule(Request $request) {
+        $schedules = Schedule::whereDate('date', date("Y-m-d H:i:s", strtotime($request->fecha)))->get();
+        if (count($schedules)) {
+            return back()->withErrors([
+                'schedule' => 'Ya hay un evento registrado para ese dia.',
+            ]);
+        }
+
+        if (date('l', strtotime($request->fecha)) == 'Sunday') {
+            return back()->withErrors([
+                'schedule' => 'No se puede agendar en domingo.',
+            ]);
+        }
+
+
         $id = Auth::id();
+        $user = User::find($id)->house;
         $schedule = new Schedule;
  
         $schedule->name = $request->nombre;
         $schedule->date = $request->fecha;
-        $schedule->scheduled_by = $id;
+        $schedule->scheduled_by = $user->id;
  
         $schedule->save();
  
