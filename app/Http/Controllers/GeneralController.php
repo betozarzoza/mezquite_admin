@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\General;
 use App\Models\Movement;
 use App\Models\Houses;
+use App\Models\User;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Auth;
 
 class GeneralController extends Controller
 {
@@ -24,8 +26,10 @@ class GeneralController extends Controller
         $egresos = Movement::whereBetween('created_at', [date("Y-m-d H:i:s", strtotime("-1 week")), date("Y-m-d H:i:s")])->where('type', 'egreso')->sum('quantity');
 
         $houses = Houses::where('active', 0)->get();
+        $id = Auth::id();
+        $user = User::find($id)->house;
 
-        return view('zenix.dashboard.index', compact('page_title', 'page_description', 'action', 'balance', 'ingresos', 'egresos', 'houses'));
+        return view('zenix.dashboard.index', compact('page_title', 'page_description', 'action', 'balance', 'ingresos', 'egresos', 'houses', 'user'));
 
     }
 
