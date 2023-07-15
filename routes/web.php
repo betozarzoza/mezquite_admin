@@ -31,7 +31,7 @@ Route::group([
 });
 Route::controller(ZenixadminController::class)->group(function () {
 
-    Route::get('/',             'dashboard_1')->middleware('auth');
+    //Route::get('/',             'dashboard_1')->middleware('auth');
     //Route::get('/index',        'dashboard_1');
     Route::get('/index-2',      'dashboard_2');
     Route::get('/coin-details', 'coin_details');
@@ -122,6 +122,7 @@ Route::controller(ScheduleController::class)->group(function () {
 });
 
 Route::controller(GeneralController::class)->group(function () {
+    Route::get('/',  [ 'as' => 'index', 'uses' => 'show_index'])->middleware('auth');
     Route::get('/index',  [ 'as' => 'index', 'uses' => 'show_index'])->middleware('auth');
     Route::post('/open-gate','open_gate')->middleware('auth');
 });

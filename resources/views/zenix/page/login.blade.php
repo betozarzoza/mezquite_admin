@@ -26,11 +26,11 @@
                             @csrf
                             <div class="form-group">
                                 <label class="mb-1"><strong>Correo</strong></label>
-                                <input type="email" name="email" class="form-control" value="hello@example.com">
+                                <input type="email" name="email" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label class="mb-1"><strong>Contrasena</strong></label>
-                                <input type="password" name="password" class="form-control" value="Password">
+                                <input type="password" name="password" class="form-control">
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary btn-block">Iniciar sesion</button>
