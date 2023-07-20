@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\General;
 use App\Models\Movement;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class MovementsController extends Controller
 {
@@ -15,9 +16,13 @@ class MovementsController extends Controller
         $page_title = 'Agregar ingreso/egreso';
         $page_description = 'Formulario apra agregar movimientos';
         $action = __FUNCTION__;
-
-        return view('zenix.form.add_movement', compact('page_title', 'page_description', 'action'));
-
+        $id = Auth::id();
+        $user = User::find($id);
+        if ($user->is_admin) {
+            return view('zenix.form.add_movement', compact('page_title', 'page_description', 'action'));
+        } else {
+            return redirect('/movements');
+        }
     }
 
     public function create_movement(Request $request) {

@@ -10,9 +10,11 @@
 	<div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center">
 		<h2 class="font-w600 title mb-2 me-auto ">Inicio</h2>
 	</div>
-	<div class="row">
-		<div class="alert alert-warning solid alert-square "><strong>Mensaje importante:</strong> La alberca esta en reparacion</div>
-	</div>
+	@foreach ($notifications as $notification)
+		<div class="row">
+			<div class="alert {{ $notification->color }} solid alert-square "><strong>Mensaje importante:</strong> {{ $notification->content }}</div>
+		</div>
+	@endforeach
 	<div class="row">
 		<div class="col-xl-3 col-sm-6 m-t35">
 			<form action="open-gate" method="post">

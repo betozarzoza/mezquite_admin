@@ -6,6 +6,7 @@ use App\Http\Controllers\MovementsController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\HousesController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -129,4 +130,10 @@ Route::controller(GeneralController::class)->group(function () {
 
 Route::controller(HousesController::class)->group(function () {
     Route::get('/houses',  [ 'as' => 'houses', 'uses' => 'show_houses'])->middleware('auth');
+});
+
+
+Route::controller(NotificationController::class)->group(function () {
+    Route::get('/add-notification',  [ 'as' => 'add_notification', 'uses' => 'add_notification'])->middleware('auth');
+    Route::post('/create-notification','create_notification')->middleware('auth');
 });

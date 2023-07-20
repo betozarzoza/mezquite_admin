@@ -23,9 +23,22 @@
 				</a>
                 <ul aria-expanded="false">
 					<li><a href="{!! url('/movements'); !!}">Ver movimientos</a></li>
-					<li><a href="{!! url('/add-movement'); !!}">Agregar movimiento</a></li>
+					@if(auth()->user()->is_admin)
+						<li><a href="{!! url('/add-movement'); !!}">Agregar movimiento</a></li>
+					@endif
 				</ul>
             </li>
+            @if(auth()->user()->is_admin)
+             <li>
+            	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+					<i class="flaticon-144-layout"></i>
+					<span class="nav-text">General</span>
+				</a>
+                <ul aria-expanded="false">
+						<li><a href="{!! url('/add-notification'); !!}">Crear notificacion</a></li>
+				</ul>
+            </li>
+            @endif
             <li><a href="{!! url('/schedules'); !!}" class="ai-icon" aria-expanded="false">
 					<i class="flaticon-381-settings-2"></i>
 					<span class="nav-text">Palapa</span>
@@ -40,6 +53,7 @@
 					<li><a href="{!! url('/houses'); !!}">Ver Casas</a></li>
 				</ul>
             </li>
+            <!--
 			<li class="nav-label first">Main Menu</li>
             <li>
             	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -203,6 +217,7 @@
                     <li><a href="{!! url('/page-lock-screen'); !!}">Lock Screen</a></li>
                 </ul>
             </li>
+        -->
         </ul>
 	</div>
 </div>
