@@ -8,6 +8,7 @@ use App\Models\General;
 use App\Models\Movement;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Houses;
 
 class MovementsController extends Controller
 {
@@ -46,7 +47,9 @@ class MovementsController extends Controller
  
         $movement->save();
 
-        $this->modifyBalance($request->cantidad, $request->tipo);
+        $this->modifyGeneralBalance($request->cantidad, $request->tipo);
+        $this->modifyMyBalance($request->cantidad, $request->tipo, $request->destinatario);
+        $this->checkIfInactiveAndActivateIt($request->cantidad, $request->tipo, $request->destinatario);
  
         return redirect('/movements');
     }
@@ -72,7 +75,7 @@ class MovementsController extends Controller
         return view('zenix.dashboard.movements', compact('page_title', 'page_description', 'action', 'movements'));
     }
 
-    public function modifyBalance($quantity, $operation) {
+    public function modifyGeneralBalance($quantity, $operation) {
         $balance = General::where('name', 'balance')->value('value');
         if ($operation == 'ingreso') {
             $balance = $balance + $quantity;
@@ -80,5 +83,25 @@ class MovementsController extends Controller
             $balance = $balance - $quantity;
         }
         $affected = General::where('name', 'balance')->update(['value' => $balance]);
+    }
+
+    public function modifyMyBalance($quantity, $operation, $house_id) {
+        if ($operation == 'ingreso' && $house_id !== 0) {
+            $house = Houses::find($house_id);
+            $house->balance = $house->balance - $quantity;
+            $house->save();
+        }
+    }
+
+    public function checkIfInactiveAndActivateIt ($quantity, $operation, $house_id) {
+        if ($operation == 'ingreso' && $house_id !== 0) {
+            $house = Houses::find($house_id);
+            if ($house->active == 0) {
+                if ($house->balance <= 0) {
+                    $house->active = 1;
+                    $house->save();
+                }
+            }
+        }
     }
 }

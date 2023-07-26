@@ -12,7 +12,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call('App\Http\Controllers\HousesController@addMontlyPaymentToHouses')->monthly();
+        $schedule->call('App\Http\Controllers\HousesController@inactive_houses')->monthlyOn(15, '00:00');
     }
 
     /**
