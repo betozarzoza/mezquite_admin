@@ -20,6 +20,7 @@
 							<tr>
 								<th>#</th>
 								<th>Dueño</th>
+								<th>Deuda</th>
 								<th>Ultimo pago</th>
 								<th>Estatus</th>
 								<th>Accion</th>
@@ -32,13 +33,13 @@
 										<h6>{{ $house->id }}</h6>
 									</td>
 									<td>
-										<div class="media style-1">
-											<img src="{{ asset('images/avatar/1.jpg') }}" class="img-fluid me-2" alt="">
-											<div class="media-body">
-												<h6>{{ $house->owner_name }}</h6>
-												<span>{{ $house->owner_contact }}</span>
-											</div>
+										<div>
+											<h6>{{ $house->owner_name }}</h6>
+											<span>{{ $house->owner_contact }}</span>
 										</div>
+									</td>
+									<td>
+										<h6>{{ $house->balance }}</h6>
 									</td>
 									<td>
 										<div>
