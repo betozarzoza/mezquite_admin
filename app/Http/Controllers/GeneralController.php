@@ -39,10 +39,15 @@ class GeneralController extends Controller
         $response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=f6fee870-5658-41c4-8b11-fe795f8298a9&token=bef983a5-596d-4d67-9eee-6f965f66e33b&response=json');
         //print_r($response->json());
         $response = $response->json();
-
-        if (count($response) > 0 && $response['triggerActivationStatus'] == 'success') {
-            print_r($response->json());
+        if (count($response) > 0 && $response['URLRoutineTrigger']['triggerActivationStatus'] == 'success') {
+            return redirect('/index');
         }
-        //return redirect('/index');
+    }
+
+    public function show_my_profile () {
+        $page_title = 'Mi perfil';
+        $page_description = 'Muestra mi perfil';
+        $action = __FUNCTION__;
+        return view('zenix.app.user_profile', compact('page_title', 'page_description', 'action'));
     }
 }

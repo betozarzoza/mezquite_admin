@@ -50,24 +50,6 @@
                     </div>
                 </div>
             </div>
-            <!-- BEGIN MODAL -->
-            <div class="modal fade none-border" id="event-modal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title"><strong>Add New Event</strong></h4>
-                        </div>
-                        <div class="modal-body"></div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default waves-effect" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success save-event waves-effect waves-light">Create
-                                event</button>
-
-                            <button type="button" class="btn btn-danger delete-event waves-effect waves-light" data-bs-toggle="modal">Delete</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <!-- Modal Add Category -->
             <div class="modal fade none-border" id="add-category">
                 <div class="modal-dialog">
@@ -90,7 +72,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default waves-effect" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-danger btn-block" data-bs-dismiss="modal">Cerrar</button>
                                 <button type="submit" class="btn btn-primary btn-block">Agendar</button>
                             </div>
                         </form>

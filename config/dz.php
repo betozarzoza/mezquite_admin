@@ -258,6 +258,10 @@ return [
 							'vendor/datatables/js/jquery.dataTables.min.js',
 							'js/plugins-init/datatables.init.js',
 				],
+				'MovementsController_show_movements' => [
+							'vendor/datatables/js/jquery.dataTables.min.js',
+							'js/plugins-init/datatables.init.js',
+				],
 				'ZenixadminController_portofolio' => [
 							'vendor/chart.js/Chart.bundle.min.js',
 							'vendor/apexchart/apexchart.js',
@@ -415,6 +419,10 @@ return [
 				'ZenixadminController_table_bootstrap_basic' => [
 				],
 				'ZenixadminController_table_datatable_basic' => [
+							'vendor/datatables/js/jquery.dataTables.min.js',
+							'js/plugins-init/datatables.init.js',
+				],
+				'MovementsController_show_movements' => [
 							'vendor/datatables/js/jquery.dataTables.min.js',
 							'js/plugins-init/datatables.init.js',
 				],

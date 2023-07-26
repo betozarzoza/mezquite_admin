@@ -27,8 +27,9 @@ Route::group([
     'prefix' => 'auth'
 ], function () {
     Route::post('login', 'App\Http\Controllers\AuthController@login');
-
     Route::get('logout', 'App\Http\Controllers\AuthController@logout');
+    Route::post('reset', 'App\Http\Controllers\AuthController@resetPassword');
+
 });
 Route::controller(ZenixadminController::class)->group(function () {
 
@@ -40,7 +41,6 @@ Route::controller(ZenixadminController::class)->group(function () {
     Route::get('/market-capital', 'market_capital');
     Route::get('/tranasactions', 'tranasactions')->middleware('auth');
     Route::get('/my-wallets',   'my_wallets');
-    Route::get('/app-profile',  'app_profile');
     Route::match(['get','post'],'/post-details', 'post_details');
     Route::get('/page-chat',    'page_chat');
     Route::get('/project-list', 'project_list');
@@ -114,6 +114,7 @@ Route::controller(MovementsController::class)->group(function () {
     Route::get('/movements',  [ 'as' => 'movements', 'uses' => 'show_movements'])->middleware('auth');
     Route::get('/add-movement',  [ 'as' => 'add_movement', 'uses' => 'add_movement'])->middleware('auth');
     Route::post('/create-movement','create_movement')->middleware('auth');
+    Route::post('/movements-filtered','show_movements_filtered')->middleware('auth');
 });
 
 Route::controller(ScheduleController::class)->group(function () {
@@ -125,6 +126,7 @@ Route::controller(ScheduleController::class)->group(function () {
 Route::controller(GeneralController::class)->group(function () {
     Route::get('/',  [ 'as' => 'index', 'uses' => 'show_index'])->middleware('auth');
     Route::get('/index',  [ 'as' => 'index', 'uses' => 'show_index'])->middleware('auth');
+    Route::get('/app-profile',  [ 'as' => 'profile', 'uses' => 'show_my_profile'])->middleware('auth');
     Route::post('/open-gate','open_gate')->middleware('auth');
 });
 

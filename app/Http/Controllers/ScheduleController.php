@@ -21,6 +21,10 @@ class ScheduleController extends Controller
     }
 
     public function create_schedule(Request $request) {
+        $this->validate($request, [
+            'nombre' => 'required|max:255',
+            'fecha' => 'required',
+        ]);
         $schedules = Schedule::whereDate('date', date("Y-m-d H:i:s", strtotime($request->fecha)))->get();
         if (count($schedules)) {
             return back()->withErrors([

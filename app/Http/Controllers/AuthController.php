@@ -67,7 +67,6 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
         $credentials = request(['email', 'password']);
@@ -76,7 +75,7 @@ class AuthController extends Controller
  
             return redirect()->intended('/');
         }
-       Alert::error('Error', 'Usuario o contrasena no encontrado.');
+        Alert::error('Error', 'Contrasena no encontrada.');
         return back()->withErrors([
             'email' => 'No se encontraron las credenciales en nuestro sistema.',
         ])->onlyInput('email');
@@ -89,18 +88,15 @@ class AuthController extends Controller
      */
     public function resetPassword(Request $request)
     {
-      if (DB::table('password_resets')->where('email', $request->email)->where('token', $request->token)->exists()) {
-        $userData = User::where('email', $request->email)->first();
-        $user = User::find($userData->id);
-        $user->password = bcrypt($request->password);
+        $id = Auth::id();
+        $user = User::find($id);
+        $user->password = bcrypt($request->contrasena);
         $user->save();
-        DB::table('password_resets')->where('email', $request->email)->delete();
         $result_array = array(
             'type'      => 'success',
             'message'    => 'Contrasena cambiada correctamente.',
         );
         return json_encode($result_array);
-      }
     }
 
     /**

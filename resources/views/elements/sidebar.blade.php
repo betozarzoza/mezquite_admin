@@ -18,7 +18,7 @@
 			</ul>
             <li>
             	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-					<i class="flaticon-144-layout"></i>
+					<i class="flaticon-381-calculator"></i>
 					<span class="nav-text">Movimientos</span>
 				</a>
                 <ul aria-expanded="false">
@@ -31,7 +31,7 @@
             @if(auth()->user()->is_admin)
              <li>
             	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-					<i class="flaticon-144-layout"></i>
+					<i class="flaticon-381-settings-4"></i>
 					<span class="nav-text">General</span>
 				</a>
                 <ul aria-expanded="false">
@@ -40,14 +40,14 @@
             </li>
             @endif
             <li><a href="{!! url('/schedules'); !!}" class="ai-icon" aria-expanded="false">
-					<i class="flaticon-381-settings-2"></i>
+					<i class="flaticon-381-calendar-3"></i>
 					<span class="nav-text">Palapa</span>
 				</a>
 			</li>
             <li>
             	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-					<i class="flaticon-144-layout"></i>
-					<span class="nav-text">Casas</span>
+					<i class="flaticon-381-home"></i>
+					<span class="nav-text">Condominos</span>
 				</a>
                 <ul aria-expanded="false">
 					<li><a href="{!! url('/houses'); !!}">Ver Casas</a></li>
@@ -217,7 +217,7 @@
                     <li><a href="{!! url('/page-lock-screen'); !!}">Lock Screen</a></li>
                 </ul>
             </li>
-        -->
+        	-->
         </ul>
 	</div>
 </div>

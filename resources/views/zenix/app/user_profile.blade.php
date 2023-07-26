@@ -1,0 +1,80 @@
+{{-- Extends layout --}}
+@extends('layout.default')
+
+
+
+{{-- Content --}}
+@section('content')
+    <div class="container-fluid">        <!-- row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="profile card card-body px-3 pt-3 pb-0">
+                    <div class="profile-head">
+                        <div class="photo-content">
+                            <div class="cover-photo rounded"></div>
+                        </div>
+                        <div class="profile-info">
+							<div class="profile-photo">
+								<img src="{{ asset('images/profile/profile.png') }}" class="img-fluid rounded-circle" alt="">
+							</div>
+							<div class="profile-details">
+								<div class="profile-name px-3 pt-2">
+									<h4 class="text-primary mb-0">{{ auth()->user()->name }}</h4>
+									<p>Casa {{ auth()->user()->houses_id }}</p>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="profile-tab">
+                                <div id="profile-settings">
+                                    <div class="pt-3">
+                                        <div class="settings-form">
+                                            <h4 class="text-primary">Informacion de la cuenta</h4>
+                                            <form action="auth/reset" method="post">
+                            					@csrf
+                                                <div class="row mb-3">
+                                                    <div class="col">
+                                                        <label class="form-label">Contrasena</label>
+                                                        <input type="password" name="contrasena" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-primary" type="submit">Cambiar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+							<!-- Modal -->
+							<div class="modal fade" id="replyModal">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title">Post Reply</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+										</div>
+										<div class="modal-body">
+											<form>
+												<textarea class="form-control" rows="4">Message</textarea>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">btn-close</button>
+											<button type="button" class="btn btn-primary">Reply</button>
+										</div>
+									</div>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection	   

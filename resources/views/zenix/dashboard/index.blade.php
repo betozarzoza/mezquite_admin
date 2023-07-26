@@ -23,7 +23,7 @@
 		            <div class="card-body text-center ai-icon  text-primary">
 						<h4 class="my-2">Abrir porton del condominio</h4>
 						@if ($user->active)
-							<button type="submit" class="btn btn-primary btn-block">Abrir porton</button>
+							<button type="submit" class="btn btn-primary btn-block py-4">Abrir porton</button>
 						@else
 							<td><span class="badge badge-danger">Inactivo</span></td>
 						@endif

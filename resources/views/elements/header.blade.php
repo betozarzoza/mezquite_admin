@@ -24,6 +24,11 @@
                         </a>
 					</li>
                     <li class="nav-item dropdown header-profile">
+                        <a href="{!! url('/app-profile'); !!}" class="dropdown-item ai-icon">
+                            <span class="ms-2">Perfil </span>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown header-profile">
                         <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown">
                             <img src="{{ asset('images/profile/pic1.jpg') }}" width="20" alt=""/>
 							<div class="header-info">

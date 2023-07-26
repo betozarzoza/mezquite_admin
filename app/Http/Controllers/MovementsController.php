@@ -26,6 +26,13 @@ class MovementsController extends Controller
     }
 
     public function create_movement(Request $request) {
+        $this->validate($request, [
+            'nombre' => 'required|max:255',
+            'cantidad' => 'required',
+            'tipo' => 'required',
+            'destinatario' => 'required',
+            'mes' => 'required'
+        ]);
         $id = Auth::id();
         $movement = new Movement;
  
@@ -33,6 +40,7 @@ class MovementsController extends Controller
         $movement->quantity = $request->cantidad;
         $movement->type = $request->tipo;
         $movement->addressat = $request->destinatario;
+        $movement->month = $request->mes;
         $movement->note = $request->nota;
         $movement->created_by = $id;
  
@@ -47,7 +55,20 @@ class MovementsController extends Controller
         $page_title = 'Movimientos';
         $page_description = 'Muestra los ingresos y egresos';
         $action = __FUNCTION__;
-        $movements = Movement::get();
+        $movements = Movement::with('user')->get();
+        return view('zenix.dashboard.movements', compact('page_title', 'page_description', 'action', 'movements'));
+    }
+
+    public function show_movements_filtered (Request $request) {
+        $filter = $request->filter;
+        $page_title = 'Movimientos';
+        $page_description = 'Muestra los ingresos y egresos';
+        $action = __FUNCTION__;
+        if (count($filter) > 0) {
+            $movements = Movement::with('user')->whereIn('addressat', $filter)->get();
+        } else {
+            $movements = Movement::with('user')->get();
+        }
         return view('zenix.dashboard.movements', compact('page_title', 'page_description', 'action', 'movements'));
     }
 
