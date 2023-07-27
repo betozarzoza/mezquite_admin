@@ -25,6 +25,11 @@ class NotificationController extends Controller
     }
 
     public function create_notification(Request $request) {
+        $this->validate($request, [
+            'contenido' => 'required|max:255',
+            'dias' => 'required',
+        ]);
+
         $notification = new Notification;
  
         $notification->content = $request->contenido;
@@ -34,5 +39,10 @@ class NotificationController extends Controller
  
         $notification->save(); 
         return redirect('/');
+    }
+
+    public function minus_one_day_to_notif_and_inactivate_them () {
+        Notification::where('active', 1)->decrement('days_left', 1);
+        Notification::where('active', 1)->where('days_left', 0)->update(['active' => 0]);
     }
 }

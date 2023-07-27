@@ -35,20 +35,22 @@ class MovementsController extends Controller
             'mes' => 'required'
         ]);
         $id = Auth::id();
-        $movement = new Movement;
- 
-        $movement->name = $request->nombre;
-        $movement->quantity = $request->cantidad;
-        $movement->type = $request->tipo;
-        $movement->addressat = $request->destinatario;
-        $movement->month = $request->mes;
-        $movement->note = $request->nota;
-        $movement->created_by = $id;
- 
-        $movement->save();
+
+        foreach ($request->mes as $mes) {
+            $movement = new Movement;
+            $movement->name = $request->nombre;
+            $movement->quantity = $request->cantidad / count($request->mes);
+            $movement->type = $request->tipo;
+            $movement->addressat = $request->destinatario;
+            $movement->month = $mes;
+            $movement->note = $request->nota;
+            $movement->created_by = $id;
+            $movement->save();
+
+            $this->modifyMyBalanceAndLastPayment($request->cantidad / count($request->mes), $request->tipo, $request->destinatario, $mes . ' '.date("Y"));
+        }
 
         $this->modifyGeneralBalance($request->cantidad, $request->tipo);
-        $this->modifyMyBalance($request->cantidad, $request->tipo, $request->destinatario);
         $this->checkIfInactiveAndActivateIt($request->cantidad, $request->tipo, $request->destinatario);
  
         return redirect('/movements');
@@ -58,7 +60,7 @@ class MovementsController extends Controller
         $page_title = 'Movimientos';
         $page_description = 'Muestra los ingresos y egresos';
         $action = __FUNCTION__;
-        $movements = Movement::with('user')->get();
+        $movements = Movement::with('user')->orderBy('created_at', 'desc')->get();
         return view('zenix.dashboard.movements', compact('page_title', 'page_description', 'action', 'movements'));
     }
 
@@ -68,9 +70,9 @@ class MovementsController extends Controller
         $page_description = 'Muestra los ingresos y egresos';
         $action = __FUNCTION__;
         if (count($filter) > 0) {
-            $movements = Movement::with('user')->whereIn('addressat', $filter)->get();
+            $movements = Movement::with('user')->whereIn('addressat', $filter)->orderBy('created_at', 'desc')->get();
         } else {
-            $movements = Movement::with('user')->get();
+            $movements = Movement::with('user')->orderBy('created_at', 'desc')->get();
         }
         return view('zenix.dashboard.movements', compact('page_title', 'page_description', 'action', 'movements'));
     }
@@ -85,10 +87,11 @@ class MovementsController extends Controller
         $affected = General::where('name', 'balance')->update(['value' => $balance]);
     }
 
-    public function modifyMyBalance($quantity, $operation, $house_id) {
+    public function modifyMyBalanceAndLastPayment($quantity, $operation, $house_id, $last_payment) {
         if ($operation == 'ingreso' && $house_id !== 0) {
             $house = Houses::find($house_id);
             $house->balance = $house->balance - $quantity;
+            $house->last_payment = $last_payment;
             $house->save();
         }
     }

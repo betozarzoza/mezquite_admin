@@ -21,7 +21,7 @@
 								<th>#</th>
 								<th>Dueño</th>
 								<th>Deuda</th>
-								<th>Ultimo pago</th>
+								<th>Ultimo mes de pago</th>
 								<th>Estatus</th>
 								<th>Accion</th>
 							</tr>
@@ -39,12 +39,11 @@
 										</div>
 									</td>
 									<td>
-										<h6>{{ $house->balance }}</h6>
+										<h6>@if ($house->balance < 0 ) $0 (${{ abs($house->balance) }} a favor) @else ${{ $house->balance }} @endif</h6>
 									</td>
 									<td>
 										<div>
-											<h6 class="text-secondary">{{ $house->last_payment }}</h6>
-											<span>Pagado</span>
+											<h6 class="text-secondary">@if ($house->last_payment ) {{ $house->last_payment }} @else No hay pago registrado @endif</h6>
 										</div>
 									</td>
 									@if ($house->active)

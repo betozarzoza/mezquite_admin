@@ -54,7 +54,7 @@
 	                            </fieldset>
 	                            <div class="mb-3">
 	                                <label class="form-label">Mes de pago:</label>
-	                                <select name="mes" class="default-select  form-control wide" >
+	                                <select name="mes[]" multiple class=" btn-outline-secondary default-select form-control wide" >
 	                                	<option value="Otro">Otro</option>
 	                                    <option value="Enero">Enero</option>
 	                                    <option value="Febrero">Febrero</option>
