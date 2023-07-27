@@ -26,7 +26,7 @@ class GeneralController extends Controller
         $ingresos = Movement::whereBetween('created_at', [date("Y-m-d H:i:s", strtotime("-1 week")), date("Y-m-d H:i:s")])->where('type', 'ingreso')->sum('quantity');
         $egresos = Movement::whereBetween('created_at', [date("Y-m-d H:i:s", strtotime("-1 week")), date("Y-m-d H:i:s")])->where('type', 'egreso')->sum('quantity');
 
-        $houses = Houses::where('active', 0)->get();
+        $houses = Houses::where('active', 0)->orderBy('balance', 'desc')->get();
         $notifications = Notification::where('active', 1)->get();
         $id = Auth::id();
         $user = User::find($id)->house;
