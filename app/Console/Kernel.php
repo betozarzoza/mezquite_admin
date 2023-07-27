@@ -12,7 +12,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->call('App\Http\Controllers\HousesController@addMontlyPaymentToHouses')->everyThirtyMinutes();
+        $schedule->call('App\Http\Controllers\HousesController@addMontlyPaymentToHouses')->monthly();
         $schedule->call('App\Http\Controllers\HousesController@inactive_houses')->monthlyOn(15, '00:00');
     }
 
