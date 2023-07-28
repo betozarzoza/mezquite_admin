@@ -43,11 +43,12 @@ class MovementsController extends Controller
             $movement->type = $request->tipo;
             $movement->addressat = $request->destinatario;
             $movement->month = $mes;
+            $movement->year = $request->year;
             $movement->note = $request->nota;
             $movement->created_by = $id;
             $movement->save();
 
-            $this->modifyMyBalanceAndLastPayment($request->cantidad / count($request->mes), $request->tipo, $request->destinatario, $mes . ' '.date("Y"));
+            $this->modifyMyBalanceAndLastPayment($request->cantidad / count($request->mes), $request->tipo, $request->destinatario, $mes . ' '. $request->year);
         }
 
         $this->modifyGeneralBalance($request->cantidad, $request->tipo);
