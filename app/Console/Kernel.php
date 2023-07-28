@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call('App\Http\Controllers\HousesController@addMontlyPaymentToHouses')->monthly();
         $schedule->call('App\Http\Controllers\HousesController@inactive_houses')->monthlyOn(15, '00:00');
-        $schedule->call('App\Http\Controllers\NotificationController@minus_one_day_to_notif_and_inactivate_them')->everyMinute();
+        $schedule->call('App\Http\Controllers\NotificationController@minus_one_day_to_notif_and_inactivate_them')->daily();
+        $schedule->call('App\Http\Controllers\ScheduleController@delete_old_schedules')->daily();
     }
 
     /**

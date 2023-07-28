@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Schedule;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Carbon\Carbon;
 
 class ScheduleController extends Controller
 {
@@ -58,5 +59,9 @@ class ScheduleController extends Controller
         $action = __FUNCTION__;
        $schedules = Schedule::get();
         return view('zenix.app.schedules', compact('page_title', 'page_description', 'action', 'schedules'));
+    }
+
+    public function delete_old_schedules () {
+        Schedule::whereDate('date', '<', Carbon::now())->delete();
     }
 }

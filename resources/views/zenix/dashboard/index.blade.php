@@ -6,6 +6,11 @@
 {{-- Content --}}
 @section('content')
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<link href="{{ asset('vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+<script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+
+
 <div class="container-fluid">
 	<div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center">
 		<h2 class="font-w600 title mb-2 me-auto ">Inicio</h2>
@@ -89,8 +94,8 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<div class="table-responsive">
-					<table class="table style-1" id="ListDatatableView">
+                <div class="table-responsive">
+                    <table id="example" class="display" style="min-width: 845px">
 						<thead>
 							<tr>
 								<th>#</th>
@@ -141,5 +146,46 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> 
+<script type="text/javascript">
+    (function($) {
+	    "use strict"
+	    //example 1
+	    var table = $('#example').DataTable({
+	        createdRow: function ( row, data, index ) {
+	           $(row).addClass('selected')
+	        } ,
+			language: {
+				"lengthMenu": "Mostrar _MENU_ registros por pagina",
+	            "zeroRecords": "No se encontro nada",
+	            "info": "Mostrando pagina _PAGE_ de _PAGES_",
+	            "infoEmpty": "No hay registros disponibles",
+	            "infoFiltered": "(Filtrados de _MAX_ registros)",
+				paginate: {
+				  next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
+				  previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>' 
+				}
+			}
+	    });
+	      
+	    table.on('click', 'tbody tr', function() {
+	    var $row = table.row(this).nodes().to$();
+	    var hasClass = $row.hasClass('selected');
+	    if (hasClass) {
+	        $row.removeClass('selected')
+	    } else {
+	        $row.addClass('selected')
+	    }
+	    })
+	    
+	    table.rows().every(function() {
+	    this.nodes().to$().removeClass('selected')
+	    });
+
+
+
+	    
+		
+	})(jQuery);
+</script>  
 @endsection	

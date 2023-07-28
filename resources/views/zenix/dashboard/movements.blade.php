@@ -17,46 +17,46 @@
                 <div class="card">
                     <div class="card-header">
                         <form action="movements-filtered" method="post">
-	        @csrf
-		 	<div class="input-group mb-3">
-	            <select name="filter[]" multiple class=" btn-outline-secondary default-select form-control" >
-					<option value="0">Otro</option>
-	                <option value="1">Casa 1</option>
-	                <option value="2">Casa 2</option>
-	                <option value="3">Casa 3</option>
-	                <option value="4">Casa 4</option>
-	                <option value="5">Casa 5</option>
-	                <option value="6">Casa 6</option>
-	                <option value="7">Casa 7</option>
-	                <option value="8">Casa 8</option>
-	                <option value="9">Casa 9</option>
-	                <option value="10">Casa 10</option>
-	                <option value="11">Casa 11</option>
-	                <option value="12">Casa 12</option>
-	                <option value="13">Casa 13</option>
-	                <option value="14">Casa 14</option>
-	                <option value="15">Casa 15</option>
-	                <option value="16">Casa 16</option>
-	                <option value="17">Casa 17</option>
-	                <option value="18">Casa 18</option>
-	                <option value="19">Casa 19</option>
-	                <option value="20">Casa 20</option>
-	                <option value="21">Casa 21</option>
-	                <option value="22">Casa 22</option>
-	                <option value="23">Casa 23</option>
-	                <option value="24">Casa 24</option>
-	                <option value="25">Casa 25</option>
-	                <option value="26">Casa 26</option>
-	                <option value="27">Casa 27</option>
-	                <option value="28">Casa 28</option>
-	                <option value="29">Guardia</option>
-	                <option value="30">Luz</option>
-	                <option value="31">Agua</option>
-				</select>
-				<button class="btn btn-primary" type="submit">Filtrar</button>
-        	</div>
-        </form>
-                    </div>
+					        @csrf
+						 	<div class="input-group mb-3">
+					            <select name="filter[]" multiple class=" btn-outline-secondary default-select form-control" >
+									<option value="0">Otro</option>
+					                <option value="1">Casa 1</option>
+					                <option value="2">Casa 2</option>
+					                <option value="3">Casa 3</option>
+					                <option value="4">Casa 4</option>
+					                <option value="5">Casa 5</option>
+					                <option value="6">Casa 6</option>
+					                <option value="7">Casa 7</option>
+					                <option value="8">Casa 8</option>
+					                <option value="9">Casa 9</option>
+					                <option value="10">Casa 10</option>
+					                <option value="11">Casa 11</option>
+					                <option value="12">Casa 12</option>
+					                <option value="13">Casa 13</option>
+					                <option value="14">Casa 14</option>
+					                <option value="15">Casa 15</option>
+					                <option value="16">Casa 16</option>
+					                <option value="17">Casa 17</option>
+					                <option value="18">Casa 18</option>
+					                <option value="19">Casa 19</option>
+					                <option value="20">Casa 20</option>
+					                <option value="21">Casa 21</option>
+					                <option value="22">Casa 22</option>
+					                <option value="23">Casa 23</option>
+					                <option value="24">Casa 24</option>
+					                <option value="25">Casa 25</option>
+					                <option value="26">Casa 26</option>
+					                <option value="27">Casa 27</option>
+					                <option value="28">Casa 28</option>
+					                <option value="29">Guardia</option>
+					                <option value="30">Luz</option>
+					                <option value="31">Agua</option>
+								</select>
+								<button class="btn btn-primary" type="submit">Filtrar</button>
+				        	</div>
+				        </form>
+				    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="example" class="display" style="min-width: 845px">
