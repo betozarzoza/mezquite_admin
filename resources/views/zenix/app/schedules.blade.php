@@ -29,13 +29,18 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-intro-title">Agenda</h4>
-
-                        <div class="">
-                            @foreach ($schedules as $schedule)
+                        <div>
+                            @if (count($schedules) > 0)
+                                @foreach ($schedules as $schedule)
+                                    <div id="external-events" class="my-3">
+                                        <div class="external-event btn-secondary light" data-class="bg-secondary"><i class="fa fa-move"></i>{{ $schedule->name }} (Casa {{ $schedule->scheduled_by}})</div>
+                                    </div>
+                                @endforeach
+                            @else
                                 <div id="external-events" class="my-3">
-                                    <div class="external-event btn-secondary light" data-class="bg-secondary"><i class="fa fa-move"></i>{{ $schedule->name }} (Casa {{ $schedule->scheduled_by}})</div>
+                                    <div class="external-event btn-secondary light" data-class="bg-secondary"><i class="fa fa-move"></i>No hay registros</div>
                                 </div>
-                            @endforeach
+                            @endif
                             <a href="javascript:void()" data-bs-toggle="modal" data-bs-target="#add-category" class="btn btn-primary btn-event w-100">
                                 <span class="align-middle"><i class="ti-plus"></i></span> Agendar evento
                             </a>
@@ -94,8 +99,6 @@
                 }
                 fullCalender(events); 
             }, 1000);
-            
-            
         }); 
     </script>
 @endsection
