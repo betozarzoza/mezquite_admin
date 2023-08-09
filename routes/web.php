@@ -6,6 +6,7 @@ use App\Http\Controllers\MovementsController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\HousesController;
+use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\NotificationController;
 
 /*
@@ -138,4 +139,9 @@ Route::controller(HousesController::class)->group(function () {
 Route::controller(NotificationController::class)->group(function () {
     Route::get('/add-notification',  [ 'as' => 'add_notification', 'uses' => 'add_notification'])->middleware('auth');
     Route::post('/create-notification','create_notification')->middleware('auth');
+});
+
+Route::controller(SurveyController::class)->group(function () {
+    Route::get('/add-survey',  [ 'as' => 'add_survey', 'uses' => 'add_survey'])->middleware('auth');
+    Route::post('/create-survey','create_survey')->middleware('auth');
 });

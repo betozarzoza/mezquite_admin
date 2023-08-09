@@ -37,6 +37,9 @@
                 <ul aria-expanded="false">
 						<li><a href="{!! url('/add-notification'); !!}">Crear notificacion</a></li>
 				</ul>
+				<ul aria-expanded="false">
+						<li><a href="{!! url('/add-survey'); !!}">Crear encuesta</a></li>
+				</ul>
             </li>
             @endif
             <li><a href="{!! url('/schedules'); !!}" class="ai-icon" aria-expanded="false">
@@ -53,7 +56,6 @@
 					<li><a href="{!! url('/houses'); !!}">Ver Casas</a></li>
 				</ul>
             </li>
-            <!--
 			<li class="nav-label first">Main Menu</li>
             <li>
             	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -217,7 +219,6 @@
                     <li><a href="{!! url('/page-lock-screen'); !!}">Lock Screen</a></li>
                 </ul>
             </li>
-        	-->
         </ul>
 	</div>
 </div>
