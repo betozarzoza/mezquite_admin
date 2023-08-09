@@ -20,39 +20,50 @@
 			<div class="alert {{ $notification->color }} solid alert-square "><strong>Mensaje importante:</strong> {{ $notification->content }}</div>
 		</div>
 	@endforeach
-	<div class="col">
-        <div class="card">
-            <div class="card-header d-block">
-                <h4 class="card-title">¿Como se deberia arreglar la alberca?</h4>
-            </div>
-            <div class="card-body">
-                <h6>Cambiando la tuberia completa
-                    <span class="pull-end">80%</span>
-                </h6>
-                <div class="progress ">
-                    <div class="progress-bar bg-danger progress-animated" style="width: 80%; height:6px;" role="progressbar">
-                        <span class="sr-only">60% Complete</span>
-                    </div>
-                </div>
-                <h6 class="mt-4">Yo no quiero que se arregle
-                    <span class="pull-end">10%</span>
-                </h6>
-                <div class="progress">
-                    <div class="progress-bar bg-info progress-animated" style="width: 10%; height:6px;" role="progressbar">
-                        <span class="sr-only">60% Complete</span>
-                    </div>
-                </div>
-                <h6 class="mt-4">Con cinta
-                    <span class="pull-end">10%</span>
-                </h6>
-                 <div class="progress">
-                    <div class="progress-bar bg-primary progress-animated" style="width: 10%; height:6px;" role="progressbar">
-                        <span class="sr-only">60% Complete</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	@foreach ($surveys as $survey)
+		<div class="col">
+	        <div class="card">
+	            <div class="card-header d-block">
+	                <h4 class="card-title">{{ $survey->question }}</h4>
+	                <p class="mb-0 subtitle">{{ $survey->description }}</p>
+	            </div>
+	            <div class="card-body">
+	            	@for ($i = 0; $i < $survey->number_of_answers; $i++)
+	            		@if ($i == 0)
+	            			<h6 class="mt-4">{{ $survey->answer_1 }}
+			                    <span class="pull-end">{{ $survey->percentage_answer_1 }}%</span>
+			                </h6>
+			                <div class="progress ">
+			                    <div class="progress-bar bg-danger progress-animated" style="width: 80%; height:6px;" role="progressbar">
+			                        <span class="sr-only">60% Complete</span>
+			                    </div>
+			                </div>
+	            		@endif
+	            		@if ($i == 1)
+	            			<h6 class="mt-4">{{ $survey->answer_2 }}
+			                    <span class="pull-end">{{ $survey->percentage_answer_2 }}%</span>
+			                </h6>
+			                <div class="progress ">
+			                    <div class="progress-bar bg-danger progress-animated" style="width: 80%; height:6px;" role="progressbar">
+			                        <span class="sr-only">60% Complete</span>
+			                    </div>
+			                </div>
+	            		@endif
+	            		@if ($i == 2)
+	            			<h6 class="mt-4">{{ $survey->answer_3 }}
+			                    <span class="pull-end">{{ $survey->percentage_answer_3 }}%</span>
+			                </h6>
+			                <div class="progress ">
+			                    <div class="progress-bar bg-danger progress-animated" style="width: 80%; height:6px;" role="progressbar">
+			                        <span class="sr-only">60% Complete</span>
+			                    </div>
+			                </div>
+	            		@endif
+	            	@endfor
+	            </div>
+	        </div>
+	    </div>
+	@endforeach
 	<div class="row">
 		<div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
 			<div class="widget-stat card bg-danger">

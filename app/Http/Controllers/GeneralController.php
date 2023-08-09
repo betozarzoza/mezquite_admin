@@ -8,6 +8,7 @@ use App\Models\General;
 use App\Models\Movement;
 use App\Models\Houses;
 use App\Models\User;
+use App\Models\Survey;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
@@ -28,10 +29,11 @@ class GeneralController extends Controller
 
         $houses = Houses::where('active', 0)->orderBy('balance', 'desc')->get();
         $notifications = Notification::where('active', 1)->get();
+        $surveys = Survey::where('active', 1)->get();
         $id = Auth::id();
         $user = User::find($id)->house;
 
-        return view('zenix.dashboard.index', compact('page_title', 'page_description', 'action', 'balance', 'ingresos', 'egresos', 'houses', 'user', 'notifications'));
+        return view('zenix.dashboard.index', compact('page_title', 'page_description', 'action', 'balance', 'ingresos', 'egresos', 'houses', 'user', 'notifications', 'surveys'));
 
     }
 

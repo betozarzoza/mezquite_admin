@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Survey;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreSurveyRequest;
-use App\Http\Requests\UpdateSurveyRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
@@ -83,18 +82,20 @@ class SurveyController extends Controller
 
     public function create_survey(Request $request) {
         $this->validate($request, [
-            'contenido' => 'required|max:255',
-            'dias' => 'required',
+            'pregunta' => 'required',
         ]);
 
-        $notification = new Notification;
+        $survey = new Survey;
  
-        $notification->content = $request->contenido;
-        $notification->active = 1;
-        $notification->color = $request->color;
-        $notification->days_left = $request->dias;
+        $survey->question = $request->pregunta;
+        $survey->description = $request->descripcion;
+        $survey->number_of_answers = $request->cantidad;
+        $survey->answer_1 = $request->respuesta1;
+        $survey->answer_2 = $request->respuesta2;
+        $survey->answer_3 = $request->respuesta3;
+        $survey->active = 1;
  
-        $notification->save(); 
+        $survey->save(); 
         return redirect('/');
     }
 

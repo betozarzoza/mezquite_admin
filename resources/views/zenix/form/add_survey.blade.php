@@ -23,35 +23,35 @@
 	                </div>
 	                <div class="card-body">
 	                    <div class="basic-form">
-	                        <form action="create-movement" method="post">
+	                        <form action="create-survey" method="post">
 	                        	@csrf
 	                            <div class="mb-3">
 	                            	<label class="form-label">Pregunta:</label>
-	                                <input type="text" class="form-control input-default " name="nombre">
+	                                <input type="text" class="form-control input-default " name="pregunta">
 	                            </div>
 	                             <div class="mb-3">
                                     <label class="form-label">Descripcion:</label>
-                                    <input type="number" name="cantidad" class="form-control">
+                                    <input type="text" name="descripcion" class="form-control">
                                 </div>
 	                            <fieldset class="mb-3">
 	                                <label class="form-label">Cantidad de respuestas:</label>
-	                                <select name="color" class="default-select  form-control wide" >
-	                                	<option value="alert-danger">1</option>
-	                                    <option value="alert-warning">2</option>
-	                                    <option value="alert-info">3</option>
+	                                <select name="cantidad" class="default-select  form-control wide" >
+	                                	<option value="1">1</option>
+	                                    <option value="2">2</option>
+	                                    <option value="3">3</option>
 	                                </select>
 	                            </fieldset>
 	                            <div class="mb-3">
                                     <label class="form-label">Respuesta 1:</label>
-                                    <input type="number" name="cantidad" class="form-control">
+                                    <input type="text" name="respuesta1" class="form-control">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Respuesta 2:</label>
-                                    <input type="number" name="cantidad" class="form-control">
+                                    <input type="text" name="respuesta2" class="form-control">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Respuesta 3:</label>
-                                    <input type="number" name="cantidad" class="form-control">
+                                    <input type="text" name="respuesta3" class="form-control">
                                 </div>
 	                            <button type="submit" class="btn btn-primary">Agregar</button>
 	                        </form>
