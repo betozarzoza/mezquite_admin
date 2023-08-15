@@ -63,7 +63,7 @@
         ***********************************-->
         <div class="nav-header">
             <a href="{!! url('/index'); !!}" class="brand-logo">
-                <img src="images/logo-mezquite.png" alt="" width="160px" style="padding-left:50px!important;">
+                <img src="images/logo-mezquite.png" alt="" width="130px" class="logo">
             </a>
 
             <div class="nav-control">
@@ -139,4 +139,15 @@
 	@include('elements.footer-scripts')
     @yield('scripts')
 </body>
+<style type="text/css">
+    .logo {
+        padding-left: 50px;
+    }
+    @media screen and (max-width: 1020px) {
+      .logo {
+         width: 100px;
+         padding-left: 15px;
+      }
+   }
+</style>
 </html>

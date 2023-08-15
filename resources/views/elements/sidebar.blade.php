@@ -6,10 +6,9 @@
 		<div class="main-profile">
 			<div class="image-bx">
 				<img src="images/Untitled-1.jpg" alt="">
-				<a href="javascript:void(0);"><i class="fa fa-cog" aria-hidden="true"></i></a>
 			</div>
 			<h5 class="name"><span class="font-w400">Hola,</span>{{ auth()->user()->name }}</h5>
-			<p class="email">{{ auth()->user()->email }}</p>
+			<p class="email">Casa {{ auth()->user()->house->id }}</p>
 		</div>
 		<ul class="metismenu" id="menu">
 			<li class="nav-label first">Menu principal</li>
@@ -56,6 +55,12 @@
 					<li><a href="{!! url('/houses'); !!}">Ver Casas</a></li>
 				</ul>
             </li>
+              <li><a href="{!! url('/auth/logout'); !!}" class="ai-icon" aria-expanded="false">
+					<i class="flaticon-381-turn-off"></i>
+					<span class="nav-text">Cerrar sesion</span>
+				</a>
+			</li>
+            <!--
 			<li class="nav-label first">Main Menu</li>
             <li>
             	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -219,6 +224,7 @@
                     <li><a href="{!! url('/page-lock-screen'); !!}">Lock Screen</a></li>
                 </ul>
             </li>
+        -->
         </ul>
 	</div>
 </div>
