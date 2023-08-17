@@ -55,7 +55,7 @@
 	                            <div class="mb-3">
 	                                <label class="form-label">Mes de pago:</label>
 	                                <select name="mes[]" multiple class=" btn-outline-secondary default-select form-control wide" >
-	                                	<option value="Otro">Otro</option>
+	                                	<option value="Pago extraordinario">Pago extraordinario</option>
 	                                    <option value="Enero">Enero</option>
 	                                    <option value="Febrero">Febrero</option>
 	                                    <option value="Marzo">Marzo</option>

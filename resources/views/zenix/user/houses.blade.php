@@ -24,7 +24,7 @@
 								<th>#</th>
 								<th>Dueño</th>
 								<th>Deuda</th>
-								<th>Ultimo mes de pago</th>
+								<th>Ultimo pago</th>
 								<th>Estatus</th>
 								<th>Accion</th>
 							</tr>

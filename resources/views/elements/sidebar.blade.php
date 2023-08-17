@@ -39,6 +39,9 @@
 				<ul aria-expanded="false">
 						<li><a href="{!! url('/add-survey'); !!}">Crear encuesta</a></li>
 				</ul>
+				<ul aria-expanded="false">
+						<li><a href="{!! url('/add_extra'); !!}">Crear Pago Extraordinario</a></li>
+				</ul>
             </li>
             @endif
             <li><a href="{!! url('/schedules'); !!}" class="ai-icon" aria-expanded="false">

@@ -92,7 +92,9 @@ class MovementsController extends Controller
         if ($operation == 'ingreso' && $house_id !== 0) {
             $house = Houses::find($house_id);
             $house->balance = $house->balance - $quantity;
-            $house->last_payment = $last_payment;
+            if (!str_contains($last_payment, 'Pago extraordinario')) {
+                $house->last_payment = $last_payment;
+            }
             $house->save();
         }
     }

@@ -21,6 +21,18 @@ class HousesController extends Controller
         DB::table('houses')->increment('balance', 700);
     }
 
+    public function add_extra_payment (Request $request) {
+        DB::table('houses')->decrement('balance', $request->cantidad);
+        return redirect('/');
+    }
+
+    public function add_extra () {
+        $page_title = 'Crear Pago Extraordinario';
+        $page_description = 'Crear pago extraordinario';
+        $action = __FUNCTION__;
+        return view('zenix.form.add_extra_payment', compact('page_title', 'page_description', 'action'));
+    }
+
     public function inactive_houses () {
         Houses::where('balance', '>', 0)->update(['active' => 0]);
     }

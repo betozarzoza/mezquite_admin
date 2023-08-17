@@ -133,6 +133,8 @@ Route::controller(GeneralController::class)->group(function () {
 
 Route::controller(HousesController::class)->group(function () {
     Route::get('/houses',  [ 'as' => 'houses', 'uses' => 'show_houses'])->middleware('auth');
+    Route::get('/add_extra',  [ 'as' => 'add_extra', 'uses' => 'add_extra'])->middleware('auth');
+    Route::post('/add-extrapayment','add_extra_payment')->middleware('auth');
 });
 
 
