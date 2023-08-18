@@ -94,7 +94,7 @@
 										<td>
 											<span class="text-black font-w600">@if ($movement->type == 'ingreso') + @else - @endif ${{ $movement->quantity }}</span>
 										</td>
-										<td>@if ($movement->type == 'ingreso') Mantenimiento Casa {{ $movement->addressat }}  @else Se le pago a: {{ $movement->addressat }} @endif</td>
+										<td>@if ($movement->type == 'ingreso') Mantenimiento Casa {{ $movement->addressat }}  @elseif ($movement->addressat == 0) Otro egreso @else Se le pago a: {{ $movement->addressat }} @endif</td>
 										<td>@if ($movement->type == 'ingreso') {{ $movement->month }} @endif</td>
 										<td>
 											<p class="mb-0 wspace-no">{{ $movement->note }}</p>
@@ -113,43 +113,43 @@
 	</div>
 	<script type="text/javascript">
         (function($) {
-    "use strict"
-    //example 1
-    var table = $('#example').DataTable({
-        createdRow: function ( row, data, index ) {
-           $(row).addClass('selected')
-        } ,
-		language: {
-			"lengthMenu": "Mostrar _MENU_ registros por pagina",
-            "zeroRecords": "No se encontro nada",
-            "info": "Mostrando pagina _PAGE_ de _PAGES_",
-            "infoEmpty": "No hay registros disponibles",
-            "infoFiltered": "(Filtrados de _MAX_ registros)",
-			paginate: {
-			  next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
-			  previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>' 
-			}
-		}
-    });
-      
-    table.on('click', 'tbody tr', function() {
-    var $row = table.row(this).nodes().to$();
-    var hasClass = $row.hasClass('selected');
-    if (hasClass) {
-        $row.removeClass('selected')
-    } else {
-        $row.addClass('selected')
-    }
-    })
-    
-    table.rows().every(function() {
-    this.nodes().to$().removeClass('selected')
-    });
+		    "use strict"
+		    //example 1
+		    var table = $('#example').DataTable({
+		        createdRow: function ( row, data, index ) {
+		           $(row).addClass('selected')
+		        } ,
+				language: {
+					"lengthMenu": "Mostrar _MENU_ registros por pagina",
+		            "zeroRecords": "No se encontro nada",
+		            "info": "Mostrando pagina _PAGE_ de _PAGES_",
+		            "infoEmpty": "No hay registros disponibles",
+		            "infoFiltered": "(Filtrados de _MAX_ registros)",
+					paginate: {
+					  next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
+					  previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>' 
+					}
+				}
+		    });
+		      
+		    table.on('click', 'tbody tr', function() {
+		    var $row = table.row(this).nodes().to$();
+		    var hasClass = $row.hasClass('selected');
+		    if (hasClass) {
+		        $row.removeClass('selected')
+		    } else {
+		        $row.addClass('selected')
+		    }
+		    })
+		    
+		    table.rows().every(function() {
+		    this.nodes().to$().removeClass('selected')
+		    });
 
 
 
-    
-	
-})(jQuery);
+		    
+			
+		})(jQuery);
     </script>
 @endsection

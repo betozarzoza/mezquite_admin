@@ -52,7 +52,7 @@ class MovementsController extends Controller
         } else {
             $movement = new Movement;
             $movement->name = $request->nombre;
-            $movement->quantity = $request->cantidad / count($request->mes);
+            $movement->quantity = $request->cantidad;
             $movement->type = $request->tipo;
             $movement->addressat = $request->destinatario;
             $movement->year = $request->year;
