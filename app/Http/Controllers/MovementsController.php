@@ -34,20 +34,32 @@ class MovementsController extends Controller
         ]);
         $id = Auth::id();
 
-        foreach ($request->mes as $mes) {
+        if ($request->mes) {
+            foreach ($request->mes as $mes) {
+                $movement = new Movement;
+                $movement->name = $request->nombre;
+                $movement->quantity = $request->cantidad / count($request->mes);
+                $movement->type = $request->tipo;
+                $movement->addressat = $request->destinatario;
+                $movement->month = $mes;
+                $movement->year = $request->year;
+                $movement->note = $request->nota;
+                $movement->created_by = $id;
+                $movement->save();
+
+                $this->modifyMyBalanceAndLastPayment($request->cantidad / count($request->mes), $request->tipo, $request->destinatario, $mes . ' '. $request->year);
+            }
+        } else {
             $movement = new Movement;
             $movement->name = $request->nombre;
             $movement->quantity = $request->cantidad / count($request->mes);
             $movement->type = $request->tipo;
             $movement->addressat = $request->destinatario;
-            $movement->month = $mes;
             $movement->year = $request->year;
             $movement->note = $request->nota;
             $movement->created_by = $id;
             $movement->save();
-
-            $this->modifyMyBalanceAndLastPayment($request->cantidad / count($request->mes), $request->tipo, $request->destinatario, $mes . ' '. $request->year);
-        }
+    }
 
         $this->modifyGeneralBalance($request->cantidad, $request->tipo);
         $this->checkIfInactiveAndActivateIt($request->cantidad, $request->tipo, $request->destinatario);
