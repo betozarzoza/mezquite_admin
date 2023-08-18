@@ -31,8 +31,6 @@ class MovementsController extends Controller
             'nombre' => 'required|max:255',
             'cantidad' => 'required',
             'tipo' => 'required',
-            'destinatario' => 'required',
-            'mes' => 'required'
         ]);
         $id = Auth::id();
 
