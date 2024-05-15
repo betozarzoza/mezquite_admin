@@ -26,6 +26,50 @@ class MovementsController extends Controller
         }
     }
 
+    public function add_maintenance_payment() {
+
+        $page_title = 'Agregar pago de mantenimiento';
+        $page_description = 'Formulario para agregar pago de mantenimiento';
+        $action = __FUNCTION__;
+        $id = Auth::id();
+        $user = User::find($id);
+        if ($user->is_admin) {
+            return view('zenix.form.add_maintenance_payment', compact('page_title', 'page_description', 'action'));
+        } else {
+            return redirect('/movements');
+        }
+    }
+
+
+    public function show_invoice(Request $request) {
+
+        $page_title = 'Mostrar recibo';
+        $page_description = 'Recibo de pago';
+        $action = __FUNCTION__;
+        $movement = Movement::with('user')->with('house')->find($request->movement_id);
+        return view('zenix.ecommerce.invoice_mezquite', compact('page_title', 'page_description', 'action', 'movement'));
+
+    }
+
+
+    public function create_maintenance_payment (Request $request) {
+        $id = Auth::id();
+        foreach ($request->mes as $mes) {
+            $movement = new Movement;
+            $movement->name = 'Pago de mantenimiento casa '.$request->destinatario.' del mes de '.$mes;
+            $movement->quantity = '700';
+            $movement->type = 'ingreso';
+            $movement->addressat = $request->destinatario;
+            $movement->month = $mes;
+            $movement->year = $request->year;
+            $movement->note = $request->nota;
+            $movement->created_by = $id;
+            $movement->save();
+
+            $this->modifyMyBalanceAndLastPayment(700, 'ingreso', $request->destinatario, $mes . ' '. $request->year);
+        }
+        return redirect('/movements');
+    }
     public function create_movement(Request $request) {
         $this->validate($request, [
             'nombre' => 'required|max:255',

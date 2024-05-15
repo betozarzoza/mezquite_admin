@@ -121,8 +121,8 @@
 							<i class="flaticon-381-user-7"></i>
 						</span>
 						<div class="media-body text-white text-right">
-							<p class="mb-1">Gastos de la ultima semana</p>
-							<h3 class="text-white">${{ number_format($egresos) }}</h3>
+							<p class="mb-1">Guardia llego hoy a las:</p>
+							<p class="text-white">No ha llegado</p>
 						</div>
 					</div>
 				</div>

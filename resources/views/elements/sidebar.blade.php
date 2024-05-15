@@ -23,6 +23,7 @@
                 <ul aria-expanded="false">
 					<li><a href="{!! url('/movements'); !!}">Ver movimientos</a></li>
 					@if(auth()->user()->is_admin)
+						<li><a href="{!! url('/add_maintenance_payment'); !!}">Agregar pago de mantenimiento</a></li>
 						<li><a href="{!! url('/add-movement'); !!}">Agregar movimiento</a></li>
 					@endif
 				</ul>
@@ -52,10 +53,11 @@
             <li>
             	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 					<i class="flaticon-381-home"></i>
-					<span class="nav-text">Condominos</span>
+					<span class="nav-text">Directorio</span>
 				</a>
                 <ul aria-expanded="false">
-					<li><a href="{!! url('/houses'); !!}">Ver Casas</a></li>
+					<li><a href="{!! url('/houses'); !!}">Condominos</a></li>
+					<li><a href="{!! url('/houses'); !!}">Externo</a></li>
 				</ul>
             </li>
               <li><a href="{!! url('/auth/logout'); !!}" class="ai-icon" aria-expanded="false">
@@ -63,7 +65,7 @@
 					<span class="nav-text">Cerrar sesion</span>
 				</a>
 			</li>
-            <!--
+            @if (env('APP_ENV') == 'local')
 			<li class="nav-label first">Main Menu</li>
             <li>
             	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -227,7 +229,7 @@
                     <li><a href="{!! url('/page-lock-screen'); !!}">Lock Screen</a></li>
                 </ul>
             </li>
-        -->
+        	@endif
         </ul>
 	</div>
 </div>
