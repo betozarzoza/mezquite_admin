@@ -8,6 +8,7 @@ use App\Models\General;
 use App\Models\Movement;
 use App\Models\Houses;
 use App\Models\User;
+use App\Models\Checkin;
 use App\Models\Survey;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Http;
@@ -27,7 +28,8 @@ class GeneralController extends Controller
         $ingresos = Movement::whereBetween('created_at', [date("Y-m-d H:i:s", strtotime("-1 week")), date("Y-m-d H:i:s")])->where('type', 'ingreso')->sum('quantity');
         $egresos = Movement::whereBetween('created_at', [date("Y-m-d H:i:s", strtotime("-1 week")), date("Y-m-d H:i:s")])->where('type', 'egreso')->sum('quantity');
 
-        $houses = Houses::where('active', 0)->orderBy('balance', 'desc')->get();
+        $houses = Houses::take(28)->get();
+
         $notifications = Notification::where('active', 1)->get();
         $surveys = Survey::where('active', 1)->get();
         $id = Auth::id();
@@ -44,6 +46,27 @@ class GeneralController extends Controller
         if (count($response) > 0 && $response['URLRoutineTrigger']['triggerActivationStatus'] == 'success') {
             return redirect('/index');
         }
+    }
+
+    public function checkin(){
+        $checkin = new Checkin;
+        $checkin->type = 'entrada';
+        $checkin->save();
+        return redirect('/index');
+    }
+
+    public function checkout(){
+        $checkin = new Checkin;
+        $checkin->type = 'salida';
+        $checkin->save();
+        return redirect('/index');
+    }
+
+    public function lunch(){
+        $checkin = new Checkin;
+        $checkin->type = 'comida';
+        $checkin->save();
+        return redirect('/index');
     }
 
     public function show_my_profile () {

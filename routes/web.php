@@ -132,6 +132,9 @@ Route::controller(GeneralController::class)->group(function () {
     Route::get('/index',  [ 'as' => 'index', 'uses' => 'show_index'])->middleware('auth');
     Route::get('/app-profile',  [ 'as' => 'profile', 'uses' => 'show_my_profile'])->middleware('auth');
     Route::post('/open-gate','open_gate')->middleware('auth');
+    Route::post('/checkin','checkin')->middleware('auth');
+    Route::post('/checkout','checkout')->middleware('auth');
+    Route::post('/lunch','lunch')->middleware('auth');
 });
 
 Route::controller(HousesController::class)->group(function () {

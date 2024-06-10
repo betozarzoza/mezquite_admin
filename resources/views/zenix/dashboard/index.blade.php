@@ -64,6 +64,7 @@
 	        </div>
 	    </div>
 	@endforeach
+	@if ($user->id !== 29)
 	<div class="row">
 		<div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
 			<div class="widget-stat card bg-danger">
@@ -129,67 +130,244 @@
 			</div>
         </div>
     </div>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header border-0 pb-0">
+                <h4 class="card-title">Actividades</h4>
+            </div>
+            <div class="card-body">
+                <div id="DZ_W_TimeLine111" class="widget-timeline dz-scroll style-1 height370">
+                    <ul class="timeline">
+                        <li>
+                            <div class="timeline-badge primary"></div>
+                            <a class="timeline-panel text-muted" href="#">
+                                <span>10 minutes ago</span>
+                                <h6 class="mb-0">Youtube, a video-sharing website, goes live <strong class="text-primary">$500</strong>.</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="timeline-badge info">
+                            </div>
+                            <a class="timeline-panel text-muted" href="#">
+                                <span>20 minutes ago</span>
+                                <h6 class="mb-0">New order placed <strong class="text-info">#XF-2356.</strong></h6>
+								<p class="mb-0">Quisque a consequat ante Sit amet magna at volutapt...</p>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="timeline-badge danger">
+                            </div>
+                            <a class="timeline-panel text-muted" href="#">
+                                <span>30 minutes ago</span>
+                                <h6 class="mb-0">john just buy your product <strong class="text-warning">Sell $250</strong></h6>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="timeline-badge success">
+                            </div>
+                            <a class="timeline-panel text-muted" href="#">
+                                <span>15 minutes ago</span>
+                                <h6 class="mb-0">StumbleUpon is acquired by eBay. </h6>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="timeline-badge warning">
+                            </div>
+                            <a class="timeline-panel text-muted" href="#">
+                                <span>20 minutes ago</span>
+                                <h6 class="mb-0">Mashable, a news website and blog, goes live.</h6>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="timeline-badge dark">
+                            </div>
+                            <a class="timeline-panel text-muted" href="#">
+                                <span>20 minutes ago</span>
+                                <h6 class="mb-0">Mashable, a news website and blog, goes live.</h6>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+	</div>
 	<div class="container-fluid">
 		<div class="card">
-			<div class="card-header d-sm-flex d-block">
-				<div class="me-auto mb-sm-0 mb-3">
-					<h4 class="card-title mb-2">Deudores</h4>
-					<span>Nota: A principios de mes automaticamente se agrega la cantidad de la cuota de mantenimiento a todos, por lo tanto todos seremos deudores a principios de mes.</span>
-				</div>
-			</div>
-			<div class="card-body">
+            <div class="card-header">
+                <h4 class="card-title">Pago de condominos</h4>
+            </div>
+            <div class="card-body">
                 <div class="table-responsive">
-                    <table id="example" class="display" style="min-width: 845px">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>Dueño</th>
-								<th>Deuda</th>
-								<th>Ultimo pago</th>
-								<th>Estatus</th>
-								<th>Accion</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach ($houses as $house)
-								<tr>
-									<td>
-										<h6>{{ $house->id }}</h6>
-									</td>
-									<td>
-										<div>
-											<h6>{{ $house->owner_name }}</h6>
-											<span>{{ $house->owner_contact }}</span>
-										</div>
-									</td>
-									<td>
-										<h6>@if ($house->balance < 0 ) $0 (${{ abs($house->balance) }} a favor) @else ${{ $house->balance }} @endif</h6>
-									</td>
-									<td>
-										<div>
-											<h6 class="text-secondary">@if ($house->last_payment ) {{ $house->last_payment }} @else No hay pago registrado @endif</h6>
-										</div>
-									</td>
-									@if ($house->active)
-										<td><span class="badge badge-success">Activo</span></td>
-									@else
-										<td><span class="badge badge-danger">Inactivo</span></td>
-									@endif
-									<td>
-										<div class="d-flex action-button">
-											<a href="tel:{{ $house->owner_contact }}" class="btn btn-info btn-xs light px-2">
-												<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.314 28.323" style="enable-background:new 0 0 28.314 28.323" xml:space="preserve"><path d="m27.728 20.384-4.242-4.242a1.982 1.982 0 0 0-1.413-.586h-.002c-.534 0-1.036.209-1.413.586L17.83 18.97l-8.485-8.485 2.828-2.828c.78-.78.78-2.05-.001-2.83L7.929.585A1.986 1.986 0 0 0 6.516 0h-.001C5.98 0 5.478.209 5.101.587L.858 4.83C.729 4.958-.389 6.168.142 8.827c.626 3.129 3.246 7.019 7.787 11.56 6.499 6.499 10.598 7.937 12.953 7.937 1.63 0 2.426-.689 2.604-.867l4.242-4.242c.378-.378.587-.881.586-1.416 0-.534-.208-1.037-.586-1.415zm-5.656 5.658c-.028.028-3.409 2.249-12.729-7.07C-.178 9.452 2.276 6.243 2.272 6.244L6.515 2l4.243 4.244-3.535 3.535a.999.999 0 0 0 0 1.414l9.899 9.899a.999.999 0 0 0 1.414 0l3.535-3.536 4.243 4.244-4.242 4.242z"/></svg>
-											</a>
-										</div>
-									</td>
-								</tr>
-							@endforeach
-						</tbody>
-					</table>
+                    <table class="table table-bordered table-striped verticle-middle table-responsive-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">Casa</th>
+                                <th scope="col">Ene</th>
+                                <th scope="col">Feb</th>
+                                <th scope="col">Mar</th>
+                                <th scope="col">Abr</th>
+                                <th scope="col">May</th>
+                                <th scope="col">Jun</th>
+                                <th scope="col">Jul</th>
+                                <th scope="col">Ago</th>
+                                <th scope="col">Sep</th>
+                                <th scope="col">Oct</th>
+                                <th scope="col">Nov</th>
+                                <th scope="col">Dic</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        	@foreach ($houses as $house)
+                            <tr>
+                            	<th>{{ $house->id }} - {{ $house->owner_name }}</th>
+                            	@if ($house->ene == 1)
+                            		<th style="text-align: center;"><span class="badge badge-success">O</span></th>
+                            	@else
+                            		<th style="text-align: center;"><span class="badge badge-danger">X</span></th>
+                            	@endif
+
+                            	@if ($house->feb == 1)
+                            		<th style="text-align: center;"><span class="badge badge-success">O</span></th>
+                            	@else
+                            		<th style="text-align: center;"><span class="badge badge-danger">X</span></th>
+                            	@endif
+
+                            	@if ($house->mar == 1)
+                            		<th style="text-align: center;"><span class="badge badge-success">O</span></th>
+                            	@else
+                            		<th style="text-align: center;"><span class="badge badge-danger">X</span></th>
+                            	@endif
+
+                            	@if ($house->abr == 1)
+                            		<th style="text-align: center;"><span class="badge badge-success">O</span></th>
+                            	@else
+                            		<th style="text-align: center;"><span class="badge badge-danger">X</span></th>
+                            	@endif
+
+                            	@if ($house->may == 1)
+                            		<th style="text-align: center;"><span class="badge badge-success">O</span></th>
+                            	@else
+                            		<th style="text-align: center;"><span class="badge badge-danger">X</span></th>
+                            	@endif
+
+                            	@if ($house->jun == 1)
+                            		<th style="text-align: center;"><span class="badge badge-success">O</span></th>
+                            	@else
+                            		<th style="text-align: center;"><span class="badge badge-danger">X</span></th>
+                            	@endif
+
+                            	@if ($house->jul == 1)
+                            		<th style="text-align: center;"><span class="badge badge-success">O</span></th>
+                            	@else
+                            		<th style="text-align: center;"><span class="badge badge-danger">X</span></th>
+                            	@endif
+
+                            	@if ($house->ago == 1)
+                            		<th style="text-align: center;"><span class="badge badge-success">O</span></th>
+                            	@else
+                            		<th style="text-align: center;"><span class="badge badge-danger">X</span></th>
+                            	@endif
+
+                            	@if ($house->sep == 1)
+                            		<th style="text-align: center;"><span class="badge badge-success">O</span></th>
+                            	@else
+                            		<th style="text-align: center;"><span class="badge badge-danger">X</span></th>
+                            	@endif
+
+                            	@if ($house->oct == 1)
+                            		<th style="text-align: center;"><span class="badge badge-success">O</span></th>
+                            	@else
+                            		<th style="text-align: center;"><span class="badge badge-danger">X</span></th>
+                            	@endif
+
+                            	@if ($house->nov == 1)
+                            		<th style="text-align: center;"><span class="badge badge-success">O</span></th>
+                            	@else
+                            		<th style="text-align: center;"><span class="badge badge-danger">X</span></th>
+                            	@endif
+
+                            	@if ($house->dic == 1)
+                            		<th style="text-align: center;"><span class="badge badge-success">O</span></th>
+                            	@else
+                            		<th style="text-align: center;"><span class="badge badge-danger">X</span></th>
+                            	@endif
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+	</div>
+	@else
+	<div class="row">
+		<div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
+			<div class="widget-stat card bg-danger">
+				<div class="card-body  p-4">
+					<div class="media">
+						<span class="me-3">
+							<i class="flaticon-381-calendar-1"></i>
+						</span>
+						<div class="media-body text-white text-right">
+							<button type="submit" class="btn btn-light btn-block py-4">Abrir porton</button>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
+        </div>
+		<div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
+			<div class="widget-stat card bg-success">
+				<div class="card-body p-4">
+					<div class="media">
+						<span class="me-3">
+							<i class="flaticon-381-diamond"></i>
+						</span>
+						<div class="media-body text-white text-right">
+							<form action="checkin" method="post">
+	                            @csrf
+								<button type="submit" class="btn btn-light btn-block py-4">Checar Entrada</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+		<div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
+			<div class="widget-stat card bg-info">
+				<div class="card-body p-4">
+					<div class="media">
+						<span class="me-3">
+							<i class="flaticon-381-heart"></i>
+						</span>
+						<div class="media-body text-white text-right">
+							<form action="checkout" method="post">
+								@csrf
+								<button type="submit" class="btn btn-light btn-block py-4">Checar salida</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+		<div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
+			<div class="widget-stat card bg-primary">
+				<div class="card-body p-4">
+					<div class="media">
+						<span class="me-3">
+							<i class="flaticon-381-user-7"></i>
+						</span>
+						<div class="media-body text-white text-right">
+							<form action="lunch" method="post">
+								@csrf
+								<button type="submit" class="btn btn-light btn-block py-4">Sali a comer</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
 	</div>
+	@endif
 </div> 
 <script type="text/javascript">
     (function($) {

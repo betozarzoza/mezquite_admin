@@ -34,6 +34,7 @@
                                 <div class="mb-1">
                                     <label class="form-label">Casa:</label>
                                     <select name="email" class="form-control wide" >
+                                        <option value="29">Guardia</option>
                                         <option value="1">Casa 1</option>
                                         <option value="2">Casa 2</option>
                                         <option value="3">Casa 3</option>
