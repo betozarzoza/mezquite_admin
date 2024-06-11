@@ -133,6 +133,8 @@ Route::controller(GeneralController::class)->group(function () {
     Route::get('/app-profile',  [ 'as' => 'profile', 'uses' => 'show_my_profile'])->middleware('auth');
     Route::post('/open-gate','open_gate')->middleware('auth');
     Route::post('/checkin','checkin')->middleware('auth');
+    Route::get('/add_activity',  [ 'as' => 'add_activity', 'uses' => 'add_activity'])->middleware('auth');
+    Route::post('/create_activity','create_activity')->middleware('auth');
     Route::post('/checkout','checkout')->middleware('auth');
     Route::post('/lunch','lunch')->middleware('auth');
 });

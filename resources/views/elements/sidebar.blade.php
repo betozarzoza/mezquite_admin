@@ -25,7 +25,7 @@
 						<li><a href="{!! url('/movements'); !!}">Ver movimientos</a></li>
 						@if(auth()->user()->is_admin)
 							<li><a href="{!! url('/add_maintenance_payment'); !!}">Agregar pago de mantenimiento</a></li>
-							<li><a href="{!! url('/add-movement'); !!}">Agregar movimiento</a></li>
+							<li><a href="{!! url('/add-movement'); !!}">Agregar gasto</a></li>
 						@endif
 					</ul>
 	            </li>
@@ -232,6 +232,11 @@
 	            </li>
 	        	@endif
 	        @else
+	        	<li><a href="{!! url('/add_activity'); !!}" class="ai-icon" aria-expanded="false">
+						<i class="flaticon-381-calendar-3"></i>
+						<span class="nav-text">Agregar actividad</span>
+					</a>
+				</li>
 	        	</li>
 	              <li><a href="{!! url('/auth/logout'); !!}" class="ai-icon" aria-expanded="false">
 						<i class="flaticon-381-turn-off"></i>

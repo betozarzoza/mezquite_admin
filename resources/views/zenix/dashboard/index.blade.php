@@ -10,7 +10,10 @@
 <link href="{{ asset('vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
 <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
 
-
+@php
+	use Carbon\Carbon;
+	Carbon::setLocale('es');
+@endphp
 <div class="container-fluid">
 	<div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center">
 		<h2 class="font-w600 title mb-2 me-auto ">Inicio</h2>
@@ -138,6 +141,31 @@
             <div class="card-body">
                 <div id="DZ_W_TimeLine111" class="widget-timeline dz-scroll style-1 height370">
                     <ul class="timeline">
+                    	@foreach ($activities as $activity)
+                    		@if ($activity->status == 1)
+                    		<li>
+	                            <div class="timeline-badge info">
+	                            </div>
+	                            <a class="timeline-panel text-muted" href="#">
+	                                <span>{{$activity->created_at->diffForHumans()}}</span>
+	                                <h6 class="mb-0">{{ $activity->name }}</strong></h6>
+									<p class="mb-0">Pago de mantenimiento</p>
+	                            </a>
+	                        </li>
+	                        @endif
+	                        @if ($activity->status == 2)
+                    		<li>
+	                            <div class="timeline-badge success">
+	                            </div>
+	                            <a class="timeline-panel text-muted" href="#">
+	                                <span>{{$activity->created_at->diffForHumans()}}</span>
+	                                <h6 class="mb-0">{{ $activity->name }}</strong></h6>
+									<p class="mb-0">Actividad guardia</p>
+	                            </a>
+	                        </li>
+	                        @endif
+                    	@endforeach
+                    	<!--
                         <li>
                             <div class="timeline-badge primary"></div>
                             <a class="timeline-panel text-muted" href="#">
@@ -186,6 +214,7 @@
                                 <h6 class="mb-0">Mashable, a news website and blog, goes live.</h6>
                             </a>
                         </li>
+                    	-->
                     </ul>
                 </div>
             </div>

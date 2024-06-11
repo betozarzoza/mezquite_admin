@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\General;
 use App\Models\Movement;
+use App\Models\Activity;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Houses;
@@ -54,6 +55,9 @@ class MovementsController extends Controller
 
     public function create_maintenance_payment (Request $request) {
         $id = Auth::id();
+        $this->validate($request, [
+            'mes' => 'required',
+        ]);
         foreach ($request->mes as $mes) {
             $movement = new Movement;
             $movement->name = 'Pago de mantenimiento casa '.$request->destinatario.' del mes de '.$mes;
@@ -66,9 +70,56 @@ class MovementsController extends Controller
             $movement->created_by = $id;
             $movement->save();
 
+            //$user = find($id);
+            $house = Houses::find($request->destinatario);
+            switch ($mes) {
+                case 'Enero':
+                    $house->ene = 1;
+                    break;
+                case 'Febrero':
+                    $house->feb = 1;
+                    break;
+                case 'Marzo':
+                    $house->mar = 1;
+                    break;
+                case 'Abril':
+                    $house->abr = 1;
+                    break;
+                case 'Mayo':
+                    $house->may = 1;
+                    break;
+                case 'Junio':
+                    $house->jun = 1;
+                    break;
+                case 'Julio':
+                    $house->jul = 1;
+                    break;
+                case 'Agosto':
+                    $house->ago = 1;
+                    break;
+                case 'Septiembre':
+                    $house->sep = 1;
+                    break;
+                case 'Octubre':
+                    $house->oct = 1;
+                    break;
+                case 'Noviembre':
+                    $house->nov = 1;
+                    break;
+                case 'Diciembre':
+                    $house->dic = 1;
+                    break;
+            }
+            $house->save();
+
+            $activity = new Activity;
+            $activity->name = 'Pago de mantenimiento casa '.$request->destinatario.' del mes de '.$mes;
+            $activity->status = 1;
+            $activity->save();
+
             $this->modifyMyBalanceAndLastPayment(700, 'ingreso', $request->destinatario, $mes . ' '. $request->year);
         }
-        return redirect('/movements');
+        return redirect('/index');
     }
     public function create_movement(Request $request) {
         $this->validate($request, [

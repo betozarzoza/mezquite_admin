@@ -8,6 +8,7 @@ use App\Models\General;
 use App\Models\Movement;
 use App\Models\Houses;
 use App\Models\User;
+use App\Models\Activity;
 use App\Models\Checkin;
 use App\Models\Survey;
 use App\Models\Notification;
@@ -31,11 +32,12 @@ class GeneralController extends Controller
         $houses = Houses::take(28)->get();
 
         $notifications = Notification::where('active', 1)->get();
+        $activities = Activity::orderBy('created_at')->take(10)->get();
         $surveys = Survey::where('active', 1)->get();
         $id = Auth::id();
         $user = User::find($id)->house;
 
-        return view('zenix.dashboard.index', compact('page_title', 'page_description', 'action', 'balance', 'ingresos', 'egresos', 'houses', 'user', 'notifications', 'surveys'));
+        return view('zenix.dashboard.index', compact('page_title', 'page_description', 'action', 'balance', 'ingresos', 'egresos', 'houses', 'user', 'notifications', 'surveys', 'activities'));
 
     }
 
@@ -74,5 +76,27 @@ class GeneralController extends Controller
         $page_description = 'Muestra mi perfil';
         $action = __FUNCTION__;
         return view('zenix.app.user_profile', compact('page_title', 'page_description', 'action'));
+    }
+
+    public function add_activity () {
+        $page_title = 'Agregar actividad';
+        $page_description = 'agregar actividad';
+        $action = __FUNCTION__;
+        return view('zenix.form.add_activity', compact('page_title', 'page_description', 'action'));
+    }
+
+    public function create_activity(Request $request){
+        foreach ($request->objetivo as $objetivo) {
+            $activity = new Activity;
+            if ($request->actividad !== 'otro') {
+                $name = $request->actividad . ' casa ' . $objetivo;
+            } else {
+                 $name = $request->nota;
+            }
+            $activity->name = $name;
+            $activity->status = 2;
+            $activity->save();
+            return redirect('/index');
+        }
     }
 }
