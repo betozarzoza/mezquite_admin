@@ -126,7 +126,11 @@
 						</span>
 						<div class="media-body text-white text-right">
 							<p class="mb-1">Guardia llego hoy a las:</p>
-							<p class="text-white">No ha llegado</p>
+							@if (count($arrived_at) > 0)
+								<p class="text-white">{{ $arrived_at[0]->created_at }}</p>
+							@else
+								<p class="text-white">No ha llegado</p>
+							@endif
 						</div>
 					</div>
 				</div>
@@ -351,12 +355,21 @@
 						<span class="me-3">
 							<i class="flaticon-381-diamond"></i>
 						</span>
-						<div class="media-body text-white text-right">
-							<form action="checkin" method="post">
-	                            @csrf
-								<button type="submit" class="btn btn-light btn-block py-4">Checar Entrada</button>
-							</form>
-						</div>
+						@if (count($arrived_at) > 0)
+							<div class="media-body text-white text-right">
+								<form action="checkout" method="post">
+		                            @csrf
+									<button type="submit" class="btn btn-light btn-block py-4">Checar Salida</button>
+								</form>
+							</div>
+						@else
+							<div class="media-body text-white text-right">
+								<form action="checkin" method="post">
+		                            @csrf
+									<button type="submit" class="btn btn-light btn-block py-4">Checar Entrada</button>
+								</form>
+							</div>
+						@endif
 					</div>
 				</div>
 			</div>
@@ -368,12 +381,21 @@
 						<span class="me-3">
 							<i class="flaticon-381-heart"></i>
 						</span>
-						<div class="media-body text-white text-right">
-							<form action="checkout" method="post">
-								@csrf
-								<button type="submit" class="btn btn-light btn-block py-4">Checar salida</button>
-							</form>
-						</div>
+						@if (count($lunch) > 0)
+							<div class="media-body text-white text-right">
+								<form action="checkout" method="post">
+									@csrf
+									<button type="submit" class="btn btn-light btn-block py-4">Regrese de comer</button>
+								</form>
+							</div>
+						@else
+							<div class="media-body text-white text-right">
+								<form action="checkout" method="post">
+									@csrf
+									<button type="submit" class="btn btn-light btn-block py-4">Sali a comer</button>
+								</form>
+							</div>
+						@endif
 					</div>
 				</div>
 			</div>
@@ -386,10 +408,7 @@
 							<i class="flaticon-381-user-7"></i>
 						</span>
 						<div class="media-body text-white text-right">
-							<form action="lunch" method="post">
-								@csrf
-								<button type="submit" class="btn btn-light btn-block py-4">Sali a comer</button>
-							</form>
+							<a href="tel:8120392234" class="btn btn-light btn-block py-4">Llamar administrador</a>
 						</div>
 					</div>
 				</div>

@@ -51,17 +51,12 @@
 						<span class="nav-text">Palapa</span>
 					</a>
 				</li>
-	            <li>
-	            	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+				<li><a href="{!! url('/houses'); !!}" class="ai-icon" aria-expanded="false">
 						<i class="flaticon-381-home"></i>
 						<span class="nav-text">Directorio</span>
 					</a>
-	                <ul aria-expanded="false">
-						<li><a href="{!! url('/houses'); !!}">Condominos</a></li>
-						<li><a href="{!! url('/houses'); !!}">Externo</a></li>
-					</ul>
-	            </li>
-	              <li><a href="{!! url('/auth/logout'); !!}" class="ai-icon" aria-expanded="false">
+				</li>
+	            <li><a href="{!! url('/auth/logout'); !!}" class="ai-icon" aria-expanded="false">
 						<i class="flaticon-381-turn-off"></i>
 						<span class="nav-text">Cerrar sesion</span>
 					</a>
