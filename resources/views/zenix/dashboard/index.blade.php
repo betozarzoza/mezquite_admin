@@ -168,6 +168,17 @@
 	                            </a>
 	                        </li>
 	                        @endif
+	                        @if ($activity->status == 3)
+                    		<li>
+	                            <div class="timeline-badge danger">
+	                            </div>
+	                            <a class="timeline-panel text-muted" href="#">
+	                                <span>{{$activity->created_at->diffForHumans()}}</span>
+	                                <h6 class="mb-0">{{ $activity->name }}</strong></h6>
+									<p class="mb-0">Egreso </p>
+	                            </a>
+	                        </li>
+	                        @endif
                     	@endforeach
                     	<!--
                         <li>

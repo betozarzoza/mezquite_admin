@@ -19,11 +19,11 @@
 	        <div class="col-xl-6 col-lg-6">
 	            <div class="card">
 	                <div class="card-header">
-	                    <h4 class="card-title">Formulario para agregar movimiento</h4>
+	                    <h4 class="card-title">Formulario para agregar gasto</h4>
 	                </div>
 	                <div class="card-body">
 	                    <div class="basic-form">
-	                        <form action="create-movement" method="post">
+	                        <form action="create-expense" method="post">
 	                        	@csrf
 	                            <div class="mb-3">
 	                            	<label class="form-label">Nombre:</label>

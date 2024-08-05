@@ -162,6 +162,31 @@ class MovementsController extends Controller
         return redirect('/movements');
     }
 
+    public function create_expense(Request $request) {
+        $this->validate($request, [
+            'nombre' => 'required|max:255',
+            'cantidad' => 'required',
+        ]);
+        $id = Auth::id();
+
+        $movement = new Movement;
+        $movement->name = $request->nombre;
+        $movement->quantity = $request->cantidad;
+        $movement->type = 'egreso';
+        $movement->note = $request->nota;
+        $movement->created_by = $id;
+        $movement->save();
+
+        $this->modifyGeneralBalance($request->cantidad, 'egreso');
+
+        $activity = new Activity;
+        $activity->name = 'Se egreso la cantidad de '.$request->cantidad. ' por motivo de '.$request->nombre ;
+        $activity->status = 3;
+        $activity->save();
+
+        return redirect('/movements');
+    }
+
     public function show_movements () {
         $page_title = 'Movimientos';
         $page_description = 'Muestra los ingresos y egresos';

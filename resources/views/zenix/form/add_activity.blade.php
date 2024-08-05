@@ -65,11 +65,11 @@
 	                            <div class="mb-3">
 	                                <label class="form-label">Actividad:</label>
 	                                <select name="actividad" class="default-select  form-control wide" >
-	                                    <option value="barrio">Barrer</option>
-	                                    <option value="trapio">Trapear</option>
-	                                    <option value="reguo">Regar</option>
-	                                    <option value="saco basura">Sacar basura</option>
-	                                    <option value="limpio banio">Limpiar banio</option>
+	                                    <option value="barrió">Barrer</option>
+	                                    <option value="trapió">Trapear</option>
+	                                    <option value="regó">Regar</option>
+	                                    <option value="sacó basura">Sacar basura</option>
+	                                    <option value="limpió baño">Limpiar baño</option>
 	                                    <option value="otro">Otro</option>
 	                                </select>
 	                            </div>

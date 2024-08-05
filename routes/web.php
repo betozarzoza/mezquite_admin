@@ -117,6 +117,7 @@ Route::controller(MovementsController::class)->group(function () {
     Route::get('/add-movement',  [ 'as' => 'add_movement', 'uses' => 'add_movement'])->middleware('auth');
     Route::get('/add_maintenance_payment',  [ 'as' => 'add_maintenance_payment', 'uses' => 'add_maintenance_payment'])->middleware('auth');
     Route::post('/create-movement','create_movement')->middleware('auth');
+    Route::post('/create-expense','create_expense')->middleware('auth');
     Route::post('/create-maintenance-payment','create_maintenance_payment')->middleware('auth');
     Route::post('/movements-filtered','show_movements_filtered')->middleware('auth');
 });

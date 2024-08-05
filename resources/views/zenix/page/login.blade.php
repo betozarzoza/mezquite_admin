@@ -75,7 +75,7 @@
                             </div>
                         </form>
                         <div class="new-account mt-3">
-                            <p>Eres condomino y quieres una cuenta? Manda un whatsapp a <a class="text-primary" href="{!! url('/page-register'); !!}">8120392234</a></p>
+                            <p>Eres condomino y quieres una cuenta? Manda un whatsapp a <a class="text-primary" href="https://wa.me/528120392234">8120392234</a></p>
                         </div>
                     </div>
                 </div>
