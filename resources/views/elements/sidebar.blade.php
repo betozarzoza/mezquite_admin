@@ -15,7 +15,7 @@
 			<ul aria-expanded="false">
 				<li><a href="{!! url('/index'); !!}">Inicio</a></li>
 			</ul>
-			@if (auth()->user()->id !== 3)
+			@if (auth()->user()->id !== 29)
 	            <li>
 	            	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 						<i class="flaticon-381-calculator"></i>
