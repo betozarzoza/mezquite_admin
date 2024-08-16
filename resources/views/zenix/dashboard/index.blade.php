@@ -125,11 +125,16 @@
 							<i class="flaticon-381-user-7"></i>
 						</span>
 						<div class="media-body text-white text-right">
-							<p class="mb-1">Guardia llego hoy a las:</p>
-							@if (count($arrived_at) > 0)
-								<p class="text-white">{{ $arrived_at[0]->created_at }}</p>
-							@else
+							@if (count($arrived_at) > 0 && count($leaved_at) == 0)
+								<p class="mb-1">Guardia llego hoy a las:</p>
+								<p class="text-white">{{ $arrived_at[0]->created_at->toTimeString() }}</p>
+							@elseif (count($leaved_at) == 0) 
 								<p class="text-white">No ha llegado</p>
+							@endif
+
+							@if (count($leaved_at) > 0)
+								<p class="mb-1">Guardia salio hoy a las:</p>
+								<p class="text-white">{{ $leaved_at[0]->created_at->toTimeString() }}</p>
 							@endif
 						</div>
 					</div>

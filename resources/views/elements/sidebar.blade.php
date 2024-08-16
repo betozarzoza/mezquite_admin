@@ -61,7 +61,7 @@
 						<span class="nav-text">Cerrar sesion</span>
 					</a>
 				</li>
-	            @if (env('APP_ENV') == 'local')
+	            @if (env('APP_ENV') == 'local' && false)
 				<li class="nav-label first">Main Menu</li>
 	            <li>
 	            	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -230,6 +230,11 @@
 	        	<li><a href="{!! url('/add_activity'); !!}" class="ai-icon" aria-expanded="false">
 						<i class="flaticon-381-calendar-3"></i>
 						<span class="nav-text">Agregar actividad</span>
+					</a>
+				</li>
+				<li><a href="{!! url('/houses_guard'); !!}" class="ai-icon" aria-expanded="false">
+						<i class="flaticon-381-home"></i>
+						<span class="nav-text">Directorio</span>
 					</a>
 				</li>
 	        	</li>

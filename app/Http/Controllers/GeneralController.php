@@ -36,11 +36,12 @@ class GeneralController extends Controller
         $activities = Activity::orderBy('created_at', 'DESC')->take(10)->get();
         $surveys = Survey::where('active', 1)->get();
         $arrived_at = Checkin::where('type', 'entrada')->whereDate('created_at', Carbon::today())->get();
+        $leaved_at = Checkin::where('type', 'salida')->whereDate('created_at', Carbon::today())->get();
         $lunch = Checkin::where('type', 'sali a comer')->whereDate('created_at', Carbon::today())->get();
         $id = Auth::id();
         $user = User::find($id)->house;
 
-        return view('zenix.dashboard.index', compact('page_title', 'page_description', 'action', 'balance', 'ingresos', 'egresos', 'houses', 'user', 'notifications', 'surveys', 'activities', 'arrived_at', 'lunch'));
+        return view('zenix.dashboard.index', compact('page_title', 'page_description', 'action', 'balance', 'ingresos', 'egresos', 'houses', 'user', 'notifications', 'surveys', 'activities', 'arrived_at', 'leaved_at', 'lunch'));
 
     }
 
