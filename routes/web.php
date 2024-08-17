@@ -138,6 +138,7 @@ Route::controller(GeneralController::class)->group(function () {
     Route::post('/create_activity','create_activity')->middleware('auth');
     Route::post('/checkout','checkout')->middleware('auth');
     Route::post('/lunch','lunch')->middleware('auth');
+    Route::post('/lunchback','lunchback')->middleware('auth');
 });
 
 Route::controller(HousesController::class)->group(function () {

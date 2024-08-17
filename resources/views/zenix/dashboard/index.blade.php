@@ -401,14 +401,14 @@
 						</span>
 						@if (count($lunch) > 0)
 							<div class="media-body text-white text-right">
-								<form action="checkout" method="post">
+								<form action="lunchback" method="post">
 									@csrf
 									<button type="submit" class="btn btn-light btn-block py-4">Regrese de comer</button>
 								</form>
 							</div>
 						@else
 							<div class="media-body text-white text-right">
-								<form action="checkout" method="post">
+								<form action="lunch" method="post">
 									@csrf
 									<button type="submit" class="btn btn-light btn-block py-4">Sali a comer</button>
 								</form>
