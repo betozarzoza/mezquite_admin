@@ -23,6 +23,7 @@
 			<div class="alert {{ $notification->color }} solid alert-square "><strong>Mensaje importante:</strong> {{ $notification->content }}</div>
 		</div>
 	@endforeach
+	<!--
 	@foreach ($surveys as $survey)
 		<div class="col">
 	        <div class="card">
@@ -67,6 +68,7 @@
 	        </div>
 	    </div>
 	@endforeach
+-->
 	@if ($user->id !== 29)
 	<div class="row">
 		<div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
