@@ -6,6 +6,7 @@ use App\Http\Controllers\MovementsController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\HousesController;
+use App\Http\Controllers\VisitorsController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\NotificationController;
 
@@ -139,6 +140,12 @@ Route::controller(GeneralController::class)->group(function () {
     Route::post('/checkout','checkout')->middleware('auth');
     Route::post('/lunch','lunch')->middleware('auth');
     Route::post('/lunchback','lunchback')->middleware('auth');
+});
+
+Route::controller(VisitorsController::class)->group(function () {
+    Route::get('/add_visitor',  [ 'as' => 'add_visitor', 'uses' => 'add_visitor'])->middleware('auth');
+    Route::get('/visitor_access/{access_id}',  [ 'as' => 'visitor_access', 'uses' => 'visitor_access']);
+    Route::post('/create_visitor','create_visitor')->middleware('auth');
 });
 
 Route::controller(HousesController::class)->group(function () {

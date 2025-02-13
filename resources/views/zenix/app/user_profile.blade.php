@@ -51,26 +51,36 @@
                                     </div>
                                 </div>
                             </div>
-							<!-- Modal -->
-							<div class="modal fade" id="replyModal">
-								<div class="modal-dialog modal-dialog-centered" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title">Post Reply</h5>
-											<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-										</div>
-										<div class="modal-body">
-											<form>
-												<textarea class="form-control" rows="4">Message</textarea>
-											</form>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">btn-close</button>
-											<button type="button" class="btn btn-primary">Reply</button>
-										</div>
-									</div>
-								</div>
-							</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="profile-tab">
+                                <div id="profile-settings">
+                                    <div class="pt-3">
+                                        <div class="settings-form">
+                                            <h4 class="text-primary">Informacion de la casa</h4>
+                                            <form action="auth/reset" method="post">
+                            					@csrf
+                                                <div class="row mb-3">
+                                                    <div class="col">
+                                                        <label class="form-label">Nombre del propietario</label>
+                                                        <input type="text" name="contrasena" class="form-control">
+                                                    </div>
+                                                </div>
+                                                 <div class="row mb-3">
+                                                    <div class="col">
+                                                        <label class="form-label">Telefono</label>
+                                                        <input type="number" name="phone" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-primary" type="submit">Cambiar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

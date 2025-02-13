@@ -5,7 +5,7 @@
     <div class="deznav-scroll">
 		<div class="main-profile">
 			<div class="image-bx">
-				<img src="images/Untitled-1.jpg" alt="">
+				<img src="https://static.thenounproject.com/png/5593059-200.png" alt="">
 			</div>
 			<h5 class="name"><span class="font-w400">Hola,</span>{{ auth()->user()->name }}</h5>
 			<p class="email">Casa {{ auth()->user()->house->id }}</p>
@@ -19,14 +19,38 @@
 	            <li>
 	            	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 						<i class="flaticon-381-calculator"></i>
-						<span class="nav-text">Movimientos</span>
+						<span class="nav-text">Ingresos y egresos</span>
 					</a>
 	                <ul aria-expanded="false">
 						<li><a href="{!! url('/movements'); !!}">Ver movimientos</a></li>
 						@if(auth()->user()->is_admin)
+							<li><a href="{!! url('/movements'); !!}">Ver table de adeudos anual</a></li>
 							<li><a href="{!! url('/add_maintenance_payment'); !!}">Agregar pago de mantenimiento</a></li>
 							<li><a href="{!! url('/add-movement'); !!}">Agregar gasto</a></li>
+							<li><a href="{!! url('/add_extra'); !!}">Crear pago general</a></li>
 						@endif
+					</ul>
+	            </li>
+	            <li>
+	            	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+						<i class="flaticon-381-calculator"></i>
+						<span class="nav-text">Guardia</span>
+					</a>
+	                <ul aria-expanded="false">
+						<li><a href="{!! url('/movements'); !!}">Vitacora</a></li>
+						<li><a href="{!! url('/movements'); !!}">Checador</a></li>
+					</ul>
+	            </li>
+	             <li>
+	            	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+						<i class="flaticon-381-calculator"></i>
+						<span class="nav-text">Visitas</span>
+					</a>
+	                <ul aria-expanded="false">
+						<li><a href="{!! url('/add_visitor'); !!}">Agregar visita</a></li>
+					</ul>
+					 <ul aria-expanded="false">
+						<li><a href="{!! url('/movements'); !!}">Proximas visitas</a></li>
 					</ul>
 	            </li>
 	            @if(auth()->user()->is_admin)
@@ -41,19 +65,41 @@
 					<ul aria-expanded="false">
 							<li><a href="{!! url('/add-survey'); !!}">Crear encuesta</a></li>
 					</ul>
-					<ul aria-expanded="false">
-							<li><a href="{!! url('/add_extra'); !!}">Crear Pago Extraordinario</a></li>
-					</ul>
 	            </li>
 	            @endif
-	            <li><a href="{!! url('/schedules'); !!}" class="ai-icon" aria-expanded="false">
-						<i class="flaticon-381-calendar-3"></i>
-						<span class="nav-text">Palapa</span>
+				<li>
+	            	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+						<i class="flaticon-381-calculator"></i>
+						<span class="nav-text">Amenidades</span>
 					</a>
-				</li>
+	                <ul aria-expanded="false">
+						<li><a href="{!! url('/schedules'); !!}" class="ai-icon" aria-expanded="false">
+								<i class="flaticon-381-calendar-3"></i>
+								<span class="nav-text">Palapa</span>
+							</a>
+						</li>
+					</ul>
+					<ul aria-expanded="false">
+						<li><a href="{!! url('/schedule_pool'); !!}" class="ai-icon" aria-expanded="false">
+								<i class="flaticon-381-calendar-3"></i>
+								<span class="nav-text">Alberca</span>
+							</a>
+						</li>
+					</ul>
+	            </li>
 				<li><a href="{!! url('/houses'); !!}" class="ai-icon" aria-expanded="false">
 						<i class="flaticon-381-home"></i>
 						<span class="nav-text">Directorio</span>
+					</a>
+				</li>
+				<li><a href="{!! url('/app-profile'); !!}" class="ai-icon" aria-expanded="false">
+						<i class="flaticon-381-home"></i>
+						<span class="nav-text">Mi casa</span>
+					</a>
+				</li>
+				<li><a href="{!! url('/my_pets'); !!}" class="ai-icon" aria-expanded="false">
+						<i class="flaticon-381-home"></i>
+						<span class="nav-text">Mis mascotas</span>
 					</a>
 				</li>
 	            <li><a href="{!! url('/auth/logout'); !!}" class="ai-icon" aria-expanded="false">
@@ -61,7 +107,7 @@
 						<span class="nav-text">Cerrar sesion</span>
 					</a>
 				</li>
-	            @if (env('APP_ENV') == 'local' && false)
+	            @if (env('APP_ENV') == 'local' && true)
 				<li class="nav-label first">Main Menu</li>
 	            <li>
 	            	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">

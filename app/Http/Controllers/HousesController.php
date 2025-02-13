@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Houses;
+use App\Models\Activity;
 use DB;
 
 class HousesController extends Controller
@@ -30,13 +31,23 @@ class HousesController extends Controller
     }
 
     public function add_extra_payment (Request $request) {
-        DB::table('houses')->decrement('balance', $request->cantidad);
+        $this->validate($request, [
+            'motivo' => 'required',
+            'cantidad' => 'required',
+        ]);
+
+        DB::table('houses')->increment('balance', $request->cantidad);
+
+        $activity = new Activity;
+        $activity->name = 'Se agrego el pago general de '.$request->motivo.' por la cantidad de $'.$request->cantidad ;
+        $activity->status = 2;
+        $activity->save();
         return redirect('/');
     }
 
     public function add_extra () {
-        $page_title = 'Crear Pago Extraordinario';
-        $page_description = 'Crear pago extraordinario';
+        $page_title = 'Crear Pago General';
+        $page_description = 'Crear pago general';
         $action = __FUNCTION__;
         return view('zenix.form.add_extra_payment', compact('page_title', 'page_description', 'action'));
     }

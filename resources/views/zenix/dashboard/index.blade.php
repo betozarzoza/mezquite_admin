@@ -131,7 +131,7 @@
 								<p class="mb-1">Guardia llego hoy a las:</p>
 								<p class="text-white">{{ $arrived_at[0]->created_at->toTimeString() }}</p>
 							@elseif (count($leaved_at) == 0) 
-								<p class="text-white">No ha llegado</p>
+								<p class="text-white">El guardia no ha llegado</p>
 							@endif
 
 							@if (count($leaved_at) > 0)
@@ -147,46 +147,50 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header border-0 pb-0">
-                <h4 class="card-title">Actividades</h4>
+                <h4 class="card-title">Linea de tiempo</h4>
             </div>
             <div class="card-body">
                 <div id="DZ_W_TimeLine111" class="widget-timeline dz-scroll style-1 height370">
                     <ul class="timeline">
-                    	@foreach ($activities as $activity)
-                    		@if ($activity->status == 1)
-                    		<li>
-	                            <div class="timeline-badge info">
-	                            </div>
-	                            <a class="timeline-panel text-muted" href="#">
-	                                <span>{{$activity->created_at->diffForHumans()}}</span>
-	                                <h6 class="mb-0">{{ $activity->name }}</strong></h6>
-									<p class="mb-0">Pago de mantenimiento</p>
-	                            </a>
-	                        </li>
-	                        @endif
-	                        @if ($activity->status == 2)
-                    		<li>
-	                            <div class="timeline-badge success">
-	                            </div>
-	                            <a class="timeline-panel text-muted" href="#">
-	                                <span>{{$activity->created_at->diffForHumans()}}</span>
-	                                <h6 class="mb-0">{{ $activity->name }}</strong></h6>
-									<p class="mb-0">Actividad guardia</p>
-	                            </a>
-	                        </li>
-	                        @endif
-	                        @if ($activity->status == 3)
-                    		<li>
-	                            <div class="timeline-badge danger">
-	                            </div>
-	                            <a class="timeline-panel text-muted" href="#">
-	                                <span>{{$activity->created_at->diffForHumans()}}</span>
-	                                <h6 class="mb-0">{{ $activity->name }}</strong></h6>
-									<p class="mb-0">Egreso </p>
-	                            </a>
-	                        </li>
-	                        @endif
-                    	@endforeach
+                    	@if (count($activities))
+	                    	@foreach ($activities as $activity)
+	                    		@if ($activity->status == 1)
+	                    		<li>
+		                            <div class="timeline-badge info">
+		                            </div>
+		                            <a class="timeline-panel text-muted" href="#">
+		                                <span>{{$activity->created_at->diffForHumans()}}</span>
+		                                <h6 class="mb-0">{{ $activity->name }}</strong></h6>
+										<p class="mb-0">Pago de mantenimiento</p>
+		                            </a>
+		                        </li>
+		                        @endif
+		                        @if ($activity->status == 2)
+	                    		<li>
+		                            <div class="timeline-badge success">
+		                            </div>
+		                            <a class="timeline-panel text-muted" href="#">
+		                                <span>{{$activity->created_at->diffForHumans()}}</span>
+		                                <h6 class="mb-0">{{ $activity->name }}</strong></h6>
+										<p class="mb-0">Actividad guardia</p>
+		                            </a>
+		                        </li>
+		                        @endif
+		                        @if ($activity->status == 3)
+	                    		<li>
+		                            <div class="timeline-badge danger">
+		                            </div>
+		                            <a class="timeline-panel text-muted" href="#">
+		                                <span>{{$activity->created_at->diffForHumans()}}</span>
+		                                <h6 class="mb-0">{{ $activity->name }}</strong></h6>
+										<p class="mb-0">Egreso </p>
+		                            </a>
+		                        </li>
+		                        @endif
+	                    	@endforeach
+	                    @else
+	                    	no hay actividades
+	                    @endif
                     	<!--
                         <li>
                             <div class="timeline-badge primary"></div>
@@ -242,6 +246,7 @@
             </div>
         </div>
 	</div>
+	<!--
 	<div class="container-fluid">
 		<div class="card">
             <div class="card-header">
@@ -350,6 +355,7 @@
             </div>
         </div>
 	</div>
+	-->
 	@else
 	<div class="row">
 		<div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
