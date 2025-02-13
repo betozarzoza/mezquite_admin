@@ -42,7 +42,16 @@ class VisitorsController extends Controller
         $action = __FUNCTION__;
         $visitor = Visitor::where('access_id', $request->access_id)->get();
         $name = count($visitor) ? $visitor[0]['name'] : 'visitante';
-        return view('zenix.app.visitor_access', compact('page_title', 'page_description', 'action', 'name'));
+        return view('zenix.app.visitor_access', compact('page_title', 'page_description', 'action', 'visitor'));
+    }
+
+    public function visitor_access_user(Request $request) {
+        $page_title = 'Visitante';
+        $page_description = 'Acceso de visitante';
+        $action = __FUNCTION__;
+        $visitor = Visitor::where('access_id', $request->access_id)->get();
+        $name = count($visitor) ? $visitor[0]['name'] : 'visitante';
+        return view('zenix.app.visitor_access_user', compact('page_title', 'page_description', 'action', 'visitor'));
     }
 
     function generateRandomString($length = 10) {

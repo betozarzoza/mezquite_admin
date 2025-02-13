@@ -145,6 +145,7 @@ Route::controller(GeneralController::class)->group(function () {
 Route::controller(VisitorsController::class)->group(function () {
     Route::get('/add_visitor',  [ 'as' => 'add_visitor', 'uses' => 'add_visitor'])->middleware('auth');
     Route::get('/visitor_access/{access_id}',  [ 'as' => 'visitor_access', 'uses' => 'visitor_access']);
+    Route::get('/visitor_access_user/{access_id}',  [ 'as' => 'visitor_access_user', 'uses' => 'visitor_access_user']);
     Route::post('/create_visitor','create_visitor')->middleware('auth');
 });
 

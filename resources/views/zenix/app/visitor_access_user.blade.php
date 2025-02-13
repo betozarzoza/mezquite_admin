@@ -1,5 +1,5 @@
 {{-- Extends layout --}}
-@extends('layout.fullwidth')
+@extends('layout.default')
 
 
 
@@ -28,17 +28,17 @@
 									<div class="text-center">
 										<div class="row">
 											<div class="col">
-												<h3 class="m-b-0">Bienvenido {{count($visitor) ? $visitor[0]['name'] : 'visitante'}} a Condominios El Mezquite</h3>
+												<h3 class="m-b-0">Acceso para {{count($visitor) ? $visitor[0]['name'] : 'visitante'}} a Condominios El Mezquite</h3>
 												@if(count($visitor) && $visitor[0]['active'])
-												<span>pulse el boton para abrir el porton</span>
+												<span>comparta este acceso con su invitado</span>
 												@else
-													<span>Este acceso esta inactivo o no existe</span>
+													<span>Este acceso esta inactivo o no existe.</span>
 												@endif
 											</div>
 										</div>
 										@if(count($visitor) && $visitor[0]['active'])
 											<div class="mt-4">
-												<a href="javascript:void();;" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#sendMessageModal">Abrir porton</a>
+												<button class="btn btn-secondary mb-1" id='answer-example-share-button'>Compartir</button>
 											</div>
 										@endif
 									</div>
@@ -50,4 +50,21 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+    	console.log(window.location.pathname.split("/").pop());
+    	const shareButton = document.getElementById("answer-example-share-button"); 
+		shareButton.addEventListener("click", (e) => { 
+		  if (navigator.share) {
+		    navigator.share({
+		        title: 'Acceso a Condominios El Mezquite',
+		        text: 'Entra a este link para acceder al condominio',
+		        url: 'https://condominioselmezquite.homes/visitor_access/'+window.location.pathname.split("/").pop(),
+		      })
+		      .then(() => console.log('Successful share'))
+		      .catch((error) => console.log('Error sharing', error));
+		  } else {
+		    console.log('Share not supported on this browser, do it the old way.');
+		  }
+		});
+    </script>
 @endsection	
