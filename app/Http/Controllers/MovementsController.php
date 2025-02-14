@@ -195,6 +195,14 @@ class MovementsController extends Controller
         return view('zenix.dashboard.movements', compact('page_title', 'page_description', 'action', 'movements'));
     }
 
+    public function anual_houses_view () {
+        $page_title = 'Movimientos';
+        $page_description = 'Muestra los ingresos y egresos';
+        $action = __FUNCTION__;
+        $houses = Houses::take(28)->get();
+        return view('zenix.dashboard.anual_houses_view', compact('page_title', 'page_description', 'action', 'houses'));
+    }
+
     public function show_movements_filtered (Request $request) {
         $filter = $request->filter;
         $page_title = 'Movimientos';

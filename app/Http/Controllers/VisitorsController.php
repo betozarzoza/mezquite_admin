@@ -38,7 +38,7 @@ class VisitorsController extends Controller
         $visitor->house_id = $user->houses_id;
  
         $visitor->save(); 
-        return redirect('/my_guests');
+        return redirect('/visitor_access_user/'.$random_string);
     }
 
     public function visitor_access(Request $request) {
