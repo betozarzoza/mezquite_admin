@@ -50,7 +50,7 @@
 						<li><a href="{!! url('/add_visitor'); !!}">Agregar visita</a></li>
 					</ul>
 					 <ul aria-expanded="false">
-						<li><a href="{!! url('/movements'); !!}">Mis visitas</a></li>
+						<li><a href="{!! url('/my_guests'); !!}">Mis visitas</a></li>
 					</ul>
 	            </li>
 	            @if(auth()->user()->is_admin)
