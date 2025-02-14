@@ -46,7 +46,7 @@ class GeneralController extends Controller
     }
 
     public function open_gate(){
-         $response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=42e7af94-f973-41e9-adef-ec2a492eaff9&token=f945efa8-34d0-45e1-9458-92dd260b96ed&response=json');
+         $response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=42e7af94-f973-41e9-adef-ec2a492eaff9&token=f945efa8-34d0-45e1-9458-92dd260b96ed&response=html');
         print_r($response->json());
         $response = $response->json();
         if (count($response) > 0 && $response['URLRoutineTrigger']['triggerActivationStatus'] == 'success') {
