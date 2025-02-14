@@ -80,7 +80,10 @@
 						</span>
 						<div class="media-body text-white text-right">
 							@if ($user->active)
+								<form action="open-gate" method="post">
+	                        	@csrf
 								<button type="submit" class="btn btn-light btn-block py-4">Abrir porton</button>
+								</form>
 							@else
 								<td><span class="badge badge-danger">Inactivo</span></td>
 							@endif
