@@ -38,7 +38,11 @@
 										</div>
 										@if(count($visitor) && $visitor[0]['active'])
 											<div class="mt-4">
-												<a href="javascript:void();;" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#sendMessageModal">Abrir porton</a>
+												<form action="/release_the_kraken" method="post">
+													@csrf
+													<input type="hidden" value="{{$visitor[0]['access_id']}}" name="access_id">
+													<button type="submit" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#sendMessageModal">Abrir porton</button>
+												</form>
 											</div>
 										@endif
 									</div>
