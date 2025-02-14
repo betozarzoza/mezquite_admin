@@ -55,6 +55,13 @@ class VisitorsController extends Controller
         return view('zenix.app.visitor_access_user', compact('page_title', 'page_description', 'action', 'visitor'));
     }
 
+    public function thank_you_visitor(Request $request) {
+        $page_title = 'Gracias';
+        $page_description = 'Gracias por visitar el condominio, bienvenido.';
+        $action = __FUNCTION__;
+        return view('zenix.app.thank_you_visitor', compact('page_title', 'page_description', 'action'));
+    }
+
     public function release_the_kraken(Request $request){
         $visitor = Visitor::where('access_id', $request->access_id)->get();
 

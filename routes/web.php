@@ -148,6 +148,7 @@ Route::controller(VisitorsController::class)->group(function () {
     Route::get('/visitor_access_user/{access_id}',  [ 'as' => 'visitor_access_user', 'uses' => 'visitor_access_user']);
     Route::post('/create_visitor','create_visitor')->middleware('auth');
     Route::post('/release_the_kraken','release_the_kraken')->middleware('auth');
+    Route::get('/thank_you_visitor',  [ 'as' => 'thank_you_visitor', 'uses' => 'thank_you_visitor']);
 });
 
 Route::controller(HousesController::class)->group(function () {
