@@ -26,15 +26,19 @@ class VisitorsController extends Controller
             'duracion' => 'required',
         ]);
 
+        $id = Auth::id();
+        $user = User::find($id);
+
         $visitor = new Visitor;
         $random_string = $this->generateRandomString(6);
         $visitor->name = $request->nombre;
         $visitor->active = 1;
         $visitor->duration = $request->duracion;
         $visitor->access_id = $random_string;
+        $visitor->house_id = $user->houses_id;
  
         $visitor->save(); 
-        return redirect('/visitor_access_user/'.$random_string);
+        return redirect('/my_guests');
     }
 
     public function visitor_access(Request $request) {
@@ -62,6 +66,16 @@ class VisitorsController extends Controller
         return view('zenix.app.thank_you_visitor', compact('page_title', 'page_description', 'action'));
     }
 
+    public function my_guests(Request $request) {
+        $page_title = 'Mis invitados';
+        $page_description = 'Mis invitados';
+        $action = __FUNCTION__;
+        $id = Auth::id();
+        $user = User::find($id);
+        $my_guests = Visitor::where('house_id', $user->houses_id)->orderBy('created_at', 'DESC')->get();
+        return view('zenix.app.my_guests', compact('page_title', 'page_description', 'action', 'my_guests'));
+    }
+
     public function release_the_kraken(Request $request){
         $visitor = Visitor::where('access_id', $request->access_id)->get();
 
@@ -75,10 +89,8 @@ class VisitorsController extends Controller
                     $visitor_verification->save();
                 }
             }
-            return redirect('/visitor_access/'.$request->access_id);
-        } else {
-            return redirect('/visitor_access/'.$request->access_id);
         }
+        return redirect('/thank_you_visitor');
         /*
         $response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=f6fee870-5658-41c4-8b11-fe795f8298a9&token=bef983a5-596d-4d67-9eee-6f965f66e33b&response=json');
         $response = $response->json();

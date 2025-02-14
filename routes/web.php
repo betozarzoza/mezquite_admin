@@ -149,6 +149,7 @@ Route::controller(VisitorsController::class)->group(function () {
     Route::post('/create_visitor','create_visitor')->middleware('auth');
     Route::post('/release_the_kraken','release_the_kraken')->middleware('auth');
     Route::get('/thank_you_visitor',  [ 'as' => 'thank_you_visitor', 'uses' => 'thank_you_visitor']);
+    Route::get('/my_guests',  [ 'as' => 'my_guests', 'uses' => 'my_guests'])->middleware('auth');
 });
 
 Route::controller(HousesController::class)->group(function () {
