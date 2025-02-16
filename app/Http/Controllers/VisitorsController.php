@@ -88,6 +88,27 @@ class VisitorsController extends Controller
                 if (count($response) > 0 && $response['URLRoutineTrigger']['triggerActivationStatus'] == 'success') {
                     $visitor_verification->save();
                 }
+            } else if ($visitor_verification->duration == '1_hour' && $visitor_verification->active) {
+                $visitor_verification->active = 0;
+                $response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=42e7af94-f973-41e9-adef-ec2a492eaff9&token=f945efa8-34d0-45e1-9458-92dd260b96ed&response=html');
+                $response = $response->json();
+                if (count($response) > 0 && $response['URLRoutineTrigger']['triggerActivationStatus'] == 'success') {
+                    $visitor_verification->save();
+                }
+            } else if ($visitor_verification->duration == '6_hours' && $visitor_verification->active) {
+                $visitor_verification->active = 0;
+                $response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=42e7af94-f973-41e9-adef-ec2a492eaff9&token=f945efa8-34d0-45e1-9458-92dd260b96ed&response=html');
+                $response = $response->json();
+                if (count($response) > 0 && $response['URLRoutineTrigger']['triggerActivationStatus'] == 'success') {
+                    $visitor_verification->save();
+                }
+            } else if ($visitor_verification->duration == '12_hours' && $visitor_verification->active) {
+                $visitor_verification->active = 0;
+                $response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=42e7af94-f973-41e9-adef-ec2a492eaff9&token=f945efa8-34d0-45e1-9458-92dd260b96ed&response=html');
+                $response = $response->json();
+                if (count($response) > 0 && $response['URLRoutineTrigger']['triggerActivationStatus'] == 'success') {
+                    $visitor_verification->save();
+                }
             }
         }
         return redirect('/thank_you_visitor');
@@ -99,6 +120,15 @@ class VisitorsController extends Controller
         }
         */
         //return redirect('/index');
+    }
+
+    public function cancel_guest_access(Request $request){
+        $visitor = Visitor::where('access_id', $request->access_id)->get();
+        $visitor_verification = Visitor::find($visitor[0]['id']);
+        $visitor_verification->active = 0;
+        $visitor_verification->save();
+
+        return redirect('/my_guests');
     }
 
     function generateRandomString($length = 10) {

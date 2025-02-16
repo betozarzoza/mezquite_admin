@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Answer;
 
 class SurveyController extends Controller
 {
@@ -96,6 +97,18 @@ class SurveyController extends Controller
         $survey->active = 1;
  
         $survey->save(); 
+        return redirect('/');
+    }
+
+    public function answer_survey(Request $request) {
+        $id = Auth::id();
+        $user = User::find($id);
+        $answer = new Answer;
+        $answer->answer = $request->answer;
+        $answer->survey_id = $request->survey_id;
+        $answer->house_id = $user->houses_id;
+        $answer->save(); 
+        
         return redirect('/');
     }
 

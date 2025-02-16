@@ -23,7 +23,7 @@
 			<div class="alert {{ $notification->color }} solid alert-square "><strong>Mensaje importante:</strong> {{ $notification->content }}</div>
 		</div>
 	@endforeach
-	<!--
+
 	@foreach ($surveys as $survey)
 		<div class="col">
 	        <div class="card">
@@ -32,6 +32,17 @@
 	                <p class="mb-0 subtitle">{{ $survey->description }}</p>
 	            </div>
 	            <div class="card-body">
+	            	@for ($i = 0; $i < $survey->number_of_answers; $i++)
+	            		@if ($i == 0)
+	            			<button type="button" class="btn btn-primary">Primary</button>
+	            		@endif
+	            		@if ($i == 1)
+	            			<button type="button" class="btn btn-primary">Primary</button>
+	            		@endif
+	            		@if ($i == 2)
+	            			<button type="button" class="btn btn-primary">Primary</button>
+	            		@endif
+	            	@endfor
 	            	@for ($i = 0; $i < $survey->number_of_answers; $i++)
 	            		@if ($i == 0)
 	            			<h6 class="mt-4">{{ $survey->answer_1 }}
@@ -68,7 +79,6 @@
 	        </div>
 	    </div>
 	@endforeach
--->
 	@if ($user->id !== 29)
 	<div class="row">
 		<div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">

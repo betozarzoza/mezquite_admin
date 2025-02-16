@@ -51,10 +51,10 @@
                                                     <td>12 horas</td>
                                                     @break
                                             @endswitch
-                                            <td><span><a href="javascript:void()" class="me-4" data-bs-toggle="tooltip"
-                                                        data-placement="top" title="Edit"><i
+                                            <td><span><a href="/visitor_access_user/{{$guest->access_id}}" class="me-4" data-bs-toggle="tooltip"
+                                                        data-placement="top" title="Ver"><i
                                                             class="fas fa-eye color-muted"></i> </a><a
-                                                        href="javascript:void()" data-bs-toggle="tooltip"
+                                                        href="/cancel_guest_access/{{$guest->access_id}}" data-bs-toggle="tooltip"
                                                         data-placement="top" title="Close"><i
                                                             class="fas fa-times"></i></a></span>
                                             </td>
