@@ -39,13 +39,13 @@ class ScheduleController extends Controller
             ]);
         }
 
-
         $id = Auth::id();
         $user = User::find($id)->house;
         $schedule = new Schedule;
  
         $schedule->name = $request->nombre;
         $schedule->date = $request->fecha;
+        $schedule->pool = $request->separar_alberca == 'on' ? 1 : 0;
         $schedule->scheduled_by = $user->id;
  
         $schedule->save();

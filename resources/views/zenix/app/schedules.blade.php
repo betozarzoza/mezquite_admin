@@ -75,10 +75,18 @@
                                         <input type="date" name="fecha" class="datepicker-default form-control">
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-check custom-checkbox mt-3 mb-3 checkbox-info">
+                                            <input type="checkbox" class="form-check-input" name="separar_alberca" id="separar_alberca">
+                                            <label class="form-check-label" for="separar_alberca">Separar alberca (tiene un costo de $700)</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger btn-block" data-bs-dismiss="modal">Cerrar</button>
                                 <button type="submit" class="btn btn-primary btn-block">Agendar</button>
+                                <button type="button" class="btn btn-danger btn-block" data-bs-dismiss="modal">Cerrar</button>
                             </div>
                         </form>
                     </div>

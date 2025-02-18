@@ -33,7 +33,7 @@
 	            </li>
 	            <li>
 	            	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-						<i class="flaticon-381-calculator"></i>
+						<i class="flaticon-381-id-card-5"></i>
 						<span class="nav-text">Guardia</span>
 					</a>
 	                <ul aria-expanded="false">
@@ -43,7 +43,7 @@
 	            </li>
 	             <li>
 	            	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-						<i class="flaticon-381-calculator"></i>
+						<i class="flaticon-381-user-9"></i>
 						<span class="nav-text">Visitas</span>
 					</a>
 	                <ul aria-expanded="false">
@@ -69,26 +69,18 @@
 	            @endif
 				<li>
 	            	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-						<i class="flaticon-381-calculator"></i>
+						<i class="flaticon-381-calendar-4"></i>
 						<span class="nav-text">Amenidades</span>
 					</a>
 	                <ul aria-expanded="false">
 						<li><a href="{!! url('/schedules'); !!}" class="ai-icon" aria-expanded="false">
-								<i class="flaticon-381-calendar-3"></i>
 								<span class="nav-text">Palapa</span>
-							</a>
-						</li>
-					</ul>
-					<ul aria-expanded="false">
-						<li><a href="{!! url('/schedule_pool'); !!}" class="ai-icon" aria-expanded="false">
-								<i class="flaticon-381-calendar-3"></i>
-								<span class="nav-text">Alberca</span>
 							</a>
 						</li>
 					</ul>
 	            </li>
 				<li><a href="{!! url('/houses'); !!}" class="ai-icon" aria-expanded="false">
-						<i class="flaticon-381-home"></i>
+						<i class="flaticon-381-smartphone-2"></i>
 						<span class="nav-text">Directorio</span>
 					</a>
 				</li>
@@ -97,17 +89,19 @@
 						<span class="nav-text">Mi casa</span>
 					</a>
 				</li>
+				<!--
 				<li><a href="{!! url('/my_pets'); !!}" class="ai-icon" aria-expanded="false">
 						<i class="flaticon-381-home"></i>
 						<span class="nav-text">Mis mascotas</span>
 					</a>
 				</li>
+				-->
 	            <li><a href="{!! url('/auth/logout'); !!}" class="ai-icon" aria-expanded="false">
 						<i class="flaticon-381-turn-off"></i>
 						<span class="nav-text">Cerrar sesion</span>
 					</a>
 				</li>
-	            @if (env('APP_ENV') == 'local' && true)
+	            @if (env('APP_ENV') == 'local' && false)
 				<li class="nav-label first">Main Menu</li>
 	            <li>
 	            	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">

@@ -34,13 +34,13 @@
 	            <div class="card-body">
 	            	@for ($i = 0; $i < $survey->number_of_answers; $i++)
 	            		@if ($i == 0)
-	            			<button type="button" class="btn btn-primary">Primary</button>
+	            			<button type="button" class="btn btn-primary">{{ $survey->answer_1 }}</button>
 	            		@endif
 	            		@if ($i == 1)
-	            			<button type="button" class="btn btn-primary">Primary</button>
+	            			<button type="button" class="btn btn-primary">{{ $survey->answer_2 }}</button>
 	            		@endif
 	            		@if ($i == 2)
-	            			<button type="button" class="btn btn-primary">Primary</button>
+	            			<button type="button" class="btn btn-primary">{{ $survey->answer_3 }}</button>
 	            		@endif
 	            	@endfor
 	            	@for ($i = 0; $i < $survey->number_of_answers; $i++)
