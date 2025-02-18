@@ -170,4 +170,5 @@ Route::controller(NotificationController::class)->group(function () {
 Route::controller(SurveyController::class)->group(function () {
     Route::get('/add-survey',  [ 'as' => 'add_survey', 'uses' => 'add_survey'])->middleware('auth');
     Route::post('/create-survey','create_survey')->middleware('auth');
+    Route::post('/answer_survey','answer_survey')->middleware('auth');
 });

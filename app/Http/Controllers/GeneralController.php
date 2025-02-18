@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Activity;
 use App\Models\Checkin;
 use App\Models\Survey;
+use App\Models\Answer;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
@@ -31,15 +32,18 @@ class GeneralController extends Controller
         $egresos = Movement::whereBetween('created_at', [date("Y-m-d H:i:s", strtotime("-1 week")), date("Y-m-d H:i:s")])->where('type', 'egreso')->sum('quantity');
 
         $houses = Houses::take(28)->get();
+        $id = Auth::id();
+        $user = User::find($id)->house;
 
         $notifications = Notification::where('active', 1)->get();
         $activities = Activity::orderBy('created_at', 'DESC')->take(10)->get();
         $surveys = Survey::where('active', 1)->get();
+        foreach ($surveys as $survey){
+            $survey->answered = count(Answer::where([['house_id', $user->id],['survey_id', $survey->id]])->get());
+        }
         $arrived_at = Checkin::where('type', 'entrada')->whereDate('created_at', Carbon::today())->get();
         $leaved_at = Checkin::where('type', 'salida')->whereDate('created_at', Carbon::today())->get();
         $lunch = Checkin::where('type', 'sali a comer')->whereDate('created_at', Carbon::today())->get();
-        $id = Auth::id();
-        $user = User::find($id)->house;
 
         return view('zenix.dashboard.index', compact('page_title', 'page_description', 'action', 'balance', 'ingresos', 'egresos', 'houses', 'user', 'notifications', 'surveys', 'activities', 'arrived_at', 'leaved_at', 'lunch'));
 

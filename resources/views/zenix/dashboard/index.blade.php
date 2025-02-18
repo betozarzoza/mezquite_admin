@@ -23,7 +23,6 @@
 			<div class="alert {{ $notification->color }} solid alert-square "><strong>Mensaje importante:</strong> {{ $notification->content }}</div>
 		</div>
 	@endforeach
-
 	@foreach ($surveys as $survey)
 		<div class="col">
 	        <div class="card">
@@ -32,49 +31,56 @@
 	                <p class="mb-0 subtitle">{{ $survey->description }}</p>
 	            </div>
 	            <div class="card-body">
-	            	@for ($i = 0; $i < $survey->number_of_answers; $i++)
-	            		@if ($i == 0)
-	            			<button type="button" class="btn btn-primary">{{ $survey->answer_1 }}</button>
-	            		@endif
-	            		@if ($i == 1)
-	            			<button type="button" class="btn btn-primary">{{ $survey->answer_2 }}</button>
-	            		@endif
-	            		@if ($i == 2)
-	            			<button type="button" class="btn btn-primary">{{ $survey->answer_3 }}</button>
-	            		@endif
-	            	@endfor
-	            	@for ($i = 0; $i < $survey->number_of_answers; $i++)
-	            		@if ($i == 0)
-	            			<h6 class="mt-4">{{ $survey->answer_1 }}
-			                    <span class="pull-end">{{ $survey->percentage_answer_1 }}%</span>
-			                </h6>
-			                <div class="progress ">
-			                    <div class="progress-bar bg-danger progress-animated" style="width: 80%; height:6px;" role="progressbar">
-			                        <span class="sr-only">60% Complete</span>
-			                    </div>
-			                </div>
-	            		@endif
-	            		@if ($i == 1)
-	            			<h6 class="mt-4">{{ $survey->answer_2 }}
-			                    <span class="pull-end">{{ $survey->percentage_answer_2 }}%</span>
-			                </h6>
-			                <div class="progress ">
-			                    <div class="progress-bar bg-danger progress-animated" style="width: 80%; height:6px;" role="progressbar">
-			                        <span class="sr-only">60% Complete</span>
-			                    </div>
-			                </div>
-	            		@endif
-	            		@if ($i == 2)
-	            			<h6 class="mt-4">{{ $survey->answer_3 }}
-			                    <span class="pull-end">{{ $survey->percentage_answer_3 }}%</span>
-			                </h6>
-			                <div class="progress ">
-			                    <div class="progress-bar bg-danger progress-animated" style="width: 80%; height:6px;" role="progressbar">
-			                        <span class="sr-only">60% Complete</span>
-			                    </div>
-			                </div>
-	            		@endif
-	            	@endfor
+	            	@if($survey->answered == 0)
+		            	<form action="answer_survey" method="post">
+		                    @csrf
+		                    <input name="survey_id" type="hidden" value="{{$survey->id}}">
+			            	@for ($i = 0; $i < $survey->number_of_answers; $i++)
+			            		@if ($i == 0)
+			            			<button type="submit" name="answer" value="1" class="btn btn-primary">{{ $survey->answer_1 }}</button>
+			            		@endif
+			            		@if ($i == 1)
+			            			<button type="submit" name="answer" value="2" class="btn btn-primary">{{ $survey->answer_2 }}</button>
+			            		@endif
+			            		@if ($i == 2)
+			            			<button type="submit" name="answer" value="3" class="btn btn-primary">{{ $survey->answer_3 }}</button>
+			            		@endif
+			            	@endfor
+		            	 </form>
+		           	@else
+		            	@for ($i = 0; $i < $survey->number_of_answers; $i++)
+		            		@if ($i == 0)
+		            			<h6 class="mt-4">{{ $survey->answer_1 }}
+				                    <span class="pull-end">{{ $survey->percentage_answer_1 }}%</span>
+				                </h6>
+				                <div class="progress ">
+				                    <div class="progress-bar bg-danger progress-animated" style="width: 60%; height:6px;" role="progressbar">
+				                        <span class="sr-only">60% Complete</span>
+				                    </div>
+				                </div>
+		            		@endif
+		            		@if ($i == 1)
+		            			<h6 class="mt-4">{{ $survey->answer_2 }}
+				                    <span class="pull-end">{{ $survey->percentage_answer_2 }}%</span>
+				                </h6>
+				                <div class="progress ">
+				                    <div class="progress-bar bg-danger progress-animated" style="width: 80%; height:6px;" role="progressbar">
+				                        <span class="sr-only">60% Complete</span>
+				                    </div>
+				                </div>
+		            		@endif
+		            		@if ($i == 2)
+		            			<h6 class="mt-4">{{ $survey->answer_3 }}
+				                    <span class="pull-end">{{ $survey->percentage_answer_3 }}%</span>
+				                </h6>
+				                <div class="progress ">
+				                    <div class="progress-bar bg-danger progress-animated" style="width: 80%; height:6px;" role="progressbar">
+				                        <span class="sr-only">60% Complete</span>
+				                    </div>
+				                </div>
+		            		@endif
+		            	@endfor
+		            @endif
 	            </div>
 	        </div>
 	    </div>
