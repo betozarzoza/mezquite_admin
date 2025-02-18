@@ -141,6 +141,7 @@ Route::controller(GeneralController::class)->group(function () {
     Route::post('/checkout','checkout')->middleware('auth');
     Route::post('/lunch','lunch')->middleware('auth');
     Route::post('/lunchback','lunchback')->middleware('auth');
+    Route::get('/guard_activity','guard_activity')->middleware('auth');
 });
 
 Route::controller(VisitorsController::class)->group(function () {

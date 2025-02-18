@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Activity;
 use App\Models\Checkin;
 use App\Models\Survey;
+use App\Models\Guard;
 use App\Models\Answer;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Http;
@@ -51,7 +52,6 @@ class GeneralController extends Controller
 
     public function open_gate(){
          $response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=42e7af94-f973-41e9-adef-ec2a492eaff9&token=f945efa8-34d0-45e1-9458-92dd260b96ed&response=html');
-        print_r($response->json());
         $response = $response->json();
         if (count($response) > 0 && $response['URLRoutineTrigger']['triggerActivationStatus'] == 'success') {
             //return redirect('/index');
@@ -100,18 +100,31 @@ class GeneralController extends Controller
         return view('zenix.form.add_activity', compact('page_title', 'page_description', 'action'));
     }
 
+    public function guard_activity () {
+        $page_title = 'Vitacora del guardia';
+        $page_description = 'vitacora';
+        $action = __FUNCTION__;
+        $guard_activities = Guard::orderBy('created_at', 'DESC')->take(20)->get();
+        return view('zenix.dashboard.guard', compact('page_title', 'page_description', 'action', 'guard_activities'));
+    }
+
     public function create_activity(Request $request){
-        foreach ($request->objetivo as $objetivo) {
+            $activity_guard = new Guard;
+            $activity_guard->destiny = $request->objetivo;
+            $activity_guard->activity = $request->actividad;
+            $activity_guard->note = $request->nota;
+            $activity_guard->status = 2;
+            $activity_guard->save();
+
             $activity = new Activity;
             if ($request->actividad !== 'otro') {
-                $name = $request->actividad . ' casa ' . $objetivo;
+                $name = $request->actividad . ' casa ' . $request->objetivo;
             } else {
                  $name = $request->nota;
             }
             $activity->name = $name;
             $activity->status = 2;
             $activity->save();
-            return redirect('/index');
-        }
+            return redirect('/guard_activity');
     }
 }

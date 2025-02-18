@@ -27,7 +27,7 @@
 	                        	@csrf
 	                            <div class="mb-3">
 	                                <label class="form-label">Destinatario:</label>
-	                                <select name="objetivo[]" multiple class=" btn-outline-secondary default-select form-control wide" >
+	                                <select name="objetivo" class=" btn-outline-secondary default-select form-control wide" >
 	                                	<option value="condominio">Condominio</option>
 	                                	<option value="banio">Banio</option>
 	                                	<option value="palapa">Palapa</option>

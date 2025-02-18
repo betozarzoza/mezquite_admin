@@ -107,9 +107,33 @@ class SurveyController extends Controller
         $answer->answer = $request->answer;
         $answer->survey_id = $request->survey_id;
         $answer->house_id = $user->houses_id;
-        $answer->save(); 
-        
+        $answer->save();
+        $this->recalculateSurveyPercentage($request->survey_id);
         return redirect('/');
+    }
+
+    public function recalculateSurveyPercentage ($survey_id) {
+        $survey = Survey::find($survey_id);
+        $total_answers = count(Answer::where('survey_id', $survey_id)->get());
+        $total_answers_1 = count(Answer::where('survey_id', $survey_id)->where('answer', 1)->get());
+        $total_answers_2 = count(Answer::where('survey_id', $survey_id)->where('answer', 2)->get());
+        $total_answers_3 = count(Answer::where('survey_id', $survey_id)->where('answer', 3)->get());
+        if ($total_answers != 0) {
+            switch ($survey->number_of_answers) {
+                case 2:
+                    $survey->percentage_answer_1 = ($total_answers_1 / $total_answers) * 100;
+                    $survey->percentage_answer_2 = ($total_answers_2 / $total_answers) * 100;
+                    break;
+
+                case 3:
+                    $survey->percentage_answer_1 = ($total_answers_1 / $total_answers) * 100;
+                    $survey->percentage_answer_2 = ($total_answers_2 / $total_answers) * 100;
+                    $survey->percentage_answer_3 = ($total_answers_3 / $total_answers) * 100;
+                    break;
+            }
+        }
+
+        $survey->save();
     }
 
     public function minus_one_day_to_notif_and_inactivate_them () {

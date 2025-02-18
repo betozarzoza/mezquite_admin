@@ -18,6 +18,7 @@
 	<div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center">
 		<h2 class="font-w600 title mb-2 me-auto ">Inicio</h2>
 	</div>
+	@if ($user->id !== 29)
 	@foreach ($notifications as $notification)
 		<div class="row">
 			<div class="alert {{ $notification->color }} solid alert-square "><strong>Mensaje importante:</strong> {{ $notification->content }}</div>
@@ -54,7 +55,7 @@
 				                    <span class="pull-end">{{ $survey->percentage_answer_1 }}%</span>
 				                </h6>
 				                <div class="progress ">
-				                    <div class="progress-bar bg-danger progress-animated" style="width: 60%; height:6px;" role="progressbar">
+				                    <div class="progress-bar bg-danger progress-animated" style="width: {{$survey->percentage_answer_1}}%; height:6px;" role="progressbar">
 				                        <span class="sr-only">60% Complete</span>
 				                    </div>
 				                </div>
@@ -64,7 +65,7 @@
 				                    <span class="pull-end">{{ $survey->percentage_answer_2 }}%</span>
 				                </h6>
 				                <div class="progress ">
-				                    <div class="progress-bar bg-danger progress-animated" style="width: 80%; height:6px;" role="progressbar">
+				                    <div class="progress-bar bg-danger progress-animated" style="width: {{$survey->percentage_answer_2}}%; height:6px;" role="progressbar">
 				                        <span class="sr-only">60% Complete</span>
 				                    </div>
 				                </div>
@@ -74,7 +75,7 @@
 				                    <span class="pull-end">{{ $survey->percentage_answer_3 }}%</span>
 				                </h6>
 				                <div class="progress ">
-				                    <div class="progress-bar bg-danger progress-animated" style="width: 80%; height:6px;" role="progressbar">
+				                    <div class="progress-bar bg-danger progress-animated" style="width: {{$survey->percentage_answer_3}}%; height:6px;" role="progressbar">
 				                        <span class="sr-only">60% Complete</span>
 				                    </div>
 				                </div>
@@ -85,7 +86,6 @@
 	        </div>
 	    </div>
 	@endforeach
-	@if ($user->id !== 29)
 	<div class="row">
 		<div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
 			<div class="widget-stat card bg-danger">
