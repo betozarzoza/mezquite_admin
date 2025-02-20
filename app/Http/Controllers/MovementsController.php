@@ -118,6 +118,7 @@ class MovementsController extends Controller
             $activity->save();
 
             $this->modifyMyBalanceAndLastPayment(1000, 'ingreso', $request->destinatario, $mes . ' '. $request->year);
+            $this->modifyGeneralBalance(1000, 'ingreso');
         }
         return redirect('/index');
     }

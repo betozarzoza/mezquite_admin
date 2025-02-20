@@ -391,58 +391,34 @@
 				</div>
 			</div>
         </div>
-		<div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
-			<div class="widget-stat card bg-success">
-				<div class="card-body p-4">
-					<div class="media">
-						<span class="me-3">
-							<i class="flaticon-381-diamond"></i>
-						</span>
-						@if (count($arrived_at) > 0)
-							<div class="media-body text-white text-right">
-								<form action="checkout" method="post">
-		                            @csrf
-									<button type="submit" class="btn btn-light btn-block py-4">Checar Salida</button>
-								</form>
-							</div>
-						@else
-							<div class="media-body text-white text-right">
-								<form action="checkin" method="post">
-		                            @csrf
-									<button type="submit" class="btn btn-light btn-block py-4">Checar Entrada</button>
-								</form>
-							</div>
-						@endif
+        @if (count($leaved_at) == 0)
+			<div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
+				<div class="widget-stat card bg-success">
+					<div class="card-body p-4">
+						<div class="media">
+							<span class="me-3">
+								<i class="flaticon-381-diamond"></i>
+							</span>
+								@if (count($arrived_at) > 0)
+									<div class="media-body text-white text-right">
+										<form action="checkout" method="post">
+				                            @csrf
+											<button type="submit" class="btn btn-light btn-block py-4">Checar Salida</button>
+										</form>
+									</div>
+								@else
+									<div class="media-body text-white text-right">
+										<form action="checkin" method="post">
+				                            @csrf
+											<button type="submit" class="btn btn-light btn-block py-4">Checar Entrada</button>
+										</form>
+									</div>
+								@endif
+						</div>
 					</div>
 				</div>
-			</div>
-        </div>
-		<div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
-			<div class="widget-stat card bg-info">
-				<div class="card-body p-4">
-					<div class="media">
-						<span class="me-3">
-							<i class="flaticon-381-heart"></i>
-						</span>
-						@if (count($lunch) == 1)
-							<div class="media-body text-white text-right">
-								<form action="lunchback" method="post">
-									@csrf
-									<button type="submit" class="btn btn-light btn-block py-4">Regrese de comer</button>
-								</form>
-							</div>
-						@elseif (count($lunch) == 0)
-							<div class="media-body text-white text-right">
-								<form action="lunch" method="post">
-									@csrf
-									<button type="submit" class="btn btn-light btn-block py-4">Sali a comer</button>
-								</form>
-							</div>
-						@endif
-					</div>
-				</div>
-			</div>
-        </div>
+	        </div>
+        @endif
 		<div class="col-xl-3 col-xxl-4 col-lg-6 col-sm-6">
 			<div class="widget-stat card bg-primary">
 				<div class="card-body p-4">

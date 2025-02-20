@@ -12,8 +12,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->call('App\Http\Controllers\HousesController@addMontlyPaymentToHouses')->monthly();
-        $schedule->call('App\Http\Controllers\HousesController@inactive_houses')->monthlyOn(15, '00:00');
+        //$schedule->call('App\Http\Controllers\HousesController@addMontlyPaymentToHouses')->monthly();
+        //$schedule->call('App\Http\Controllers\HousesController@inactive_houses')->monthlyOn(15, '00:00');
         $schedule->call('App\Http\Controllers\NotificationController@minus_one_day_to_notif_and_inactivate_them')->daily();
         $schedule->call('App\Http\Controllers\ScheduleController@delete_old_schedules')->daily();
     }

@@ -45,6 +45,7 @@ class ScheduleController extends Controller
  
         $schedule->name = $request->nombre;
         $schedule->date = $request->fecha;
+        $schedule->active = 1;
         $schedule->pool = $request->separar_alberca == 'on' ? 1 : 0;
         $schedule->scheduled_by = $user->id;
  
@@ -57,11 +58,11 @@ class ScheduleController extends Controller
         $page_title = 'Agenda de palapa';
         $page_description = 'Muestra la agenda de la palapa';
         $action = __FUNCTION__;
-       $schedules = Schedule::get();
+       $schedules = Schedule::orderBy('created_at', 'DESC')->take(30)->get();
         return view('zenix.app.schedules', compact('page_title', 'page_description', 'action', 'schedules'));
     }
 
     public function delete_old_schedules () {
-        Schedule::whereDate('date', '<', Carbon::now())->delete();
+        Schedule::whereDate('date', '<', Carbon::now())->update(['active' => 0]);
     }
 }

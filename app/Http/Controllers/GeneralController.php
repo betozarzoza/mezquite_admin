@@ -108,6 +108,14 @@ class GeneralController extends Controller
         return view('zenix.dashboard.guard', compact('page_title', 'page_description', 'action', 'guard_activities'));
     }
 
+    public function guard_checkins () {
+        $page_title = 'Vitacora del guardia';
+        $page_description = 'vitacora';
+        $action = __FUNCTION__;
+        $checkins = Checkin::orderBy('created_at', 'DESC')->take(20)->get();
+        return view('zenix.dashboard.checkins', compact('page_title', 'page_description', 'action', 'checkins'));
+    }
+
     public function create_activity(Request $request){
             $activity_guard = new Guard;
             $activity_guard->destiny = $request->objetivo;
