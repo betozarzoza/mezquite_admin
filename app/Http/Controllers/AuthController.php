@@ -96,7 +96,7 @@ class AuthController extends Controller
             'type'      => 'success',
             'message'    => 'Contrasena cambiada correctamente.',
         );
-        return redirect('/');
+        return redirect('/app-profile');
         //return json_encode($result_array);
     }
 

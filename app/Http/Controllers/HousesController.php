@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Houses;
+use App\Models\User;
 use App\Models\Activity;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class HousesController extends Controller
 {
@@ -28,6 +30,16 @@ class HousesController extends Controller
 
     public function addMontlyPaymentToHouses () {
         DB::table('houses')->increment('balance', 700);
+    }
+
+    public function profile_update(Request $request) {
+        $id = Auth::id();
+        $user = User::find($id);
+        $house = Houses::find($user->houses_id);
+        $house->owner_name = $request->nombre_del_propietario;
+        $house->owner_contact = $request->telefono;
+        $house->save();
+        return redirect('/app-profile');
     }
 
     public function add_extra_payment (Request $request) {

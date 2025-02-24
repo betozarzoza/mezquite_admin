@@ -161,6 +161,7 @@ Route::controller(HousesController::class)->group(function () {
     Route::get('/houses_guard',  [ 'as' => 'houses_guard', 'uses' => 'show_houses_guard'])->middleware('auth');
     Route::get('/add_extra',  [ 'as' => 'add_extra', 'uses' => 'add_extra'])->middleware('auth');
     Route::post('/add-extrapayment','add_extra_payment')->middleware('auth');
+    Route::post('/profile_update','profile_update')->middleware('auth');
 });
 
 

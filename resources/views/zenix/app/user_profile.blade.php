@@ -61,18 +61,18 @@
                                     <div class="pt-3">
                                         <div class="settings-form">
                                             <h4 class="text-primary">Informacion de la casa</h4>
-                                            <form action="auth/reset" method="post">
+                                            <form action="profile_update" method="post">
                             					@csrf
                                                 <div class="row mb-3">
                                                     <div class="col">
                                                         <label class="form-label">Nombre del propietario</label>
-                                                        <input type="text" name="contrasena" class="form-control">
+                                                        <input type="text" name="nombre_del_propietario" value="{{$house->owner_name}}" class="form-control">
                                                     </div>
                                                 </div>
                                                  <div class="row mb-3">
                                                     <div class="col">
                                                         <label class="form-label">Telefono</label>
-                                                        <input type="number" name="phone" class="form-control">
+                                                        <input type="number" name="telefono" value="{{$house->owner_contact}}" class="form-control">
                                                     </div>
                                                 </div>
                                                 <button class="btn btn-primary" type="submit">Cambiar</button>
