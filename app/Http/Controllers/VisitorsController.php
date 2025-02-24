@@ -84,42 +84,29 @@ class VisitorsController extends Controller
             if ($visitor_verification->duration == '1_time' && $visitor_verification->active) {
                 $visitor_verification->active = 0;
                 $response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=42e7af94-f973-41e9-adef-ec2a492eaff9&token=f945efa8-34d0-45e1-9458-92dd260b96ed&response=html');
-                $response = $response->json();
-                if (count($response) > 0 && $response['URLRoutineTrigger']['triggerActivationStatus'] == 'success') {
-                    $visitor_verification->save();
-                }
+                $visitor_verification->save();
+
             } else if ($visitor_verification->duration == '1_hour' && $visitor_verification->active) {
                 $visitor_verification->active = 0;
-                $response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=42e7af94-f973-41e9-adef-ec2a492eaff9&token=f945efa8-34d0-45e1-9458-92dd260b96ed&response=html');
-                $response = $response->json();
-                if (count($response) > 0 && $response['URLRoutineTrigger']['triggerActivationStatus'] == 'success') {
-                    $visitor_verification->save();
-                }
+                $now = Carbon::now();
+                $dbtime = Carbon::createFromFormat('Y-m-d H:i:s', $visitor_verification->created_at);
+
+                $totalDuration = $now->diffForHumans($dbtime);
+                print_r($totalDuration);
+                //$response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=42e7af94-f973-41e9-adef-ec2a492eaff9&token=f945efa8-34d0-45e1-9458-92dd260b96ed&response=html');
+                //$visitor_verification->save();
             } else if ($visitor_verification->duration == '6_hours' && $visitor_verification->active) {
                 $visitor_verification->active = 0;
                 $response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=42e7af94-f973-41e9-adef-ec2a492eaff9&token=f945efa8-34d0-45e1-9458-92dd260b96ed&response=html');
-                $response = $response->json();
-                if (count($response) > 0 && $response['URLRoutineTrigger']['triggerActivationStatus'] == 'success') {
-                    $visitor_verification->save();
-                }
+                $visitor_verification->save();
             } else if ($visitor_verification->duration == '12_hours' && $visitor_verification->active) {
                 $visitor_verification->active = 0;
                 $response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=42e7af94-f973-41e9-adef-ec2a492eaff9&token=f945efa8-34d0-45e1-9458-92dd260b96ed&response=html');
-                $response = $response->json();
-                if (count($response) > 0 && $response['URLRoutineTrigger']['triggerActivationStatus'] == 'success') {
-                    $visitor_verification->save();
-                }
+                $visitor_verification->save();
             }
         }
-        return redirect('/thank_you_visitor');
+        //return redirect('/thank_you_visitor');
         /*
-        $response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=f6fee870-5658-41c4-8b11-fe795f8298a9&token=bef983a5-596d-4d67-9eee-6f965f66e33b&response=json');
-        $response = $response->json();
-        if (count($response) > 0 && $response['URLRoutineTrigger']['triggerActivationStatus'] == 'success') {
-            return redirect('/index');
-        }
-        */
-        //return redirect('/index');
     }
 
     public function cancel_guest_access(Request $request){
