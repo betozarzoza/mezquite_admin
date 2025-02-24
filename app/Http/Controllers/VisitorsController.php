@@ -8,6 +8,7 @@ use App\Models\Visitor;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Carbon\Carbon;
 
 class VisitorsController extends Controller
 {
@@ -66,6 +67,13 @@ class VisitorsController extends Controller
         return view('zenix.app.thank_you_visitor', compact('page_title', 'page_description', 'action'));
     }
 
+    public function expired_code(Request $request) {
+        $page_title = 'Codigo expirado';
+        $page_description = 'Codigo expirado.';
+        $action = __FUNCTION__;
+        return view('zenix.app.expired_code', compact('page_title', 'page_description', 'action'));
+    }
+
     public function my_guests(Request $request) {
         $page_title = 'Mis invitados';
         $page_description = 'Mis invitados';
@@ -91,22 +99,34 @@ class VisitorsController extends Controller
                 $now = Carbon::now();
                 $dbtime = Carbon::createFromFormat('Y-m-d H:i:s', $visitor_verification->created_at);
 
-                $totalDuration = $now->diffForHumans($dbtime);
+                $totalDuration = $now->diffInHours($dbtime);
                 print_r($totalDuration);
-                //$response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=42e7af94-f973-41e9-adef-ec2a492eaff9&token=f945efa8-34d0-45e1-9458-92dd260b96ed&response=html');
-                //$visitor_verification->save();
+                if ($totalDuration>=1) {
+                    $visitor_verification->save();
+                    return redirect('/expired_code');
+                }
+                $response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=42e7af94-f973-41e9-adef-ec2a492eaff9&token=f945efa8-34d0-45e1-9458-92dd260b96ed&response=html');
+                $visitor_verification->save();
             } else if ($visitor_verification->duration == '6_hours' && $visitor_verification->active) {
                 $visitor_verification->active = 0;
+                if ($totalDuration>=6) {
+                    $visitor_verification->save();
+                    return redirect('/expired_code');
+                }
                 $response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=42e7af94-f973-41e9-adef-ec2a492eaff9&token=f945efa8-34d0-45e1-9458-92dd260b96ed&response=html');
                 $visitor_verification->save();
             } else if ($visitor_verification->duration == '12_hours' && $visitor_verification->active) {
                 $visitor_verification->active = 0;
+                if ($totalDuration>=12) {
+                    $visitor_verification->save();
+                    return redirect('/expired_code');
+                }
                 $response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=42e7af94-f973-41e9-adef-ec2a492eaff9&token=f945efa8-34d0-45e1-9458-92dd260b96ed&response=html');
                 $visitor_verification->save();
             }
         }
-        //return redirect('/thank_you_visitor');
-        /*
+        return redirect('/thank_you_visitor');
+        
     }
 
     public function cancel_guest_access(Request $request){
