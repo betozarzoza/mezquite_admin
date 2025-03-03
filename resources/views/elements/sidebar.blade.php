@@ -38,7 +38,7 @@
 					</a>
 	                <ul aria-expanded="false">
 						<li><a href="{!! url('/guard_activity'); !!}">Vitacora</a></li>
-						<li><a href="{!! url('/movements'); !!}">Checador</a></li>
+						<li><a href="{!! url('/guard_checkins'); !!}">Checador</a></li>
 					</ul>
 	            </li>
 	             <li>
