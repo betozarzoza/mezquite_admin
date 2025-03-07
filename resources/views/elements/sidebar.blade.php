@@ -5,7 +5,7 @@
     <div class="deznav-scroll">
 		<div class="main-profile">
 			<div class="image-bx">
-				<img src="https://static.thenounproject.com/png/5593059-200.png" alt="">
+				<img src="{{ asset('images/profile/profile.png') }}" alt="">
 			</div>
 			<h5 class="name"><span class="font-w400">Hola,</span>{{ auth()->user()->name }}</h5>
 			<p class="email">Casa {{ auth()->user()->house->id }}</p>
