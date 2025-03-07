@@ -5,6 +5,12 @@
 
 {{-- Content --}}
 @section('content')
+	<link href="{{ asset('vendor/jquery-asColorPicker/css/asColorPicker.min.css') }}" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script src="{{ asset('vendor/jquery-asColor/jquery-asColor.min.js')}}"></script>
+	<script src="{{ asset('vendor/jquery-asColorPicker/js/jquery-asColorPicker.min.js')}}"></script>
+	<script src="{{ asset('js/plugins-init/jquery-asColorPicker.init.js')}}"></script>
+
     <div class="container-fluid">        <!-- row -->
         <div class="row">
             <div class="col-lg-12">
@@ -75,6 +81,12 @@
                                                         <input type="number" name="telefono" value="{{$house->owner_contact}}" class="form-control">
                                                     </div>
                                                 </div>
+                                                <div class="row mb-3">
+					                                <div class="row">
+					                                    <label class="form-label">Color de casa</label>
+					                                    <input type="text" name="color" class="as_colorpicker form-control" value="{{$house->color}}">
+					                                </div>
+					                            </div>
                                                 <button class="btn btn-primary" type="submit">Cambiar</button>
                                             </form>
                                         </div>
@@ -87,4 +99,12 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+    	(function($) {
+		    "use strict"
+		    
+		    // Colorpicker
+		    $(".as_colorpicker").asColorPicker();
+		})(jQuery);
+    </script>
 @endsection	   

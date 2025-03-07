@@ -151,6 +151,24 @@ return [
 							'vendor/pickadate/themes/default.date.css',
 							'https://fonts.googleapis.com/icon?family=Material+Icons',
 				],
+				'GeneralController_show_my_profile' => [
+							'vendor/bootstrap-daterangepicker/daterangepicker.css',
+							'vendor/clockpicker/css/bootstrap-clockpicker.min.css',
+							'vendor/jquery-asColorPicker/css/asColorPicker.min.css',
+							'vendor/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css',
+							'vendor/pickadate/themes/default.css',
+							'vendor/pickadate/themes/default.date.css',
+							'https://fonts.googleapis.com/icon?family=Material+Icons',
+				],
+				'GeneralController_show_my_profile' => [
+							'vendor/bootstrap-daterangepicker/daterangepicker.css',
+							'vendor/clockpicker/css/bootstrap-clockpicker.min.css',
+							'vendor/jquery-asColorPicker/css/asColorPicker.min.css',
+							'vendor/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css',
+							'vendor/pickadate/themes/default.css',
+							'vendor/pickadate/themes/default.date.css',
+							'https://fonts.googleapis.com/icon?family=Material+Icons',
+				],
 				'ZenixadminController_form_validation_jquery' => [
 				],
 				'ZenixadminController_form_wizard' => [

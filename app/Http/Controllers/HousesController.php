@@ -38,6 +38,7 @@ class HousesController extends Controller
         $house = Houses::find($user->houses_id);
         $house->owner_name = $request->nombre_del_propietario;
         $house->owner_contact = $request->telefono;
+        $house->color = $request->color;
         $house->save();
         return redirect('/app-profile');
     }
