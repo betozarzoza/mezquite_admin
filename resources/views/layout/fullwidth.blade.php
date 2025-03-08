@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta property="og:title" content="Condominios El Mezquite" />
-    <meta property="og:description" content="Administrador delk condominio" />
+    <meta property="og:description" content="Bienvenido a condominios el mezquite" />
     <meta property="og:image" content="https://i.pinimg.com/236x/07/84/60/07846065bd2baf211150a1d216aef9a7.jpg" />
     <meta name="format-detection" content="telephone=no">
     <title>{{ config('dz.name') }} | @yield('title', $page_title ?? '')</title>
