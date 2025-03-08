@@ -23,6 +23,7 @@
                             <svg id="icon-minimize" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minimize"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3" style="stroke-dasharray: 37, 57; stroke-dashoffset: 0;"></path></svg>
                         </a>
 					</li>
+                    <!--
                     <li class="nav-item dropdown notification_dropdown">
                         <a class="nav-link  ai-icon" href="javascript:void(0)" role="button" data-bs-toggle="dropdown">
                            <svg class="bell-icon" width="24" height="24" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -104,6 +105,7 @@
                             <a class="all-notification" href="javascript:void(0)">See all notifications <i class="ti-arrow-right"></i></a>
                         </div>
                     </li>
+                    -->
                     <li class="nav-item dropdown header-profile">
                         <a href="{!! url('/app-profile'); !!}" class="dropdown-item ai-icon">
                             <span class="ms-2">Perfil </span>
