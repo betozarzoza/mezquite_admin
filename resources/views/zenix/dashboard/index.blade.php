@@ -132,7 +132,10 @@
 						</span>
 						<div class="media-body text-white text-right">
 							<p class="mb-1">Tu deuda</p>
-							<h3 class="text-white">@if ($user->balance < 0 ) $0 @else ${{ number_format($user->balance) }} @endif</h3>
+							@if ($user->balance < 0 )
+		                        <span>A favor</span>
+							@endif
+							<h3 class="text-white">@if ($user->balance < 0 ) ${{ number_format($user->balance) }} @else ${{ number_format($user->balance) }} @endif</h3>
 						</div>
 					</div>
 				</div>

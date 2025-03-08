@@ -28,7 +28,7 @@
             <div class="col-xl-3 col-xxl-4">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-intro-title">Agenda</h4>
+                        <h4 class="card-intro-title">Proximos eventos</h4>
                         <div>
                             @if (count($schedules) > 0)
                                 @foreach ($schedules as $schedule)
@@ -44,6 +44,20 @@
                             <a href="javascript:void()" data-bs-toggle="modal" data-bs-target="#add-category" class="btn btn-primary btn-event w-100">
                                 <span class="align-middle"><i class="ti-plus"></i></span> Agendar evento
                             </a>
+                        </div>
+                        <h4 class="pt-3 card-intro-title">Eventos pasados</h4>
+                        <div>
+                            @if (count($past_events) > 0)
+                                @foreach ($past_events as $past_event)
+                                    <div id="external-events" class="my-3">
+                                        <div class="external-event btn-secondary light" data-class="bg-secondary"><i class="fa fa-move"></i>{{ $past_event->name }} (Casa {{ $past_event->scheduled_by}})</div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <div id="external-events" class="my-3">
+                                    <div class="external-event btn-secondary light" data-class="bg-secondary"><i class="fa fa-move"></i>No hay registros</div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

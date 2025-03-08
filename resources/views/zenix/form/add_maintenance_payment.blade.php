@@ -42,6 +42,10 @@
 	                                    <option value="Diciembre">Diciembre</option>
 	                                </select>
 	                            </div>
+	                            <div class="mb-3">
+	                            	<label class="form-label">Cantidad (Si dara una cuota diferente):</label>
+	                                <input type="number" class="form-control" name="cantidad" id="cantidad"></input>
+	                            </div>
 	                             <div class="mb-3">
 	                                <label class="form-label">Año:</label>
 	                                <select name="year" class="default-select  form-control wide" >

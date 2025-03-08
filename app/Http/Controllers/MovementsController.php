@@ -58,10 +58,11 @@ class MovementsController extends Controller
         $this->validate($request, [
             'mes' => 'required',
         ]);
+        $cantidad = $request->cantidad ? $request->cantidad / count($request->mes) : '1000';
         foreach ($request->mes as $mes) {
             $movement = new Movement;
             $movement->name = 'Pago de mantenimiento casa '.$request->destinatario.' del mes de '.$mes;
-            $movement->quantity = '1000';
+            $movement->quantity = $cantidad;
             $movement->type = 'ingreso';
             $movement->addressat = $request->destinatario;
             $movement->month = $mes;
@@ -117,8 +118,8 @@ class MovementsController extends Controller
             $activity->status = 1;
             $activity->save();
 
-            $this->modifyMyBalanceAndLastPayment(1000, 'ingreso', $request->destinatario, $mes . ' '. $request->year);
-            $this->modifyGeneralBalance(1000, 'ingreso');
+            $this->modifyMyBalanceAndLastPayment($cantidad, 'ingreso', $request->destinatario, $mes . ' '. $request->year);
+            $this->modifyGeneralBalance($cantidad, 'ingreso');
         }
         return redirect('/index');
     }

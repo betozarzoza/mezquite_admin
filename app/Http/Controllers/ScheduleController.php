@@ -58,8 +58,9 @@ class ScheduleController extends Controller
         $page_title = 'Agenda de palapa';
         $page_description = 'Muestra la agenda de la palapa';
         $action = __FUNCTION__;
-       $schedules = Schedule::orderBy('created_at', 'DESC')->take(30)->get();
-        return view('zenix.app.schedules', compact('page_title', 'page_description', 'action', 'schedules'));
+        $schedules = Schedule::where('date', '>=', date('Y-m-d'))->orderBy('created_at', 'DESC')->take(10)->get();
+        $past_events = Schedule::where('date', '<', date('Y-m-d'))->orderBy('created_at', 'DESC')->take(5)->get();
+        return view('zenix.app.schedules', compact('page_title', 'page_description', 'action', 'schedules', 'past_events'));
     }
 
     public function delete_old_schedules () {
