@@ -100,7 +100,6 @@ class VisitorsController extends Controller
                 $dbtime = Carbon::createFromFormat('Y-m-d H:i:s', $visitor_verification->created_at);
 
                 $totalDuration = $now->diffInHours($dbtime);
-                print_r($totalDuration);
                 if ($totalDuration>=1) {
                     $visitor_verification->save();
                     return redirect('/expired_code');
@@ -109,6 +108,10 @@ class VisitorsController extends Controller
                 $visitor_verification->save();
             } else if ($visitor_verification->duration == '6_hours' && $visitor_verification->active) {
                 $visitor_verification->active = 0;
+                $now = Carbon::now();
+                $dbtime = Carbon::createFromFormat('Y-m-d H:i:s', $visitor_verification->created_at);
+
+                $totalDuration = $now->diffInHours($dbtime);
                 if ($totalDuration>=6) {
                     $visitor_verification->save();
                     return redirect('/expired_code');
@@ -117,6 +120,10 @@ class VisitorsController extends Controller
                 $visitor_verification->save();
             } else if ($visitor_verification->duration == '12_hours' && $visitor_verification->active) {
                 $visitor_verification->active = 0;
+                $now = Carbon::now();
+                $dbtime = Carbon::createFromFormat('Y-m-d H:i:s', $visitor_verification->created_at);
+
+                $totalDuration = $now->diffInHours($dbtime);
                 if ($totalDuration>=12) {
                     $visitor_verification->save();
                     return redirect('/expired_code');
