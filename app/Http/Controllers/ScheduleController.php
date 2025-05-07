@@ -39,8 +39,8 @@ class ScheduleController extends Controller
         }
 
         //dias festivos
-        $day = date('dd', strtotime($request->fecha));
-        $month = date('mm', strtotime($request->fecha));
+        $day = date('d', strtotime($request->fecha));
+        $month = date('m', strtotime($request->fecha));
 
         if ($day == '16' && $month == '09') {
             return back()->withErrors([
@@ -53,6 +53,13 @@ class ScheduleController extends Controller
         } else if ($day == '25' && $month == '12') {
             return back()->withErrors([
                 'schedule' => 'No se puede agendar en dia festivo.',
+            ]);
+        }
+
+
+        if( strtotime($request->fecha) < strtotime('+7 day') ) {
+            return back()->withErrors([
+                'schedule' => 'Se debe agendar con 7 dias de anticipacion',
             ]);
         }
 
