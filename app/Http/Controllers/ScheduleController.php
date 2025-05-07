@@ -8,6 +8,7 @@ use App\Models\Schedule;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
 
 class ScheduleController extends Controller
 {
@@ -74,6 +75,11 @@ class ScheduleController extends Controller
         $schedule->scheduled_by = $user->id;
  
         $schedule->save();
+        date_default_timezone_set("America/Monterrey");
+        $notification_message = 'Casa '.$user->id.' agendo un evento el dia '. date("d-M", strtotime($request->fecha));
+        $response = Http::get('https://api.inout.bot/send?message='.$notification_message.'&type=alarm_notification&apikey=kia0LphqKmMbNy7e');
+
+
  
         return redirect('/schedules');
     }
