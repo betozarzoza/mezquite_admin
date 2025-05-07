@@ -89,7 +89,7 @@
                                     <div class="col-md-12">
                                         <div class="form-check custom-checkbox mt-3 mb-3 checkbox-info">
                                             <input type="checkbox" class="form-check-input" name="separar_alberca" id="separar_alberca">
-                                            <label class="form-check-label" for="separar_alberca">Separar alberca (tiene un costo de $700)</label>
+                                            <label class="form-check-label" for="separar_alberca">Separar alberca (tiene un costo de $700 para mas de 8 personas)</label>
                                         </div>
                                     </div>
                                 </div>
