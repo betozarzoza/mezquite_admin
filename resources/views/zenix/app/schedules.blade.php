@@ -80,11 +80,7 @@
                              @csrf
                             <div class="modal-body">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <label class="control-label form-label">Nombre del evento</label>
-                                        <input class="form-control form-white" type="text" name="nombre">
-                                    </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <label class="control-label form-label">Fecha</label>
                                         <input type="date" name="fecha" class="datepicker-default form-control">
                                     </div>

@@ -23,7 +23,6 @@ class ScheduleController extends Controller
 
     public function create_schedule(Request $request) {
         $this->validate($request, [
-            'nombre' => 'required|max:255',
             'fecha' => 'required',
         ]);
         $schedules = Schedule::whereDate('date', date("Y-m-d H:i:s", strtotime($request->fecha)))->get();
@@ -40,8 +39,9 @@ class ScheduleController extends Controller
         }
 
         //dias festivos
-        $day = date('DD', strtotime($request->fecha);
-        $month = date('mm', strtotime($request->fecha);
+        $day = date('dd', strtotime($request->fecha));
+        $month = date('mm', strtotime($request->fecha));
+
         if ($day == '16' && $month == '09') {
             return back()->withErrors([
                 'schedule' => 'No se puede agendar en dia festivo.',
@@ -60,7 +60,7 @@ class ScheduleController extends Controller
         $user = User::find($id)->house;
         $schedule = new Schedule;
  
-        $schedule->name = $request->nombre;
+        $schedule->name = 'Evento casa '.$user->id;
         $schedule->date = $request->fecha;
         $schedule->active = 1;
         $schedule->pool = $request->separar_alberca == 'on' ? 1 : 0;

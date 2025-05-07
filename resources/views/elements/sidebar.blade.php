@@ -67,18 +67,11 @@
 					</ul>
 	            </li>
 	            @endif
-				<li>
-	            	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+	            <li><a href="{!! url('/schedules'); !!}" class="ai-icon" aria-expanded="false">
 						<i class="flaticon-381-calendar-4"></i>
-						<span class="nav-text">Amenidades</span>
+						<span class="nav-text">Agendar Palapa/alberca</span>
 					</a>
-	                <ul aria-expanded="false">
-						<li><a href="{!! url('/schedules'); !!}" class="ai-icon" aria-expanded="false">
-								<span class="nav-text">Palapa</span>
-							</a>
-						</li>
-					</ul>
-	            </li>
+				</li>
 				<li><a href="{!! url('/houses'); !!}" class="ai-icon" aria-expanded="false">
 						<i class="flaticon-381-smartphone-2"></i>
 						<span class="nav-text">Directorio</span>
