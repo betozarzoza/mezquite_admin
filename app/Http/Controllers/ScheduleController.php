@@ -64,9 +64,18 @@ class ScheduleController extends Controller
             ]);
         }
 
+
         $id = Auth::id();
         $user = User::find($id)->house;
         $schedule = new Schedule;
+
+        $number_of_scheduled_this_year = count(Schedule::where('scheduled_by', $user->id)->whereYear('date', date('Y'))->get());
+
+        if ($number_of_scheduled_this_year >= 3) {
+            return back()->withErrors([
+                'schedule' => 'Solo se pueden agendar 3 veces por año',
+            ]);
+        }
  
         $schedule->name = 'Evento casa '.$user->id;
         $schedule->date = $request->fecha;
