@@ -33,7 +33,7 @@
                             @if (count($schedules) > 0)
                                 @foreach ($schedules as $schedule)
                                     <div id="external-events" class="my-3">
-                                        <div class="external-event btn-secondary light" data-class="bg-secondary"><i class="fa fa-move"></i>{{ $schedule->name }} (Casa {{ $schedule->scheduled_by}})</div>
+                                        <div class="external-event btn-secondary light" data-class="bg-secondary"><i class="fa fa-move"></i>{{ $schedule->name }}</div>
                                     </div>
                                 @endforeach
                             @else
@@ -50,7 +50,7 @@
                             @if (count($past_events) > 0)
                                 @foreach ($past_events as $past_event)
                                     <div id="external-events" class="my-3">
-                                        <div class="external-event btn-secondary light" data-class="bg-secondary"><i class="fa fa-move"></i>{{ $past_event->name }} (Casa {{ $past_event->scheduled_by}})</div>
+                                        <div class="external-event btn-secondary light" data-class="bg-secondary"><i class="fa fa-move"></i>{{ $past_event->name }}</div>
                                     </div>
                                 @endforeach
                             @else
