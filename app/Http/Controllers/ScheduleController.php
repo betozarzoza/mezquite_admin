@@ -57,6 +57,20 @@ class ScheduleController extends Controller
             ]);
         }
 
+        // vacaciones
+
+        if (($day == '19' || $day == '20' || $day == '21' || $day == '22' || $day == '23' || $day == '24' || $day == '25' || $day == '26' || $day == '27' || $day == '28' || $day == '29' || $day == '30' || $day == '31') && $month == '07') {
+            return back()->withErrors([
+                'schedule' => 'No se puede agendar en vacaciones.',
+            ]);
+        }
+
+        if (($day == '01' || $day == '02' ) && $month == '08') {
+            return back()->withErrors([
+                'schedule' => 'No se puede agendar en vacaciones.',
+            ]);
+        }
+
 
         if( strtotime($request->fecha) < strtotime('+7 day') ) {
             return back()->withErrors([

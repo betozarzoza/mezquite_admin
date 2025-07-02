@@ -43,20 +43,25 @@
                                                     <td>1 hora</td>
                                                     @break
 
-                                                @case('6_hour')
+                                                @case('6_hours')
                                                     <td>6 horas</td>
                                                     @break
 
-                                                @case('12_hour')
+                                                @case('12_hours')
                                                     <td>12 horas</td>
                                                     @break
                                             @endswitch
-                                            <td><span><a href="/visitor_access_user/{{$guest->access_id}}" class="me-4" data-bs-toggle="tooltip"
+                                            <td>
+                                                <span>
+                                                    <a href="/activate_guest_again/{{$guest->access_id}}" class="me-4" data-placement="top" title="Activate"><i
+                                                            class="fas fa-check"></i></a>
+                                                    <a href="/visitor_access_user/{{$guest->access_id}}" class="me-4" data-bs-toggle="tooltip"
                                                         data-placement="top" title="Ver"><i
-                                                            class="fas fa-eye color-muted"></i> </a><a
-                                                        href="/cancel_guest_access/{{$guest->access_id}}" data-bs-toggle="tooltip"
+                                                            class="fas fa-eye color-muted"></i> </a>
+                                                    <a href="/cancel_guest_access/{{$guest->access_id}}" data-bs-toggle="tooltip"
                                                         data-placement="top" title="Close"><i
-                                                            class="fas fa-times"></i></a></span>
+                                                            class="fas fa-times"></i></a>
+                                                </span>
                                             </td>
                                         </tr>
                                     @endforeach
