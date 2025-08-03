@@ -64,7 +64,9 @@
 									<tr>
 										<th>Tipo</th>
 										<th>Nombre</th>
+										<th>Saldo anterior</th>
 										<th>Cantidad</th>
+										<th>Saldo posterior</th>
 										<th>Persona</th>
 										<th>Mes</th>
 										<th>Nota</th>
@@ -91,9 +93,15 @@
 											@endif
 										</td>
 										<td>{{ $movement->name }}</td>
+										<td>{{ number_format($movement->last_balance) }}</td>
 										<td>
 											<span class="text-black font-w600">@if ($movement->type == 'ingreso') + @else - @endif ${{ $movement->quantity }}</span>
 										</td>
+										<td>@if ($movement->type == 'ingreso')
+												{{ number_format($movement->last_balance + $movement->quantity) }}
+											@else
+												{{ number_format($movement->last_balance - $movement->quantity) }}
+											@endif </td>
 										<td>@if ($movement->type == 'ingreso') Mantenimiento Casa {{ $movement->addressat }}  @elseif ($movement->addressat == 0) Otro egreso @else Se le pago a: {{ $movement->addressat }} @endif</td>
 										<td>@if ($movement->type == 'ingreso') {{ $movement->month }} @endif</td>
 										<td>

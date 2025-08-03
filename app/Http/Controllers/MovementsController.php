@@ -70,6 +70,7 @@ class MovementsController extends Controller
             $movement->year = $request->year;
             $movement->note = $request->nota;
             $movement->created_by = $id;
+            $movement->last_balance = General::where('name', 'balance')->value('value');
             $movement->save();
 
             //$user = find($id);
@@ -160,6 +161,7 @@ class MovementsController extends Controller
                 $movement->year = $request->year;
                 $movement->note = $request->nota;
                 $movement->created_by = $id;
+                $movement->last_balance = General::where('name', 'balance')->value('value');
                 $movement->save();
 
                 $this->modifyMyBalanceAndLastPayment($request->cantidad / count($request->mes), $request->tipo, $request->destinatario, $mes . ' '. $request->year);
@@ -173,6 +175,7 @@ class MovementsController extends Controller
             $movement->year = $request->year;
             $movement->note = $request->nota;
             $movement->created_by = $id;
+            $movement->last_balance = General::where('name', 'balance')->value('value');
             $movement->save();
     }
 
@@ -195,6 +198,7 @@ class MovementsController extends Controller
         $movement->type = 'egreso';
         $movement->note = $request->nota;
         $movement->created_by = $id;
+        $movement->last_balance = General::where('name', 'balance')->value('value');
         $movement->save();
 
         $this->modifyGeneralBalance($request->cantidad, 'egreso');
