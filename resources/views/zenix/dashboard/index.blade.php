@@ -209,6 +209,17 @@
 		                            </a>
 		                        </li>
 		                        @endif
+		                         @if ($activity->status == 5)
+	                    		<li>
+		                            <div class="timeline-badge success">
+		                            </div>
+		                            <a class="timeline-panel text-muted" href="#">
+		                                <span>{{$activity->created_at->diffForHumans()}}</span>
+		                                <h6 class="mb-0">{{ $activity->name }}</strong></h6>
+										<p class="mb-0">Pago general</p>
+		                            </a>
+		                        </li>
+		                        @endif
 	                    	@endforeach
 	                    @else
 	                    	no hay actividades

@@ -29,7 +29,7 @@ class HousesController extends Controller
     }
 
     public function addMontlyPaymentToHouses () {
-        DB::table('houses')->increment('balance', 700);
+        DB::table('houses')->increment('balance', 1000);
     }
 
     public function profile_update(Request $request) {
@@ -53,7 +53,7 @@ class HousesController extends Controller
 
         $activity = new Activity;
         $activity->name = 'Se agrego el pago general de '.$request->motivo.' por la cantidad de $'.$request->cantidad ;
-        $activity->status = 2;
+        $activity->status = 5;
         $activity->save();
         return redirect('/');
     }
