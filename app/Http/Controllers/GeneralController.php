@@ -17,6 +17,7 @@ use App\Models\Notification;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 
 class GeneralController extends Controller
 {
@@ -60,6 +61,7 @@ class GeneralController extends Controller
         $checkin->type = 'entrada';
         $checkin->save();
         $notification_message = 'El guardia ha checado entrada';
+        $client = new Client();
         $response = $client->request('POST', 'https://gate.whapi.cloud/messages/text', [
           'body' => '{
               "to": "5218341503463-1487997665@g.us",
@@ -79,6 +81,7 @@ class GeneralController extends Controller
         $checkin->type = 'salida';
         $checkin->save();
         $notification_message = 'El guardia ha checado salida';
+        $client = new Client();
         $response = $client->request('POST', 'https://gate.whapi.cloud/messages/text', [
           'body' => '{
               "to": "5218341503463-1487997665@g.us",

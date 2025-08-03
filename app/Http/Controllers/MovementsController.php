@@ -10,6 +10,7 @@ use App\Models\Activity;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Houses;
+use GuzzleHttp\Client;
 
 class MovementsController extends Controller
 {
@@ -120,6 +121,23 @@ class MovementsController extends Controller
 
             $this->modifyMyBalanceAndLastPayment($cantidad, 'ingreso', $request->destinatario, $mes . ' '. $request->year);
             $this->modifyGeneralBalance($cantidad, 'ingreso');
+            //notify user
+            /*
+            $client = new Client();
+            $response = $client->request('POST', 'https://gate.whapi.cloud/messages/link_preview', [
+              'body' => '{
+                  "to": "5218341503463-1487997665@g.us",
+                  "body": "'.$activity->name.'",
+                  "title": "Comprobante de pago de mantenimiento - casa '.$request->destinatario.'",
+                  "media": "https://condominioselmezquite.homes/invoice_mezquite/'.$movement->id.'"
+                }',
+              'headers' => [
+                'Authorization' => 'Bearer '.$value = env('WHAPI_TOKEN', 'nothing'),
+                'accept' => 'application/json',
+                'content-type' => 'application/json',
+              ],
+            ]);
+            */
         }
         return redirect('/index');
     }
