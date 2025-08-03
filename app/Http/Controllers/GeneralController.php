@@ -59,6 +59,18 @@ class GeneralController extends Controller
         $checkin = new Checkin;
         $checkin->type = 'entrada';
         $checkin->save();
+        $notification_message = 'El guardia ha checado entrada';
+        $response = $client->request('POST', 'https://gate.whapi.cloud/messages/text', [
+          'body' => '{
+              "to": "5218341503463-1487997665@g.us",
+              "body": "'.$notification_message.'"
+            }',
+          'headers' => [
+            'Authorization' => 'Bearer '.$value = env('WHAPI_TOKEN', 'nothing'),
+            'accept' => 'application/json',
+            'content-type' => 'application/json',
+          ],
+        ]);
         return redirect('/index');
     }
 
@@ -66,6 +78,18 @@ class GeneralController extends Controller
         $checkin = new Checkin;
         $checkin->type = 'salida';
         $checkin->save();
+        $notification_message = 'El guardia ha checado salida';
+        $response = $client->request('POST', 'https://gate.whapi.cloud/messages/text', [
+          'body' => '{
+              "to": "5218341503463-1487997665@g.us",
+              "body": "'.$notification_message.'"
+            }',
+          'headers' => [
+            'Authorization' => 'Bearer '.$value = env('WHAPI_TOKEN', 'nothing'),
+            'accept' => 'application/json',
+            'content-type' => 'application/json',
+          ],
+        ]);
         return redirect('/index');
     }
 

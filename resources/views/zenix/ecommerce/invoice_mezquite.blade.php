@@ -16,7 +16,11 @@
         <div class="row" id="invoice_mezquite">
             <div class="col-lg-12">
                 <div class="card mt-3">
-                    <div class="card-header"> Recibo de pago <strong>{{ \Carbon\Carbon::parse($movement->created_at)->format('l jS \\of F Y h:i:s A') }}</strong> <span class="float-end">
+                    @php
+                        setlocale(LC_ALL,"es_ES"); 
+                        \Carbon\Carbon::setLocale('es');
+                    @endphp
+                    <div class="card-header"> Recibo de pago <strong>{{ \Carbon\Carbon::parse($movement->created_at)->format('l jS \\of F Y h:i:s A')}}</strong> <span class="float-end">
                             <strong>Estatus:</strong> Pago completado</span> </div>
                     <div class="card-body">
                         <div class="row mb-5">
@@ -25,8 +29,6 @@
                                 <div> <strong>Condominios El Mezquite</strong> </div>
                                 <div>Elias Gtz de C 3301</div>
                                 <div>Ciudad Victoria, Tamaulipas</div>
-                                <div>Correo: hola@condominioselmezquite.com</div>
-                                <div>Telefono: +812 039 22 34</div>
                             </div>
                             <div class="mt-4 col-xl-3 col-lg-3 col-md-6 col-sm-6">
                                 <h6>Para:</h6>
@@ -38,14 +40,10 @@
                                 <div class="row align-items-center">
 									<div class="col-sm-9"> 
 										<div class="brand-logo mb-3">
-											<img class="logo-abbr me-2" width="50" src="{{ asset('images/logo.png') }}" alt="">
-											<img class="logo-compact" width="110" src="{{ asset('images/logo-text.png') }}" alt="">
+											<img class="logo-compact" width="110" src="{{ asset('images/logo-mezquite.png') }}" alt="">
+                                            <img src=" https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{Request::url()}}" alt="" class="img-fluid width110">
 										</div>
-                                        <span>Please send exact amount: <strong class="d-block">0.15050000 BTC</strong>
-                                            <strong>1DonateWffyhwAjskoEwXt83pHZxhLTr8H</strong></span><br>
-                                        <small class="text-muted">Current exchange rate 1BTC = $6590 USD</small>
                                     </div>
-                                    <div class="col-sm-3 mt-3"> <img src="{{ asset('images/qr.png') }}" alt="" class="img-fluid width110"> </div>
                                 </div>
                             </div>
                         </div>
@@ -54,8 +52,8 @@
                                 <thead>
                                     <tr>
                                         <th class="center">#</th>
-                                        <th>Nombre</th>
-                                        <th class="right">Costo</th>
+                                        <th>Concepto</th>
+                                        <th class="right">Cantidad</th>
                                     </tr>
                                 </thead>
                                 <tbody>

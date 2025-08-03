@@ -94,7 +94,6 @@ class VisitorsController extends Controller
                 $response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=42e7af94-f973-41e9-adef-ec2a492eaff9&token=f945efa8-34d0-45e1-9458-92dd260b96ed&response=html');
                 $visitor_verification->save();
                 $notification_message = 'Tu visita '. $visitor_verification->name . ' abrio el porton';
-                $response = Http::get('https://api.inout.bot/send?message='.$notification_message.'&type=alarm_notification&apikey=kia0LphqKmMbNy7e');
 
             } else if ($visitor_verification->duration == '1_hour' && $visitor_verification->active) {
                 $visitor_verification->active = 0;
@@ -108,7 +107,6 @@ class VisitorsController extends Controller
                 }
                 $response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=42e7af94-f973-41e9-adef-ec2a492eaff9&token=f945efa8-34d0-45e1-9458-92dd260b96ed&response=html');
                 $notification_message = 'Tu visita '. $visitor_verification->name . ' abrio el porton';
-                $response = Http::get('https://api.inout.bot/send?message='.$notification_message.'&type=alarm_notification&apikey=kia0LphqKmMbNy7e');
             } else if ($visitor_verification->duration == '6_hours' && $visitor_verification->active) {
                 $visitor_verification->active = 0;
                 $now = Carbon::now();
@@ -121,7 +119,6 @@ class VisitorsController extends Controller
                 }
                 $response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=42e7af94-f973-41e9-adef-ec2a492eaff9&token=f945efa8-34d0-45e1-9458-92dd260b96ed&response=html');
                 $notification_message = 'Tu visita '. $visitor_verification->name . ' abrio el porton';
-                $response = Http::get('https://api.inout.bot/send?message='.$notification_message.'&type=alarm_notification&apikey=kia0LphqKmMbNy7e');
                 return redirect('/thank_you_visitor');
             } else if ($visitor_verification->duration == '12_hours' && $visitor_verification->active) {
                 $visitor_verification->active = 0;
@@ -135,7 +132,6 @@ class VisitorsController extends Controller
                 }
                 $response = Http::get('https://www.virtualsmarthome.xyz/url_routine_trigger/activate.php?trigger=42e7af94-f973-41e9-adef-ec2a492eaff9&token=f945efa8-34d0-45e1-9458-92dd260b96ed&response=html');
                 $notification_message = 'Tu visita '. $visitor_verification->name . ' abrio el porton';
-                $response = Http::get('https://api.inout.bot/send?message='.$notification_message.'&type=alarm_notification&apikey=kia0LphqKmMbNy7e');
             }
         }
         return redirect('/thank_you_visitor');

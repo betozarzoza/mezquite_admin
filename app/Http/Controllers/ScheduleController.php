@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 
 class ScheduleController extends Controller
 {
@@ -100,7 +101,22 @@ class ScheduleController extends Controller
         $schedule->save();
         date_default_timezone_set("America/Monterrey");
         $notification_message = 'Casa '.$user->id.' agendo un evento el dia '. date("d-M", strtotime($request->fecha));
-        $response = Http::get('https://api.inout.bot/send?message='.$notification_message.'&type=alarm_notification&apikey=kia0LphqKmMbNy7e');
+
+        $client = new Client();
+        
+        $response = $client->request('POST', 'https://gate.whapi.cloud/messages/text', [
+          'body' => '{
+              "to": "5218341503463-1487997665@g.us",
+              "body": "'.$notification_message.'"
+            }',
+          'headers' => [
+            'Authorization' => 'Bearer '.$value = env('WHAPI_TOKEN', 'nothing'),
+            'accept' => 'application/json',
+            'content-type' => 'application/json',
+          ],
+        ]);
+
+        //$response = Http::get('https://api.inout.bot/send?message='.$notification_message.'&type=alarm_notification&apikey=kia0LphqKmMbNy7e');
 
 
  
