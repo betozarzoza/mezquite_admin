@@ -72,6 +72,7 @@
 										<th>Nota</th>
 										<th>Creado por</th>
 										<th>Fecha y hora</th>
+										<th>Recibo</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -109,6 +110,7 @@
 										</td>
 										<td>{{ $movement->user->name }}</td>
 										<td>{{ \Carbon\Carbon::parse($movement->created_at)->format('l jS \\of F Y h:i:s A') }}</td>
+										<td><a href="https://condominioselmezquite.homes/invoice_mezquite/{{$movement->id}}">Ver recibo</a></td>
 									</tr>
 									@endforeach
 								</tbody>
