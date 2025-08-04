@@ -19,7 +19,7 @@
 	        <div class="col-xl-6 col-lg-6">
 	            <div class="card">
 	                <div class="card-header">
-	                    <h4 class="card-title">Formulario para agregar pago de mantenimiento</h4>
+	                    <h4 class="card-title">Formulario para agregar actividad del guardia</h4>
 	                </div>
 	                <div class="card-body">
 	                    <div class="basic-form">
