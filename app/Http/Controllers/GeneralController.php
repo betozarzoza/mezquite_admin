@@ -60,6 +60,7 @@ class GeneralController extends Controller
         $checkin = new Checkin;
         $checkin->type = 'entrada';
         $checkin->save();
+        /*
         $notification_message = 'El guardia ha checado entrada';
         $client = new Client();
         $response = $client->request('POST', 'https://gate.whapi.cloud/messages/text', [
@@ -73,6 +74,7 @@ class GeneralController extends Controller
             'content-type' => 'application/json',
           ],
         ]);
+        */
         return redirect('/index');
     }
 
@@ -80,6 +82,7 @@ class GeneralController extends Controller
         $checkin = new Checkin;
         $checkin->type = 'salida';
         $checkin->save();
+        /*
         $notification_message = 'El guardia ha checado salida';
         $client = new Client();
         $response = $client->request('POST', 'https://gate.whapi.cloud/messages/text', [
@@ -93,6 +96,7 @@ class GeneralController extends Controller
             'content-type' => 'application/json',
           ],
         ]);
+        */
         return redirect('/index');
     }
 
