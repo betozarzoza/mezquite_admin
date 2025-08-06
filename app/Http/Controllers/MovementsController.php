@@ -140,7 +140,7 @@ class MovementsController extends Controller
             ]);
             */
         }
-        return redirect('/index');
+        return redirect('/invoice_mezquite/'.$movement->id);
     }
     public function create_movement(Request $request) {
         $this->validate($request, [
