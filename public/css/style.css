@@ -18091,6 +18091,12 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     background-position: center;
     min-height: 15.625rem;
     width: 100%; }
+  .photo-content .cover-photo-gate {
+    background: url(../images/profile/open_gate.gif);
+    background-size: cover;
+    background-position: center;
+    min-height: 15.625rem;
+    width: 100%; }
 
 .profile .profile-photo {
   max-width: 6.25rem;

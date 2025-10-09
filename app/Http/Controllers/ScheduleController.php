@@ -102,7 +102,7 @@ class ScheduleController extends Controller
         date_default_timezone_set("America/Monterrey");
         $notification_message = 'Casa '.$user->id.' agendo un evento el dia '. date("d-M", strtotime($request->fecha));
 
-        $client = new Client();
+        /*$client = new Client();
         
         $response = $client->request('POST', 'https://gate.whapi.cloud/messages/text', [
           'body' => '{
@@ -115,6 +115,7 @@ class ScheduleController extends Controller
             'content-type' => 'application/json',
           ],
         ]);
+        */
 
         //$response = Http::get('https://api.inout.bot/send?message='.$notification_message.'&type=alarm_notification&apikey=kia0LphqKmMbNy7e');
 
