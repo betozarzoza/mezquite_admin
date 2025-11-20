@@ -19,20 +19,24 @@
 	        <div class="col-xl-6 col-lg-6">
 	            <div class="card">
 	                <div class="card-header">
-	                    <h4 class="card-title">Formulario para agregar general</h4>
+	                    <h4 class="card-title">Formulario para agregar pago de una deuda para casa {{$user_id}}</h4>
 	                </div>
 	                <div class="card-body">
 	                    <div class="basic-form">
-	                        <form action="add-extrapayment" method="post">
+	                        <form action="create-maintenance-payment" method="post">
 	                        	@csrf
 	                        	<div class="mb-3">
-                                 <label class="form-label">Motivo:</label>
-                                 <input type="text" name="motivo" class="form-control">
-                              </div>
-                              <div class="mb-3">
-                                 <label class="form-label">Cantidad:</label>
-                                 <input type="number" name="cantidad" class="form-control">
-                              </div>
+		                        	<label class="form-label">Deuda:</label>
+									<select name="debt" class="default-select  form-control wide" >
+										@foreach ($debts as $debt)
+											<option value="{{$debt->id}}">{{$debt->name}}</option>
+										@endforeach
+		                            </select>
+	                            </div>
+	                            <div class="mb-3">
+	                            	<label class="form-label">Cantidad (Si no dara la cantidad total):</label>
+	                                <input type="number" class="form-control" name="cantidad" id="cantidad"></input>
+	                            </div>
 	                            <button type="submit" class="btn btn-primary">Agregar</button>
 	                        </form>
 	                    </div>

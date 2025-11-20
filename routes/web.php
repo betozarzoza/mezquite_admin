@@ -9,6 +9,7 @@ use App\Http\Controllers\HousesController;
 use App\Http\Controllers\VisitorsController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\FinanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -165,6 +166,15 @@ Route::controller(HousesController::class)->group(function () {
     Route::get('/add_extra',  [ 'as' => 'add_extra', 'uses' => 'add_extra'])->middleware('auth');
     Route::post('/add-extrapayment','add_extra_payment')->middleware('auth');
     Route::post('/profile_update','profile_update')->middleware('auth');
+});
+
+//Controller for finances
+Route::controller(FinanceController::class)->group(function () {
+    Route::get('/add_general_debt',  [ 'as' => 'add_general_debt', 'uses' => 'add_general_debt'])->middleware('auth');
+    Route::post('/create_general_debt','create_general_debt')->middleware('auth');
+
+    Route::get('/add_payment_for_debt/{user_id}',  [ 'as' => 'add_payment_for_debt', 'uses' => 'add_payment_for_debt'])->middleware('auth');
+    Route::post('/create_payment_for_debt','create_payment_for_debt')->middleware('auth');
 });
 
 

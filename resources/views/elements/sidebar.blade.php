@@ -25,9 +25,9 @@
 						<li><a href="{!! url('/movements'); !!}">Ver movimientos</a></li>
 						<li><a href="{!! url('/anual_houses_view'); !!}">Ver tabla de adeudos anual</a></li>
 						@if(auth()->user()->is_admin)
-							<li><a href="{!! url('/add_maintenance_payment'); !!}">Agregar pago de adeudo</a></li>
+							<li><a href="{!! url('/add_payment_for_debt'); !!}">Pagar deuda</a></li>
 							<li><a href="{!! url('/add-movement'); !!}">Agregar gasto</a></li>
-							<li><a href="{!! url('/add_extra'); !!}">Crear adeudo general</a></li>
+							<li><a href="{!! url('/add_general_debt'); !!}">Crear adeudo general</a></li>
 						@endif
 					</ul>
 	            </li>
