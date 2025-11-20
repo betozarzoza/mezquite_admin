@@ -133,6 +133,7 @@ Route::controller(ScheduleController::class)->group(function () {
 Route::controller(GeneralController::class)->group(function () {
     Route::get('/',  [ 'as' => 'index', 'uses' => 'show_index'])->middleware('auth');
     Route::get('/index',  [ 'as' => 'index', 'uses' => 'show_index'])->middleware('auth');
+    Route::get('/tasks',  [ 'as' => 'tasks', 'uses' => 'tasks'])->middleware('auth');
     Route::get('/app-profile',  [ 'as' => 'profile', 'uses' => 'show_my_profile'])->middleware('auth');
     Route::post('/open-gate','open_gate')->middleware('auth');
     Route::post('/checkin','checkin')->middleware('auth');

@@ -19,15 +19,15 @@
 	            <li>
 	            	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 						<i class="flaticon-381-calculator"></i>
-						<span class="nav-text">Ingresos y egresos</span>
+						<span class="nav-text">Finanzas</span>
 					</a>
 	                <ul aria-expanded="false">
 						<li><a href="{!! url('/movements'); !!}">Ver movimientos</a></li>
 						<li><a href="{!! url('/anual_houses_view'); !!}">Ver tabla de adeudos anual</a></li>
 						@if(auth()->user()->is_admin)
-							<li><a href="{!! url('/add_maintenance_payment'); !!}">Agregar pago de mantenimiento</a></li>
+							<li><a href="{!! url('/add_maintenance_payment'); !!}">Agregar pago de adeudo</a></li>
 							<li><a href="{!! url('/add-movement'); !!}">Agregar gasto</a></li>
-							<li><a href="{!! url('/add_extra'); !!}">Crear pago general</a></li>
+							<li><a href="{!! url('/add_extra'); !!}">Crear adeudo general</a></li>
 						@endif
 					</ul>
 	            </li>

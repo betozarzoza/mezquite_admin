@@ -12,6 +12,7 @@ use App\Models\Activity;
 use App\Models\Checkin;
 use App\Models\Survey;
 use App\Models\Guard;
+use App\Models\Task;
 use App\Models\Answer;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Http;
@@ -56,6 +57,14 @@ class GeneralController extends Controller
         $page_description = 'Abriendo porton';
         $action = __FUNCTION__;
         return view('zenix.app.open_gate_animation', compact('page_title', 'page_description', 'action'));
+    }
+
+    public function tasks(){
+        $page_title = 'tasks';
+        $page_description = 'Tareas';
+        $action = __FUNCTION__;
+        $tasks =  Task::whereDate('created_at', Carbon::today())->get();
+        return view('zenix.table.tasks', compact('page_title', 'page_description', 'action'));
     }
 
     public function open_gate(){
