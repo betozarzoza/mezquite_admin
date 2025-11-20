@@ -92,10 +92,10 @@ class AuthController extends Controller
         $user = User::find($id);
         $user->password = bcrypt($request->contrasena);
         $user->save();
-        $result_array = array(
+        $result_array = [
             'type'      => 'success',
             'message'    => 'Contrasena cambiada correctamente.',
-        );
+        ];
         return redirect('/app-profile');
         //return json_encode($result_array);
     }
@@ -121,16 +121,16 @@ class AuthController extends Controller
             $m->from('hello@forgotpassword.com', 'Company name');
             $m->to($request->email)->subject('Recuperar contraseña');
         });
-        $result_array = array(
+        $result_array = [
             'type'      => 'success',
             'message'    => 'Direccion enviada al correo.',
-        );
+        ];
         return json_encode($result_array);
       } else {
-        $result_array = array(
+        $result_array = [
             'type'      => 'error',
             'message'    => 'No se encontro el correo.',
-        );
+        ];
         return json_encode($result_array);
       }
     }
