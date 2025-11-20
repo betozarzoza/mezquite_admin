@@ -23,7 +23,7 @@
 	                </div>
 	                <div class="card-body">
 	                    <div class="basic-form">
-	                        <form action="create-maintenance-payment" method="post">
+	                        <form action="/create_payment_for_debt" method="post">
 	                        	@csrf
 	                        	<div class="mb-3">
 		                        	<label class="form-label">Deuda:</label>
@@ -37,7 +37,7 @@
 	                            	<label class="form-label">Cantidad (Si no dara la cantidad total):</label>
 	                                <input type="number" class="form-control" name="cantidad" id="cantidad"></input>
 	                            </div>
-	                            <button type="submit" class="btn btn-primary">Agregar</button>
+	                            <button type="submit" class="btn btn-primary">Agregar pago</button>
 	                        </form>
 	                    </div>
 	                </div>

@@ -174,7 +174,9 @@ Route::controller(FinanceController::class)->group(function () {
     Route::post('/create_general_debt','create_general_debt')->middleware('auth');
 
     Route::get('/add_payment_for_debt/{user_id}',  [ 'as' => 'add_payment_for_debt', 'uses' => 'add_payment_for_debt'])->middleware('auth');
+    Route::get('/add_payment_for_debt_step_1',  [ 'as' => 'add_payment_for_debt_step_1', 'uses' => 'add_payment_for_debt_step_1'])->middleware('auth');
     Route::post('/create_payment_for_debt','create_payment_for_debt')->middleware('auth');
+    Route::post('/redirect_payment_for_debt_to_next_step','redirect_payment_for_debt_to_next_step')->middleware('auth');
 });
 
 

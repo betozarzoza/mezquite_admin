@@ -50,4 +50,32 @@ class FinanceController extends Controller
         $debts = Debt::where([['user_id', $user_id],['status', 'unpaid']])->get();
         return view('zenix.form.add_payment_for_debt', compact('page_title', 'page_description', 'action', 'user_id', 'debts'));
     }
+
+    public function create_payment_for_debt (Request $request) {
+        //Update the debt table
+        $debt = Debt::find($request->debt);
+        $debt->status = 'paid';
+        $debt->save();
+        //modify general balance
+        //send receipt to email -to-do whatsapp
+
+        //Add Activity
+        /*
+        $activity = new Activity;
+        $activity->name = 'Pago de mantenimiento casa '.$request->destinatario.' del mes de '.$mes;
+        $activity->status = 1;
+        $activity->save();
+        */
+    }
+
+    public function add_payment_for_debt_step_1 (Request $request) {
+        $page_title = 'Agregar pago de deuda paso 1';
+        $page_description = 'Formulario para crear un pago de una deuda';
+        $action = __FUNCTION__;
+        return view('zenix.form.add_payment_for_debt_step_1', compact('page_title', 'page_description', 'action'));
+    }
+
+    public function redirect_payment_for_debt_to_next_step (Request $request) {
+        return redirect('/add_payment_for_debt/'.$request->destinatario);
+    }
 }
