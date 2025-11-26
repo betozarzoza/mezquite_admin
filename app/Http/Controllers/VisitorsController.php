@@ -31,7 +31,7 @@ class VisitorsController extends Controller
         $user = User::find($id);
 
         $visitor = new Visitor;
-        $random_string = $this->generateRandomString(6);
+        $random_string = str_replace(" ", "", $request->nombre);
         $visitor->name = $request->nombre;
         $visitor->active = 1;
         $visitor->duration = $request->duracion;
@@ -142,6 +142,15 @@ class VisitorsController extends Controller
         $visitor = Visitor::where('access_id', $request->access_id)->get();
         $visitor_verification = Visitor::find($visitor[0]['id']);
         $visitor_verification->active = 0;
+        $visitor_verification->save();
+
+        return redirect('/my_guests');
+    }
+
+    public function activate_guest_again(Request $request){
+        $visitor = Visitor::where('access_id', $request->access_id)->get();
+        $visitor_verification = Visitor::find($visitor[0]['id']);
+        $visitor_verification->active = 1;
         $visitor_verification->save();
 
         return redirect('/my_guests');

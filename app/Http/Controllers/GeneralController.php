@@ -14,6 +14,7 @@ use App\Models\Survey;
 use App\Models\Guard;
 use App\Models\Task;
 use App\Models\Answer;
+use App\Models\Debt;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
@@ -44,11 +45,12 @@ class GeneralController extends Controller
         foreach ($surveys as $survey){
             $survey->answered = count(Answer::where([['house_id', $user->id],['survey_id', $survey->id]])->get());
         }
+        $my_balance = Debt::where('status', 'unpaid')->where('user_id', $id)->sum('quantity');
         $arrived_at = Checkin::where('type', 'entrada')->whereDate('created_at', Carbon::today())->get();
         $leaved_at = Checkin::where('type', 'salida')->whereDate('created_at', Carbon::today())->get();
         $lunch = Checkin::where('type', 'sali a comer')->whereDate('created_at', Carbon::today())->get();
 
-        return view('zenix.dashboard.index', compact('page_title', 'page_description', 'action', 'balance', 'ingresos', 'egresos', 'houses', 'user', 'notifications', 'surveys', 'activities', 'arrived_at', 'leaved_at', 'lunch'));
+        return view('zenix.dashboard.index', compact('page_title', 'page_description', 'action', 'balance', 'ingresos', 'egresos', 'houses', 'user', 'notifications', 'surveys', 'activities', 'arrived_at', 'leaved_at', 'lunch', 'my_balance'));
 
     }
 

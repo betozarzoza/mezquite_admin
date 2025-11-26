@@ -216,7 +216,9 @@ class MovementsController extends Controller
         $page_description = 'Muestra los ingresos y egresos';
         $action = __FUNCTION__;
         $movements = Movement::with('user')->orderBy('created_at', 'desc')->get();
-        return view('zenix.dashboard.movements', compact('page_title', 'page_description', 'action', 'movements'));
+        $id = Auth::id();
+        $user = User::find($id);
+        return view('zenix.dashboard.movements', compact('page_title', 'page_description', 'action', 'movements', 'user'));
     }
 
     public function anual_houses_view () {

@@ -19,7 +19,7 @@
 	        <div class="col-xl-6 col-lg-6">
 	            <div class="card">
 	                <div class="card-header">
-	                    <h4 class="card-title">Formulario para agregar pago de una deuda para casa {{$user_id}}</h4>
+	                    <h4 class="card-title">Formulario para agregar pago de una deuda para casa {{$user_id}} - deuda total: {{$my_debt}}</h4>
 	                </div>
 	                <div class="card-body">
 	                    <div class="basic-form">
@@ -29,7 +29,7 @@
 		                        	<label class="form-label">Deuda:</label>
 									<select name="debt" class="default-select  form-control wide" >
 										@foreach ($debts as $debt)
-											<option value="{{$debt->id}}">{{$debt->name}}</option>
+											<option value="{{$debt->id}}">{{$debt->name}} - {{$debt->quantity}}</option>
 										@endforeach
 		                            </select>
 	                            </div>

@@ -10,8 +10,12 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
+        "mailgun/mailgun-php": "^4.3",
+        "nyholm/psr7": "^1.8",
         "realrashid/sweet-alert": "^7.0",
-        "spresnac/laravel-create-user-cli": "^1.0"
+        "spresnac/laravel-create-user-cli": "^1.0",
+        "symfony/http-client": "^7.3",
+        "symfony/mailgun-mailer": "^7.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

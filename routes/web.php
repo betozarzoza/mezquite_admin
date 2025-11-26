@@ -158,6 +158,7 @@ Route::controller(VisitorsController::class)->group(function () {
     Route::get('/expired_code',  [ 'as' => 'expired_code', 'uses' => 'expired_code']);
     Route::get('/my_guests',  [ 'as' => 'my_guests', 'uses' => 'my_guests'])->middleware('auth');
     Route::get('/cancel_guest_access/{access_id}',  [ 'as' => 'cancel_guest_access', 'uses' => 'cancel_guest_access'])->middleware('auth');
+    Route::get('/activate_guest_again/{access_id}',  [ 'as' => 'activate_guest_again', 'uses' => 'activate_guest_again'])->middleware('auth');
 });
 
 Route::controller(HousesController::class)->group(function () {
