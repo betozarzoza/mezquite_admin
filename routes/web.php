@@ -10,6 +10,7 @@ use App\Http\Controllers\VisitorsController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\FinanceController;
+use App\Http\Controllers\TasksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -131,15 +132,22 @@ Route::controller(ScheduleController::class)->group(function () {
     Route::post('/create-schedule','create_schedule')->middleware('auth');
 });
 
+Route::controller(TasksController::class)->group(function () {
+    Route::get('/tasks',  [ 'as' => 'tasks', 'uses' => 'tasks'])->middleware('auth');
+    Route::get('/add_task',  [ 'as' => 'add_task', 'uses' => 'add_task'])->middleware('auth');
+    Route::get('/complete_task/{task_id}',  [ 'as' => 'complete_task', 'uses' => 'complete_task'])->middleware('auth');
+    Route::get('/waiting_task/{task_id}',  [ 'as' => 'waiting_task', 'uses' => 'waiting_task'])->middleware('auth');
+});
+
 Route::controller(GeneralController::class)->group(function () {
     Route::get('/',  [ 'as' => 'index', 'uses' => 'show_index'])->middleware('auth');
     Route::get('/index',  [ 'as' => 'index', 'uses' => 'show_index'])->middleware('auth');
-    Route::get('/tasks',  [ 'as' => 'tasks', 'uses' => 'tasks'])->middleware('auth');
     Route::get('/app-profile',  [ 'as' => 'profile', 'uses' => 'show_my_profile'])->middleware('auth');
     Route::post('/open-gate','open_gate')->middleware('auth');
     Route::post('/checkin','checkin')->middleware('auth');
     Route::get('/add_activity',  [ 'as' => 'add_activity', 'uses' => 'add_activity'])->middleware('auth');
-    Route::post('/create_activity','create_activity')->middleware('auth');
+    Route::post('
+        /create_activity','create_activity')->middleware('auth');
     Route::post('/checkout','checkout')->middleware('auth');
     Route::post('/lunch','lunch')->middleware('auth');
     Route::post('/lunchback','lunchback')->middleware('auth');
@@ -150,15 +158,15 @@ Route::controller(GeneralController::class)->group(function () {
 
 Route::controller(VisitorsController::class)->group(function () {
     Route::get('/add_visitor',  [ 'as' => 'add_visitor', 'uses' => 'add_visitor'])->middleware('auth');
-    Route::get('/visitor_access/{access_id}',  [ 'as' => 'visitor_access', 'uses' => 'visitor_access']);
-    Route::get('/visitor_access_user/{access_id}',  [ 'as' => 'visitor_access_user', 'uses' => 'visitor_access_user']);
+    Route::get('/visitor_access/{user_id}/{access_id}',  [ 'as' => 'visitor_access', 'uses' => 'visitor_access']);
+    Route::get('/visitor_access_user/{user_id}/{access_id}',  [ 'as' => 'visitor_access_user', 'uses' => 'visitor_access_user']);
     Route::post('/create_visitor','create_visitor')->middleware('auth');
     Route::post('/release_the_kraken','release_the_kraken');
     Route::get('/thank_you_visitor',  [ 'as' => 'thank_you_visitor', 'uses' => 'thank_you_visitor']);
     Route::get('/expired_code',  [ 'as' => 'expired_code', 'uses' => 'expired_code']);
     Route::get('/my_guests',  [ 'as' => 'my_guests', 'uses' => 'my_guests'])->middleware('auth');
-    Route::get('/cancel_guest_access/{access_id}',  [ 'as' => 'cancel_guest_access', 'uses' => 'cancel_guest_access'])->middleware('auth');
-    Route::get('/activate_guest_again/{access_id}',  [ 'as' => 'activate_guest_again', 'uses' => 'activate_guest_again'])->middleware('auth');
+    Route::get('/cancel_guest_access/{user_id}/{access_id}',  [ 'as' => 'cancel_guest_access', 'uses' => 'cancel_guest_access'])->middleware('auth');
+    Route::get('/activate_guest_again/{user_id}/{access_id}',  [ 'as' => 'activate_guest_again', 'uses' => 'activate_guest_again'])->middleware('auth');
 });
 
 Route::controller(HousesController::class)->group(function () {

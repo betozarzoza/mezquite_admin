@@ -34,30 +34,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th>1</th>
-                                        <td>Barrer casa 1</td>
-                                        <td><span class="badge badge-success">Completada</span>
-                                        </td>
-                                        <td><button type="button" class="btn btn-success">Terminar</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>2</th>
-                                        <td>Podar Ixora pasto</td>
-                                        <td><span class="badge badge-warning">En espera</span>
-                                        </td>
-                                        <td><button type="button" class="btn btn-success">Terminar</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>3</th>
-                                        <td>Rondin tirar basura</td>
-                                        <td><span class="badge badge-warning">En espera</span>
-                                        </td>
-                                        <td><button type="button" class="btn btn-success">Terminar</button>
-                                        </td>
-                                    </tr>
+                                    @foreach ($tasks as $task)
+                                        <tr>
+                                            <th>{{$task->id}}</th>
+                                            <td>{{$task->name}}</td>
+                                            @if ($task->status == 'en espera')
+                                            <td><span class="badge badge-warning">{{$task->status}}</span></td>
+                                            <td><a href="/complete_task/{{$task->id}}" class="btn btn-success">Terminar</a>
+                                            @elseif ($task->status == 'completada')
+                                            <td><span class="badge badge-success">{{$task->status}}</span></td>
+                                            <td><a href="/waiting_task/{{$task->id}}" class="btn btn-danger">En espera</a>
+                                            @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

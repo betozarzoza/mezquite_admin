@@ -23,7 +23,7 @@
 					</a>
 	                <ul aria-expanded="false">
 						<li><a href="{!! url('/movements'); !!}">Ver movimientos</a></li>
-						<li><a href="{!! url('/anual_houses_view'); !!}">Ver tabla de adeudos anual</a></li>
+						<!--<li><a href="{!! url('/anual_houses_view'); !!}">Ver tabla de adeudos anual</a></li>-->
 						@if(auth()->user()->is_admin)
 							<li><a href="{!! url('/add_payment_for_debt_step_1'); !!}">Pagar deuda</a></li>
 							<li><a href="{!! url('/add-movement'); !!}">Agregar gasto</a></li>
@@ -39,6 +39,16 @@
 	                <ul aria-expanded="false">
 						<li><a href="{!! url('/guard_activity'); !!}">Vitacora</a></li>
 						<li><a href="{!! url('/guard_checkins'); !!}">Checador</a></li>
+					</ul>
+	            </li>
+	            <li>
+	            	<a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+						<i class="flaticon-381-id-card-5"></i>
+						<span class="nav-text">Tareas</span>
+					</a>
+	                <ul aria-expanded="false">
+						<li><a href="{!! url('/tasks'); !!}">Tareas</a></li>
+						<li><a href="{!! url('/add_task'); !!}">Agregar tarea</a></li>
 					</ul>
 	            </li>
 	             <li>

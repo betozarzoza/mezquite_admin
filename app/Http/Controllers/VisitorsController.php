@@ -30,16 +30,24 @@ class VisitorsController extends Controller
         $id = Auth::id();
         $user = User::find($id);
 
-        $visitor = new Visitor;
-        $random_string = str_replace(" ", "", $request->nombre);
-        $visitor->name = $request->nombre;
-        $visitor->active = 1;
-        $visitor->duration = $request->duracion;
-        $visitor->access_id = $random_string;
-        $visitor->house_id = $user->houses_id;
- 
-        $visitor->save(); 
-        return redirect('/visitor_access_user/'.$random_string);
+        $visitor_get = Visitor::where('access_id', str_replace(" ", "_", $request->nombre))->get();
+        if (count($visitor_get) > 0) {
+            $visitor_update = Visitor::find($visitor_get[0]->id);
+            $visitor_update->active = 1;
+            $visitor_update->save();
+            return redirect('/visitor_access_user/'.$id.'/'.$visitor_update->access_id);
+        } else {
+            $visitor = new Visitor;
+            $random_string = str_replace(" ", "_", $request->nombre);
+            $visitor->name = $request->nombre;
+            $visitor->active = 1;
+            $visitor->duration = $request->duracion;
+            $visitor->access_id = $random_string;
+            $visitor->house_id = $user->houses_id;
+     
+            $visitor->save(); 
+            return redirect('/visitor_access_user/'.$id.'/'.$random_string);
+        }
     }
 
     public function visitor_access(Request $request) {
@@ -81,7 +89,7 @@ class VisitorsController extends Controller
         $id = Auth::id();
         $user = User::find($id);
         $my_guests = Visitor::where('house_id', $user->houses_id)->orderBy('created_at', 'DESC')->get();
-        return view('zenix.app.my_guests', compact('page_title', 'page_description', 'action', 'my_guests'));
+        return view('zenix.app.my_guests', compact('page_title', 'page_description', 'action', 'my_guests', 'user'));
     }
 
     public function release_the_kraken(Request $request){
@@ -98,7 +106,7 @@ class VisitorsController extends Controller
             } else if ($visitor_verification->duration == '1_hour' && $visitor_verification->active) {
                 $visitor_verification->active = 0;
                 $now = Carbon::now();
-                $dbtime = Carbon::createFromFormat('Y-m-d H:i:s', $visitor_verification->created_at);
+                $dbtime = Carbon::createFromFormat('Y-m-d H:i:s', $visitor_verification->updated_at);
 
                 $totalDuration = $now->diffInHours($dbtime);
                 if ($totalDuration>=1) {
@@ -110,7 +118,7 @@ class VisitorsController extends Controller
             } else if ($visitor_verification->duration == '6_hours' && $visitor_verification->active) {
                 $visitor_verification->active = 0;
                 $now = Carbon::now();
-                $dbtime = Carbon::createFromFormat('Y-m-d H:i:s', $visitor_verification->created_at);
+                $dbtime = Carbon::createFromFormat('Y-m-d H:i:s', $visitor_verification->updated_at);
 
                 $totalDuration = $now->diffInHours($dbtime);
                 if ($totalDuration>=6) {
@@ -123,7 +131,7 @@ class VisitorsController extends Controller
             } else if ($visitor_verification->duration == '12_hours' && $visitor_verification->active) {
                 $visitor_verification->active = 0;
                 $now = Carbon::now();
-                $dbtime = Carbon::createFromFormat('Y-m-d H:i:s', $visitor_verification->created_at);
+                $dbtime = Carbon::createFromFormat('Y-m-d H:i:s', $visitor_verification->updated_at);
 
                 $totalDuration = $now->diffInHours($dbtime);
                 if ($totalDuration>=12) {
